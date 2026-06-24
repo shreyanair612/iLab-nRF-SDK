@@ -1,0 +1,5 @@
+{
+    "nrf-connect.applications": [
+        "${workspaceFolder}/01_blinky"
+    ]
+}
