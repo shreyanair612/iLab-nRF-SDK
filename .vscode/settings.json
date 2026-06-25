@@ -1,5 +1,6 @@
 {
     "nrf-connect.applications": [
-        "${workspaceFolder}/01_blinky"
+        "${workspaceFolder}/01_blinky",
+        "${workspaceFolder}/03_inmp441_live"
     ]
 }

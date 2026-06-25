@@ -1,0 +1,7 @@
+default: 03_inmp441_live
+build_dir: /Users/shreybae/Documents/iLAB/nRF_SDK/03_inmp441_live/build
+domains:
+  - name: 03_inmp441_live
+    build_dir: /Users/shreybae/Documents/iLAB/nRF_SDK/03_inmp441_live/build/03_inmp441_live
+flash_order:
+  - 03_inmp441_live

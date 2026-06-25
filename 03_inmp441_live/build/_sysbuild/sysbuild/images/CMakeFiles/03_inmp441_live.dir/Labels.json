@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nRF_SDK/03_inmp441_live/build/_sysbuild/sysbuild/images/CMakeFiles/03_inmp441_live"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nRF_SDK/03_inmp441_live/build/_sysbuild/sysbuild/images/CMakeFiles/03_inmp441_live.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nRF_SDK/03_inmp441_live/build/_sysbuild/sysbuild/images/CMakeFiles/03_inmp441_live-complete.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nRF_SDK/03_inmp441_live/build/_sysbuild/sysbuild/images/03_inmp441_live-prefix/src/03_inmp441_live-stamp/03_inmp441_live-build.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nRF_SDK/03_inmp441_live/build/_sysbuild/sysbuild/images/03_inmp441_live-prefix/src/03_inmp441_live-stamp/03_inmp441_live-configure.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nRF_SDK/03_inmp441_live/build/_sysbuild/sysbuild/images/03_inmp441_live-prefix/src/03_inmp441_live-stamp/03_inmp441_live-download.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nRF_SDK/03_inmp441_live/build/_sysbuild/sysbuild/images/03_inmp441_live-prefix/src/03_inmp441_live-stamp/03_inmp441_live-install.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nRF_SDK/03_inmp441_live/build/_sysbuild/sysbuild/images/03_inmp441_live-prefix/src/03_inmp441_live-stamp/03_inmp441_live-mkdir.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nRF_SDK/03_inmp441_live/build/_sysbuild/sysbuild/images/03_inmp441_live-prefix/src/03_inmp441_live-stamp/03_inmp441_live-patch.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nRF_SDK/03_inmp441_live/build/_sysbuild/sysbuild/images/03_inmp441_live-prefix/src/03_inmp441_live-stamp/03_inmp441_live-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"03_inmp441_live"
+		],
+		"name" : "03_inmp441_live"
+	}
+}

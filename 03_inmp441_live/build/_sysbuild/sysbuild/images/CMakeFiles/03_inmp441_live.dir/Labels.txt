@@ -1,0 +1,13 @@
+# Target labels
+ 03_inmp441_live
+# Source files and their labels
+/Users/shreybae/Documents/iLAB/nRF_SDK/03_inmp441_live/build/_sysbuild/sysbuild/images/CMakeFiles/03_inmp441_live
+/Users/shreybae/Documents/iLAB/nRF_SDK/03_inmp441_live/build/_sysbuild/sysbuild/images/CMakeFiles/03_inmp441_live.rule
+/Users/shreybae/Documents/iLAB/nRF_SDK/03_inmp441_live/build/_sysbuild/sysbuild/images/CMakeFiles/03_inmp441_live-complete.rule
+/Users/shreybae/Documents/iLAB/nRF_SDK/03_inmp441_live/build/_sysbuild/sysbuild/images/03_inmp441_live-prefix/src/03_inmp441_live-stamp/03_inmp441_live-build.rule
+/Users/shreybae/Documents/iLAB/nRF_SDK/03_inmp441_live/build/_sysbuild/sysbuild/images/03_inmp441_live-prefix/src/03_inmp441_live-stamp/03_inmp441_live-configure.rule
+/Users/shreybae/Documents/iLAB/nRF_SDK/03_inmp441_live/build/_sysbuild/sysbuild/images/03_inmp441_live-prefix/src/03_inmp441_live-stamp/03_inmp441_live-download.rule
+/Users/shreybae/Documents/iLAB/nRF_SDK/03_inmp441_live/build/_sysbuild/sysbuild/images/03_inmp441_live-prefix/src/03_inmp441_live-stamp/03_inmp441_live-install.rule
+/Users/shreybae/Documents/iLAB/nRF_SDK/03_inmp441_live/build/_sysbuild/sysbuild/images/03_inmp441_live-prefix/src/03_inmp441_live-stamp/03_inmp441_live-mkdir.rule
+/Users/shreybae/Documents/iLAB/nRF_SDK/03_inmp441_live/build/_sysbuild/sysbuild/images/03_inmp441_live-prefix/src/03_inmp441_live-stamp/03_inmp441_live-patch.rule
+/Users/shreybae/Documents/iLAB/nRF_SDK/03_inmp441_live/build/_sysbuild/sysbuild/images/03_inmp441_live-prefix/src/03_inmp441_live-stamp/03_inmp441_live-update.rule
