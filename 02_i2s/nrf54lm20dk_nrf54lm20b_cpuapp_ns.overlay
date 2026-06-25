@@ -1,0 +1,21 @@
+/ {
+    aliases {
+        i2s-codec-tx = &tdm;
+    };
+};
+
+&pinctrl {
+    tdm_default_alt: tdm_default_alt {
+        group1 {
+            psels = <NRF_PSEL(TDM_SCK_M, 1, 10)>,
+                    <NRF_PSEL(TDM_FSYNC_M, 0, 7)>,
+                    <NRF_PSEL(TDM_SDOUT, 1, 12)>;
+        };
+    };
+};
+
+&tdm {
+    status = "okay";
+    pinctrl-0 = <&tdm_default_alt>;
+    pinctrl-names = "default";
+};
