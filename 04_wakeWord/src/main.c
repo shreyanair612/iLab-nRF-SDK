@@ -4,12 +4,9 @@
  * SPDX-License-Identifier: LicenseRef-Nordic-5-Clause
  */
 
-#include <stddef.h>
-#include <stdint.h>
+#include <errno.h>
+#include <stdbool.h>
 
-#include <zephyr/audio/dmic.h>
-#include <zephyr/device.h>
-#include <zephyr/devicetree.h>
 #include <zephyr/logging/log.h>
 
 #include "control_output.h"
@@ -18,8 +15,6 @@
 #include "wakeword.h"
 
 LOG_MODULE_REGISTER(main);
-
-static const struct device *const dmic_dev = DEVICE_DT_GET(DT_NODELABEL(dmic_dev));
 
 int main(void)
 {
@@ -47,30 +42,29 @@ int main(void)
 
 	LOG_INF("Initialization completed");
 
-	err = dmic_trigger(dmic_dev, DMIC_TRIGGER_START);
+	err = dmic_start();
 	if (err < 0) {
-		LOG_ERR("Failed to start DMIC (err %d)", err);
+		LOG_ERR("Failed to start audio capture (err %d)", err);
 		return err;
 	}
-
-	void *audio_buffer;
-	size_t audio_buffer_size;
-	bool ww_detected;
 
 	print_control_output((struct control_message){CONTROL_MESSAGE_WAITING_WW});
 
 	while (true) {
+		void *audio_buffer;
+		size_t audio_buffer_size;
+		bool ww_detected;
+
 		const int32_t read_timeout = 100;
 
-		err = dmic_read(dmic_dev, 0, &audio_buffer, &audio_buffer_size, read_timeout);
+		err = dmic_read(&audio_buffer, &audio_buffer_size, read_timeout);
 		if (err < 0) {
-			LOG_ERR("Failed to read from DMIC (err %d)", err);
+			LOG_ERR("Failed to read audio (err %d)", err);
 			return err;
 		}
 
 		err = ww_process(audio_buffer, audio_buffer_size / DMIC_SAMPLE_BYTES, &ww_detected);
 		if (err == -EBUSY) {
-			/* More data is needed. */
 			continue;
 		} else if (err < 0) {
 			LOG_ERR("Wakeword detection failed (err %d)", err);
@@ -78,6 +72,7 @@ int main(void)
 		}
 
 		if (ww_detected) {
+			LOG_INF("Wake word detected");
 			leds_blink_led0();
 			print_control_output((struct control_message){CONTROL_MESSAGE_WW_DETECTED});
 		}

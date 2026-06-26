@@ -1597,11 +1597,6 @@ DT_COMPAT_ATMEL_SAM_UART := atmel,sam-uart
 config DT_HAS_ATMEL_SAM_UART_ENABLED
 	def_bool $(dt_compat_enabled,$(DT_COMPAT_ATMEL_SAM_UART))
 
-DT_COMPAT_ATMEL_SAM_UDP := atmel,sam-udp
-
-config DT_HAS_ATMEL_SAM_UDP_ENABLED
-	def_bool $(dt_compat_enabled,$(DT_COMPAT_ATMEL_SAM_UDP))
-
 DT_COMPAT_ATMEL_SAM_USART := atmel,sam-usart
 
 config DT_HAS_ATMEL_SAM_USART_ENABLED
@@ -1956,11 +1951,6 @@ DT_COMPAT_BFLB_UART := bflb,uart
 
 config DT_HAS_BFLB_UART_ENABLED
 	def_bool $(dt_compat_enabled,$(DT_COMPAT_BFLB_UART))
-
-DT_COMPAT_BFLB_UDC_1 := bflb,udc-1
-
-config DT_HAS_BFLB_UDC_1_ENABLED
-	def_bool $(dt_compat_enabled,$(DT_COMPAT_BFLB_UDC_1))
 
 DT_COMPAT_BOSCH_BMA280 := bosch,bma280
 
@@ -5622,16 +5612,6 @@ DT_COMPAT_NORDIC_MBOX_NRF_IPC := nordic,mbox-nrf-ipc
 config DT_HAS_NORDIC_MBOX_NRF_IPC_ENABLED
 	def_bool $(dt_compat_enabled,$(DT_COMPAT_NORDIC_MBOX_NRF_IPC))
 
-DT_COMPAT_NORDIC_MCUBOOT := nordic,mcuboot
-
-config DT_HAS_NORDIC_MCUBOOT_ENABLED
-	def_bool $(dt_compat_enabled,$(DT_COMPAT_NORDIC_MCUBOOT))
-
-DT_COMPAT_NORDIC_MCUBOOT_IMAGE := nordic,mcuboot-image
-
-config DT_HAS_NORDIC_MCUBOOT_IMAGE_ENABLED
-	def_bool $(dt_compat_enabled,$(DT_COMPAT_NORDIC_MCUBOOT_IMAGE))
-
 DT_COMPAT_NORDIC_MRAM := nordic,mram
 
 config DT_HAS_NORDIC_MRAM_ENABLED
@@ -6182,16 +6162,6 @@ DT_COMPAT_NORDIC_NRF_USBD := nordic,nrf-usbd
 config DT_HAS_NORDIC_NRF_USBD_ENABLED
 	def_bool $(dt_compat_enabled,$(DT_COMPAT_NORDIC_NRF_USBD))
 
-DT_COMPAT_NORDIC_NRF_USBHS_BC12 := nordic,nrf-usbhs-bc12
-
-config DT_HAS_NORDIC_NRF_USBHS_BC12_ENABLED
-	def_bool $(dt_compat_enabled,$(DT_COMPAT_NORDIC_NRF_USBHS_BC12))
-
-DT_COMPAT_NORDIC_NRF_USBHS_WRAPPER := nordic,nrf-usbhs-wrapper
-
-config DT_HAS_NORDIC_NRF_USBHS_WRAPPER_ENABLED
-	def_bool $(dt_compat_enabled,$(DT_COMPAT_NORDIC_NRF_USBHS_WRAPPER))
-
 DT_COMPAT_NORDIC_NRF_USBREG := nordic,nrf-usbreg
 
 config DT_HAS_NORDIC_NRF_USBREG_ENABLED
@@ -6471,11 +6441,6 @@ DT_COMPAT_NORDIC_VPR := nordic,vpr
 
 config DT_HAS_NORDIC_VPR_ENABLED
 	def_bool $(dt_compat_enabled,$(DT_COMPAT_NORDIC_VPR))
-
-DT_COMPAT_NORDIC_VREGUSB_REGULATOR := nordic,vregusb-regulator
-
-config DT_HAS_NORDIC_VREGUSB_REGULATOR_ENABLED
-	def_bool $(dt_compat_enabled,$(DT_COMPAT_NORDIC_VREGUSB_REGULATOR))
 
 DT_COMPAT_NORDIC_WLAN := nordic,wlan
 

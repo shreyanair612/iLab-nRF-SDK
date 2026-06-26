@@ -6,8 +6,8 @@
 # and/or the west manifest file.
 #
 # See the Modules guide for more information.
-"BOARD_ROOT":"/opt/nordic/ncs/v3.3.1/nrf"
-"DTS_ROOT":"/opt/nordic/ncs/v3.3.1/nrf"
-"SNIPPET_ROOT":"/opt/nordic/ncs/v3.3.1/nrf"
-"SOC_ROOT":"/opt/nordic/ncs/v3.3.1/nrf"
-"MODULE_EXT_ROOT":"/opt/nordic/ncs/v3.3.1/nrf"
+"BOARD_ROOT":"/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/nrf"
+"DTS_ROOT":"/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/nrf"
+"SNIPPET_ROOT":"/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/nrf"
+"SOC_ROOT":"/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/nrf"
+"MODULE_EXT_ROOT":"/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/nrf"

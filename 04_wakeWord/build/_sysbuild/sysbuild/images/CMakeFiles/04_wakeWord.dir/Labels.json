@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/04_wakeWord/build/_sysbuild/sysbuild/images/CMakeFiles/04_wakeWord"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/04_wakeWord/build/_sysbuild/sysbuild/images/CMakeFiles/04_wakeWord.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/04_wakeWord/build/_sysbuild/sysbuild/images/CMakeFiles/04_wakeWord-complete.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/04_wakeWord/build/_sysbuild/sysbuild/images/04_wakeWord-prefix/src/04_wakeWord-stamp/04_wakeWord-build.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/04_wakeWord/build/_sysbuild/sysbuild/images/04_wakeWord-prefix/src/04_wakeWord-stamp/04_wakeWord-configure.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/04_wakeWord/build/_sysbuild/sysbuild/images/04_wakeWord-prefix/src/04_wakeWord-stamp/04_wakeWord-download.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/04_wakeWord/build/_sysbuild/sysbuild/images/04_wakeWord-prefix/src/04_wakeWord-stamp/04_wakeWord-install.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/04_wakeWord/build/_sysbuild/sysbuild/images/04_wakeWord-prefix/src/04_wakeWord-stamp/04_wakeWord-mkdir.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/04_wakeWord/build/_sysbuild/sysbuild/images/04_wakeWord-prefix/src/04_wakeWord-stamp/04_wakeWord-patch.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/04_wakeWord/build/_sysbuild/sysbuild/images/04_wakeWord-prefix/src/04_wakeWord-stamp/04_wakeWord-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"04_wakeWord"
+		],
+		"name" : "04_wakeWord"
+	}
+}

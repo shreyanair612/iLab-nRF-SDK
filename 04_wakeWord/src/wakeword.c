@@ -37,8 +37,11 @@ static bool ww_postprocess(void)
 {
 	static uint32_t ww_count;
 	static uint32_t ww_history;
+	static int64_t last_detect_time_ms;
 
 	const float ww_threshold = CONFIG_WW_PROBABILITY_THRESHOLD / 1000.f;
+	const int64_t now_ms = k_uptime_get();
+	const int64_t cooldown_ms = 1200;
 
 	const uint16_t predicted_class = ww_model->decoded_output.classif.predicted_class;
 	const float class_probability =
@@ -56,6 +59,11 @@ static bool ww_postprocess(void)
 		ww_count = 0;
 		ww_history = 0;
 
+		if ((now_ms - last_detect_time_ms) < cooldown_ms) {
+			return false;
+		}
+
+		last_detect_time_ms = now_ms;
 		return true;
 	}
 

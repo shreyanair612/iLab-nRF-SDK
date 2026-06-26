@@ -1,2 +1,2 @@
-"nrf":"/opt/nordic/ncs/v3.3.1/nrf":"/opt/nordic/ncs/v3.3.1/nrf/sysbuild"
-"mcuboot":"/opt/nordic/ncs/v3.3.1/bootloader/mcuboot":"/opt/nordic/ncs/v3.3.1/bootloader/mcuboot/boot/zephyr/sysbuild"
+"nrf":"/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/nrf":"/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/nrf/sysbuild"
+"mcuboot":"/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/bootloader/mcuboot":"/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/bootloader/mcuboot/boot/zephyr/sysbuild"

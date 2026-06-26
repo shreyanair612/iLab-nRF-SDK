@@ -1,0 +1,13 @@
+# Target labels
+ 04_wakeWord
+# Source files and their labels
+/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/04_wakeWord/build/_sysbuild/sysbuild/images/CMakeFiles/04_wakeWord
+/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/04_wakeWord/build/_sysbuild/sysbuild/images/CMakeFiles/04_wakeWord.rule
+/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/04_wakeWord/build/_sysbuild/sysbuild/images/CMakeFiles/04_wakeWord-complete.rule
+/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/04_wakeWord/build/_sysbuild/sysbuild/images/04_wakeWord-prefix/src/04_wakeWord-stamp/04_wakeWord-build.rule
+/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/04_wakeWord/build/_sysbuild/sysbuild/images/04_wakeWord-prefix/src/04_wakeWord-stamp/04_wakeWord-configure.rule
+/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/04_wakeWord/build/_sysbuild/sysbuild/images/04_wakeWord-prefix/src/04_wakeWord-stamp/04_wakeWord-download.rule
+/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/04_wakeWord/build/_sysbuild/sysbuild/images/04_wakeWord-prefix/src/04_wakeWord-stamp/04_wakeWord-install.rule
+/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/04_wakeWord/build/_sysbuild/sysbuild/images/04_wakeWord-prefix/src/04_wakeWord-stamp/04_wakeWord-mkdir.rule
+/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/04_wakeWord/build/_sysbuild/sysbuild/images/04_wakeWord-prefix/src/04_wakeWord-stamp/04_wakeWord-patch.rule
+/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/04_wakeWord/build/_sysbuild/sysbuild/images/04_wakeWord-prefix/src/04_wakeWord-stamp/04_wakeWord-update.rule

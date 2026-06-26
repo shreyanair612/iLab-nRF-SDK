@@ -4,6 +4,6 @@
 
 method=source_dir
 command=
-source_dir=/Users/shreybae/Documents/iLAB/nRF_SDK/04_wakeWord
+source_dir=/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/04_wakeWord
 work_dir=
 

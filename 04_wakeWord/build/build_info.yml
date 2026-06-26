@@ -1,22 +1,25 @@
 cmake:
+  application:
+    source-dir: '/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/share/sysbuild'
   board:
     name: 'nrf54lm20dk'
     path:
-     - '/opt/nordic/ncs/v3.3.1/zephyr/boards/nordic/nrf54lm20dk'
+     - '/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/boards/nordic/nrf54lm20dk'
     qualifiers: 'nrf54lm20b/cpuapp'
     revision: ''
   images:
    - name: '04_wakeWord'
-     source-dir: '/Users/shreybae/Documents/iLAB/nRF_SDK/04_wakeWord'
+     source-dir: '/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/04_wakeWord'
      type: 'MAIN'
   kconfig:
     files:
-     - '/Users/shreybae/Documents/iLAB/nRF_SDK/04_wakeWord/build/_sysbuild/empty.conf'
-     - '/Users/shreybae/Documents/iLAB/nRF_SDK/04_wakeWord/build/_sysbuild/empty.conf'
+     - '/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/04_wakeWord/build/_sysbuild/empty.conf'
+     - '/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/04_wakeWord/build/_sysbuild/empty.conf'
     user-files:
-     - '/Users/shreybae/Documents/iLAB/nRF_SDK/04_wakeWord/build/_sysbuild/empty.conf'
+     - '/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/04_wakeWord/build/_sysbuild/empty.conf'
+  sysbuild: 'true'
 version: '0.1.0'
 west:
-  command: '/opt/nordic/ncs/toolchains/0c0f19d91c/bin/west build --build-dir /Users/shreybae/Documents/iLAB/nRF_SDK/04_wakeWord/build /Users/shreybae/Documents/iLAB/nRF_SDK/04_wakeWord --pristine --board nrf54lm20dk/nrf54lm20b/cpuapp -- -DCONFIG_DEBUG_THREAD_INFO=y'
-  topdir: '/opt/nordic/ncs/v3.3.1'
+  command: '/opt/nordic/ncs/toolchains/0c0f19d91c/bin/west build --build-dir /Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/04_wakeWord/build /Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/04_wakeWord --pristine --board nrf54lm20dk/nrf54lm20b/cpuapp -- -DCONFIG_DEBUG_THREAD_INFO=y'
+  topdir: '/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace'
   version: '1.5.0'

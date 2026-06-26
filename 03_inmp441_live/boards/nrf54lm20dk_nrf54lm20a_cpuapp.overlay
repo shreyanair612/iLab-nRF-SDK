@@ -1,5 +1,5 @@
 /*
- * INMP441 wiring (I2S, not I2C):
+ * INMP441 wiring:
  *   INMP441 SCK  -> DK pin 14 / P3.03  (TDM_SCK_M)
  *   INMP441 WS   -> DK pin 8  / P1.13  (TDM_FSYNC_M)
  *   INMP441 SD   -> DK pin 18 / P3.06  (TDM_SDIN)

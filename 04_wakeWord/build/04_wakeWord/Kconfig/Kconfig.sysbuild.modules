@@ -1,9 +1,15 @@
-menu "nrf (/opt/nordic/ncs/v3.3.1/nrf)"
+config ZEPHYR_EDGE_AI_MODULE
+   bool
+   default y
+menu "nrf (/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/nrf)"
 osource "$(SYSBUILD_NRF_KCONFIG)"
 config ZEPHYR_NRF_MODULE
 	bool
 	default y
 endmenu
+config ZEPHYR_EDGE_IMPULSE_SDK_ZEPHYR_MODULE
+   bool
+   default y
 config ZEPHYR_MCUBOOT_MODULE
    bool
    default y
@@ -32,9 +38,6 @@ config ZEPHYR_MEMFAULT_FIRMWARE_SDK_MODULE
    bool
    default y
 config ZEPHYR_COREMARK_MODULE
-   bool
-   default y
-config ZEPHYR_HOSTAP_MODULE
    bool
    default y
 config ZEPHYR_CANOPENNODE_MODULE
@@ -68,6 +71,9 @@ config ZEPHYR_HAL_TDK_MODULE
    bool
    default y
 config ZEPHYR_HAL_WURTHELEKTRONIK_MODULE
+   bool
+   default y
+config ZEPHYR_HOSTAP_MODULE
    bool
    default y
 config ZEPHYR_LIBLC3_MODULE

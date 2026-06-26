@@ -1,2 +1,2 @@
 # Load Zephyr board defconfig descriptions.
-osource "/opt/nordic/ncs/v3.3.1/zephyr/boards/nordic/nrf54lm20dk/Kconfig.defconfig"
+osource "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/boards/nordic/nrf54lm20dk/Kconfig.defconfig"

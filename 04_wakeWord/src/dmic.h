@@ -5,7 +5,7 @@
  */
 
 /**
- * @defgroup dmic DMIC control functions
+ * @defgroup dmic Audio input control functions
  * @{
  * @ingroup ww_kws
  */
@@ -13,26 +13,20 @@
 #ifndef __DMIC_H__
 #define __DMIC_H__
 
+#include <stddef.h>
+#include <stdint.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
 
-#define DMIC_SAMPLE_BYTES	(2)
-#define DMIC_PCM_RATE		(16000)
+#define DMIC_SAMPLE_BYTES (2)
+#define DMIC_PCM_RATE (16000)
 #define SAMPLES_BLOCK_LENGTH_MS (10)
 
-/**
- * @brief Initialize DMIC.
- *
- * @return Operation status result, 0 for success.
- */
 int dmic_init(void);
-
-/**
- * @brief Free the audio buffer acquired with @c dmic_read.
- *
- * @param buffer Audio buffer.
- */
+int dmic_start(void);
+int dmic_read(void **buffer, size_t *buffer_size, int32_t timeout_ms);
 void free_dmic_buffer(void *buffer);
 
 #ifdef __cplusplus

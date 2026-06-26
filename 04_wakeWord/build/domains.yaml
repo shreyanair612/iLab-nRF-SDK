@@ -1,0 +1,7 @@
+default: 04_wakeWord
+build_dir: /Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/04_wakeWord/build
+domains:
+  - name: 04_wakeWord
+    build_dir: /Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/04_wakeWord/build/04_wakeWord
+flash_order:
+  - 04_wakeWord

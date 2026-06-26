@@ -1,7 +1,7 @@
-# 0 "/opt/nordic/ncs/v3.3.1/zephyr/misc/empty_file.c"
+# 0 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/misc/empty_file.c"
 # 0 "<built-in>"
 # 0 "<command-line>"
-# 1 "/opt/nordic/ncs/v3.3.1/zephyr/boards/nordic/nrf54lm20dk/nrf54lm20dk_nrf54lm20b_cpuapp.dts" 1
+# 1 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/boards/nordic/nrf54lm20dk/nrf54lm20dk_nrf54lm20b_cpuapp.dts" 1
 
 
 
@@ -10,85 +10,85 @@
 
 /dts-v1/;
 
-# 1 "/opt/nordic/ncs/v3.3.1/zephyr/dts/arm/nordic/nrf54lm20b_cpuapp.dtsi" 1 3 4
+# 1 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/arm/nordic/nrf54lm20b_cpuapp.dtsi" 1 3 4
 
 
 
 
 
 
-# 1 "/opt/nordic/ncs/v3.3.1/zephyr/dts/vendor/nordic/nrf54lm20b.dtsi" 1 3 4
+# 1 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/vendor/nordic/nrf54lm20b.dtsi" 1 3 4
 
 
 
 
 
 
-# 1 "/opt/nordic/ncs/v3.3.1/zephyr/dts/vendor/nordic/nrf54lm20_a_b.dtsi" 1 3 4
+# 1 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/vendor/nordic/nrf54lm20_a_b.dtsi" 1 3 4
 
 
 
 
 
 
-# 1 "/opt/nordic/ncs/v3.3.1/zephyr/dts/common/mem.h" 1 3 4
-# 8 "/opt/nordic/ncs/v3.3.1/zephyr/dts/vendor/nordic/nrf54lm20_a_b.dtsi" 2 3 4
-# 1 "/opt/nordic/ncs/v3.3.1/zephyr/dts/vendor/nordic/nrf_common.dtsi" 1 3 4
+# 1 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/common/mem.h" 1 3 4
+# 8 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/vendor/nordic/nrf54lm20_a_b.dtsi" 2 3 4
+# 1 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/vendor/nordic/nrf_common.dtsi" 1 3 4
 
 
 
 
 
 
-# 1 "/opt/nordic/ncs/v3.3.1/zephyr/include/zephyr/dt-bindings/adc/adc.h" 1 3 4
-# 9 "/opt/nordic/ncs/v3.3.1/zephyr/include/zephyr/dt-bindings/adc/adc.h" 3 4
-# 1 "/opt/nordic/ncs/v3.3.1/zephyr/include/zephyr/dt-bindings/dt-util.h" 1 3 4
-# 19 "/opt/nordic/ncs/v3.3.1/zephyr/include/zephyr/dt-bindings/dt-util.h" 3 4
-# 1 "/opt/nordic/ncs/v3.3.1/zephyr/include/zephyr/sys/util_macro.h" 1 3 4
-# 34 "/opt/nordic/ncs/v3.3.1/zephyr/include/zephyr/sys/util_macro.h" 3 4
-# 1 "/opt/nordic/ncs/v3.3.1/zephyr/include/zephyr/sys/util_internal.h" 1 3 4
-# 18 "/opt/nordic/ncs/v3.3.1/zephyr/include/zephyr/sys/util_internal.h" 3 4
-# 1 "/opt/nordic/ncs/v3.3.1/zephyr/include/zephyr/sys/util_loops.h" 1 3 4
-# 1083 "/opt/nordic/ncs/v3.3.1/zephyr/include/zephyr/sys/util_loops.h" 3 4
-# 1 "/opt/nordic/ncs/v3.3.1/zephyr/include/zephyr/sys/util_listify.h" 1 3 4
-# 1084 "/opt/nordic/ncs/v3.3.1/zephyr/include/zephyr/sys/util_loops.h" 2 3 4
-# 19 "/opt/nordic/ncs/v3.3.1/zephyr/include/zephyr/sys/util_internal.h" 2 3 4
-# 203 "/opt/nordic/ncs/v3.3.1/zephyr/include/zephyr/sys/util_internal.h" 3 4
-# 1 "/opt/nordic/ncs/v3.3.1/zephyr/include/zephyr/sys/util_internal_is_eq.h" 1 3 4
-# 204 "/opt/nordic/ncs/v3.3.1/zephyr/include/zephyr/sys/util_internal.h" 2 3 4
-# 234 "/opt/nordic/ncs/v3.3.1/zephyr/include/zephyr/sys/util_internal.h" 3 4
-# 1 "/opt/nordic/ncs/v3.3.1/zephyr/include/zephyr/sys/util_internal_util_inc.h" 1 3 4
-# 235 "/opt/nordic/ncs/v3.3.1/zephyr/include/zephyr/sys/util_internal.h" 2 3 4
+# 1 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/include/zephyr/dt-bindings/adc/adc.h" 1 3 4
+# 9 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/include/zephyr/dt-bindings/adc/adc.h" 3 4
+# 1 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/include/zephyr/dt-bindings/dt-util.h" 1 3 4
+# 19 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/include/zephyr/dt-bindings/dt-util.h" 3 4
+# 1 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/include/zephyr/sys/util_macro.h" 1 3 4
+# 34 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/include/zephyr/sys/util_macro.h" 3 4
+# 1 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/include/zephyr/sys/util_internal.h" 1 3 4
+# 18 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/include/zephyr/sys/util_internal.h" 3 4
+# 1 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/include/zephyr/sys/util_loops.h" 1 3 4
+# 1083 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/include/zephyr/sys/util_loops.h" 3 4
+# 1 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/include/zephyr/sys/util_listify.h" 1 3 4
+# 1084 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/include/zephyr/sys/util_loops.h" 2 3 4
+# 19 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/include/zephyr/sys/util_internal.h" 2 3 4
+# 203 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/include/zephyr/sys/util_internal.h" 3 4
+# 1 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/include/zephyr/sys/util_internal_is_eq.h" 1 3 4
+# 204 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/include/zephyr/sys/util_internal.h" 2 3 4
+# 234 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/include/zephyr/sys/util_internal.h" 3 4
+# 1 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/include/zephyr/sys/util_internal_util_inc.h" 1 3 4
+# 235 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/include/zephyr/sys/util_internal.h" 2 3 4
 
 
-# 1 "/opt/nordic/ncs/v3.3.1/zephyr/include/zephyr/sys/util_internal_util_dec.h" 1 3 4
-# 238 "/opt/nordic/ncs/v3.3.1/zephyr/include/zephyr/sys/util_internal.h" 2 3 4
+# 1 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/include/zephyr/sys/util_internal_util_dec.h" 1 3 4
+# 238 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/include/zephyr/sys/util_internal.h" 2 3 4
 
 
-# 1 "/opt/nordic/ncs/v3.3.1/zephyr/include/zephyr/sys/util_internal_util_x2.h" 1 3 4
-# 241 "/opt/nordic/ncs/v3.3.1/zephyr/include/zephyr/sys/util_internal.h" 2 3 4
-# 35 "/opt/nordic/ncs/v3.3.1/zephyr/include/zephyr/sys/util_macro.h" 2 3 4
-# 20 "/opt/nordic/ncs/v3.3.1/zephyr/include/zephyr/dt-bindings/dt-util.h" 2 3 4
-# 10 "/opt/nordic/ncs/v3.3.1/zephyr/include/zephyr/dt-bindings/adc/adc.h" 2 3 4
-# 8 "/opt/nordic/ncs/v3.3.1/zephyr/dts/vendor/nordic/nrf_common.dtsi" 2 3 4
-# 1 "/opt/nordic/ncs/v3.3.1/zephyr/include/zephyr/dt-bindings/gpio/gpio.h" 1 3 4
-# 9 "/opt/nordic/ncs/v3.3.1/zephyr/dts/vendor/nordic/nrf_common.dtsi" 2 3 4
-# 1 "/opt/nordic/ncs/v3.3.1/zephyr/include/zephyr/dt-bindings/i2c/i2c.h" 1 3 4
-# 10 "/opt/nordic/ncs/v3.3.1/zephyr/dts/vendor/nordic/nrf_common.dtsi" 2 3 4
-# 1 "/opt/nordic/ncs/v3.3.1/zephyr/include/zephyr/dt-bindings/input/input-event-codes.h" 1 3 4
-# 11 "/opt/nordic/ncs/v3.3.1/zephyr/dts/vendor/nordic/nrf_common.dtsi" 2 3 4
-# 1 "/opt/nordic/ncs/v3.3.1/zephyr/include/zephyr/dt-bindings/pinctrl/nrf-pinctrl.h" 1 3 4
-# 12 "/opt/nordic/ncs/v3.3.1/zephyr/dts/vendor/nordic/nrf_common.dtsi" 2 3 4
-# 1 "/opt/nordic/ncs/v3.3.1/zephyr/include/zephyr/dt-bindings/pwm/pwm.h" 1 3 4
-# 13 "/opt/nordic/ncs/v3.3.1/zephyr/dts/vendor/nordic/nrf_common.dtsi" 2 3 4
-# 1 "/opt/nordic/ncs/v3.3.1/zephyr/include/zephyr/dt-bindings/sensor/qdec_nrf.h" 1 3 4
-# 14 "/opt/nordic/ncs/v3.3.1/zephyr/dts/vendor/nordic/nrf_common.dtsi" 2 3 4
+# 1 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/include/zephyr/sys/util_internal_util_x2.h" 1 3 4
+# 241 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/include/zephyr/sys/util_internal.h" 2 3 4
+# 35 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/include/zephyr/sys/util_macro.h" 2 3 4
+# 20 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/include/zephyr/dt-bindings/dt-util.h" 2 3 4
+# 10 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/include/zephyr/dt-bindings/adc/adc.h" 2 3 4
+# 8 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/vendor/nordic/nrf_common.dtsi" 2 3 4
+# 1 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/include/zephyr/dt-bindings/gpio/gpio.h" 1 3 4
+# 9 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/vendor/nordic/nrf_common.dtsi" 2 3 4
+# 1 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/include/zephyr/dt-bindings/i2c/i2c.h" 1 3 4
+# 10 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/vendor/nordic/nrf_common.dtsi" 2 3 4
+# 1 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/include/zephyr/dt-bindings/input/input-event-codes.h" 1 3 4
+# 11 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/vendor/nordic/nrf_common.dtsi" 2 3 4
+# 1 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/include/zephyr/dt-bindings/pinctrl/nrf-pinctrl.h" 1 3 4
+# 12 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/vendor/nordic/nrf_common.dtsi" 2 3 4
+# 1 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/include/zephyr/dt-bindings/pwm/pwm.h" 1 3 4
+# 13 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/vendor/nordic/nrf_common.dtsi" 2 3 4
+# 1 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/include/zephyr/dt-bindings/sensor/qdec_nrf.h" 1 3 4
+# 14 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/vendor/nordic/nrf_common.dtsi" 2 3 4
 
-# 1 "/opt/nordic/ncs/v3.3.1/zephyr/dts/common/freq.h" 1 3 4
-# 16 "/opt/nordic/ncs/v3.3.1/zephyr/dts/vendor/nordic/nrf_common.dtsi" 2 3 4
-# 1 "/opt/nordic/ncs/v3.3.1/zephyr/dts/arm/nordic/override.dtsi" 1 3 4
-# 17 "/opt/nordic/ncs/v3.3.1/zephyr/dts/vendor/nordic/nrf_common.dtsi" 2 3 4
-# 25 "/opt/nordic/ncs/v3.3.1/zephyr/dts/vendor/nordic/nrf_common.dtsi" 3 4
+# 1 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/common/freq.h" 1 3 4
+# 16 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/vendor/nordic/nrf_common.dtsi" 2 3 4
+# 1 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/arm/nordic/override.dtsi" 1 3 4
+# 17 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/vendor/nordic/nrf_common.dtsi" 2 3 4
+# 25 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/vendor/nordic/nrf_common.dtsi" 3 4
 / {
  pinctrl: pin-controller {
 
@@ -111,11 +111,11 @@
   #pwm-cells = <3>;
  };
 };
-# 9 "/opt/nordic/ncs/v3.3.1/zephyr/dts/vendor/nordic/nrf54lm20_a_b.dtsi" 2 3 4
-# 1 "/opt/nordic/ncs/v3.3.1/zephyr/include/zephyr/dt-bindings/adc/nrf-saadc.h" 1 3 4
-# 10 "/opt/nordic/ncs/v3.3.1/zephyr/dts/vendor/nordic/nrf54lm20_a_b.dtsi" 2 3 4
-# 1 "/opt/nordic/ncs/v3.3.1/zephyr/include/zephyr/dt-bindings/regulator/nrf5x.h" 1 3 4
-# 11 "/opt/nordic/ncs/v3.3.1/zephyr/dts/vendor/nordic/nrf54lm20_a_b.dtsi" 2 3 4
+# 9 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/vendor/nordic/nrf54lm20_a_b.dtsi" 2 3 4
+# 1 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/include/zephyr/dt-bindings/adc/nrf-saadc.h" 1 3 4
+# 10 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/vendor/nordic/nrf54lm20_a_b.dtsi" 2 3 4
+# 1 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/include/zephyr/dt-bindings/regulator/nrf5x.h" 1 3 4
+# 11 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/vendor/nordic/nrf54lm20_a_b.dtsi" 2 3 4
 
 /delete-node/ &sw_pwm;
 
@@ -211,11 +211,8 @@
   uicr: uicr@ffd000 {
    compatible = "nordic,nrf-uicr";
    reg = <0xffd000 0x1000>;
-   ranges = <0x0 0xffd000 0x1000>;
-   #address-cells = <1>;
-   #size-cells = <1>;
   };
-# 122 "/opt/nordic/ncs/v3.3.1/zephyr/dts/vendor/nordic/nrf54lm20_a_b.dtsi" 3 4
+# 119 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/vendor/nordic/nrf54lm20_a_b.dtsi" 3 4
   cpuapp_sram: memory@20000000 {
    compatible = "mmio-sram";
    reg = <0x20000000 ((511) * 1024)>;
@@ -231,7 +228,7 @@
    #size-cells = <1>;
    ranges = <0x0 0x20067c00 ((96) * 1024)>;
   };
-# 146 "/opt/nordic/ncs/v3.3.1/zephyr/dts/vendor/nordic/nrf54lm20_a_b.dtsi" 3 4
+# 143 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/vendor/nordic/nrf54lm20_a_b.dtsi" 3 4
   global_peripherals: peripheral@50000000 {
    reg = <0x50000000 0x10000000>;
    ranges = <0x0 0x50000000 0x10000000>;
@@ -243,22 +240,18 @@
     compatible = "nordic,nrf-dppic";
     reg = <0x42000 0x808>;
     status = "disabled";
-    channels = <16>;
-    groups = <2>;
    };
 
    ppib00: ppib@44000 {
     compatible = "nordic,nrf-ppib";
     reg = <0x44000 0x1000>;
     status = "disabled";
-    channels = <12>;
    };
 
    ppib01: ppib@45000 {
     compatible = "nordic,nrf-ppib";
     reg = <0x45000 0x1000>;
     status = "disabled";
-    channels = <8>;
    };
 
    cpuflpr_vpr: vpr@4c000 {
@@ -331,53 +324,35 @@
     prescaler = <0>;
    };
 
-   usbhs_wrapper: usbhs_wrapper@5a000 {
-    compatible = "nordic,nrf-usbhs-wrapper";
-    reg = <0x5a000 0x1000>;
-    ranges = <0x20000 0x20000 0x1a000>;
-    #address-cells = <1>;
-    #size-cells = <1>;
-    regulator = <&vregusb>;
-
-    usbhs: usbhs@20000 {
-     compatible = "nordic,nrf-usbhs-nrf54l", "snps,dwc2";
-     reg = <0x20000 0x1a000>;
-     interrupts = <90 1>;
-     num-in-eps = <16>;
-     num-out-eps = <16>;
-     ghwcfg1 = <0x0>;
-     ghwcfg2 = <0x22affc52>;
-     ghwcfg4 = <0x3e10aa60>;
-     status = "disabled";
-    };
-
-    usbhs_bc12: usbhs_bc12 {
-     compatible = "nordic,nrf-usbhs-bc12";
-     charging-mode = "BC12_TYPE_NONE";
-     status = "disabled";
-    };
+   usbhs: usbhs@5a000 {
+    compatible = "nordic,nrf-usbhs-nrf54l", "snps,dwc2";
+    reg = <0x5a000 0x1000>, <0x20000 0x1a000>;
+    reg-names = "wrapper", "core";
+    interrupts = <90 1>;
+    num-in-eps = <16>;
+    num-out-eps = <16>;
+    ghwcfg1 = <0x0>;
+    ghwcfg2 = <0x22affc52>;
+    ghwcfg4 = <0x3e10aa60>;
+    status = "disabled";
    };
 
    dppic10: dppic@82000 {
     compatible = "nordic,nrf-dppic";
     reg = <0x82000 0x808>;
     status = "disabled";
-    channels = <24>;
-    groups = <6>;
    };
 
    ppib10: ppib@83000 {
     compatible = "nordic,nrf-ppib";
     reg = <0x83000 0x1000>;
     status = "disabled";
-    channels = <12>;
    };
 
    ppib11: ppib@84000 {
     compatible = "nordic,nrf-ppib";
     reg = <0x84000 0x1000>;
     status = "disabled";
-    channels = <16>;
    };
 
    timer10: timer@85000 {
@@ -432,29 +407,24 @@
     compatible = "nordic,nrf-dppic";
     reg = <0xc2000 0x808>;
     status = "disabled";
-    channels = <16>;
-    groups = <6>;
    };
 
    ppib20: ppib@c3000 {
     compatible = "nordic,nrf-ppib";
     reg = <0xc3000 0x1000>;
     status = "disabled";
-    channels = <8>;
    };
 
    ppib21: ppib@c4000 {
     compatible = "nordic,nrf-ppib";
     reg = <0xc4000 0x1000>;
     status = "disabled";
-    channels = <16>;
    };
 
    ppib22: ppib@c5000 {
     compatible = "nordic,nrf-ppib";
     reg = <0xc5000 0x1000>;
     status = "disabled";
-    channels = <4>;
    };
 
    i2c20: i2c@c6000 {
@@ -464,7 +434,6 @@
     reg = <0xc6000 0x1000>;
     interrupts = <198 1>;
     easydma-maxcnt-bits = <16>;
-    clock-tolerance-percent = <6>;
     status = "disabled";
     zephyr,pm-device-runtime-auto;
    };
@@ -504,7 +473,6 @@
     reg = <0xc7000 0x1000>;
     interrupts = <199 1>;
     easydma-maxcnt-bits = <16>;
-    clock-tolerance-percent = <6>;
     status = "disabled";
     zephyr,pm-device-runtime-auto;
    };
@@ -544,7 +512,6 @@
     reg = <0xc8000 0x1000>;
     interrupts = <200 1>;
     easydma-maxcnt-bits = <16>;
-    clock-tolerance-percent = <6>;
     status = "disabled";
     zephyr,pm-device-runtime-auto;
    };
@@ -745,7 +712,6 @@
     clocks = <&lfxo>, <&pclk>;
     clock-names = "lfclock", "hfclock";
     status = "disabled";
-    extended-channels = <0>;
    };
 
    tdm: tdm@e8000 {
@@ -766,7 +732,6 @@
     reg = <0xed000 0x1000>;
     interrupts = <237 1>;
     easydma-maxcnt-bits = <16>;
-    clock-tolerance-percent = <6>;
     status = "disabled";
     zephyr,pm-device-runtime-auto;
    };
@@ -806,7 +771,6 @@
     reg = <0xee000 0x1000>;
     interrupts = <238 1>;
     easydma-maxcnt-bits = <16>;
-    clock-tolerance-percent = <6>;
     status = "disabled";
     zephyr,pm-device-runtime-auto;
    };
@@ -843,15 +807,12 @@
     compatible = "nordic,nrf-dppic";
     reg = <0x102000 0x808>;
     status = "disabled";
-    channels = <4>;
-    groups = <2>;
    };
 
    ppib30: ppib@103000 {
     compatible = "nordic,nrf-ppib";
     reg = <0x103000 0x1000>;
     status = "disabled";
-    channels = <4>;
    };
 
    i2c30: i2c@104000 {
@@ -861,7 +822,6 @@
     reg = <0x104000 0x1000>;
     interrupts = <260 1>;
     easydma-maxcnt-bits = <16>;
-    clock-tolerance-percent = <6>;
     status = "disabled";
     zephyr,pm-device-runtime-auto;
    };
@@ -976,26 +936,17 @@
 
    regulators: regulator@120000 {
     compatible = "nordic,nrf54l-regulators";
-    reg = <0x120000 0x2000>;
-    ranges = <0x0 0x120000 0x2000>;
+    reg = <0x120000 0x1000>;
     status = "disabled";
     #address-cells = <1>;
     #size-cells = <1>;
 
-    vregmain: regulator@0 {
+    vregmain: regulator@120600 {
      compatible = "nordic,nrf5x-regulator";
-     reg = <0x0 0x1000>;
+     reg = <0x120600 0x1>;
      status = "disabled";
      regulator-name = "VREGMAIN";
      regulator-initial-mode = <0>;
-    };
-
-    vregusb: regulator@1000 {
-     compatible = "nordic,vregusb-regulator";
-     reg = <0x1000 0x1000>;
-     status = "disabled";
-     regulator-name = "VREGUSB";
-     interrupts = <289 1>;
     };
    };
   };
@@ -1006,7 +957,7 @@
    interrupts = <78 1>;
    #address-cells = <1>;
    #size-cells = <1>;
-# 932 "/opt/nordic/ncs/v3.3.1/zephyr/dts/vendor/nordic/nrf54lm20_a_b.dtsi" 3 4
+# 883 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/vendor/nordic/nrf54lm20_a_b.dtsi" 3 4
    cpuapp_rram: rram@0 {
     compatible = "soc-nv-flash";
     reg = <0x0 ((1940) * 1024)>;
@@ -1059,7 +1010,7 @@
   };
  };
 };
-# 8 "/opt/nordic/ncs/v3.3.1/zephyr/dts/vendor/nordic/nrf54lm20b.dtsi" 2 3 4
+# 8 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/vendor/nordic/nrf54lm20b.dtsi" 2 3 4
 
 &global_peripherals {
  axon: axon@56000 {
@@ -1069,15 +1020,15 @@
   status = "disabled";
  };
 };
-# 8 "/opt/nordic/ncs/v3.3.1/zephyr/dts/arm/nordic/nrf54lm20b_cpuapp.dtsi" 2 3 4
-# 1 "/opt/nordic/ncs/v3.3.1/zephyr/dts/arm/nordic/nrf54lm20_a_b_cpuapp.dtsi" 1 3 4
+# 8 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/arm/nordic/nrf54lm20b_cpuapp.dtsi" 2 3 4
+# 1 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/arm/nordic/nrf54lm20_a_b_cpuapp.dtsi" 1 3 4
 
 
 
 
 
 
-# 1 "/opt/nordic/ncs/v3.3.1/zephyr/dts/vendor/nordic/nrf54lm20_a_b.dtsi" 1 3 4
+# 1 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/vendor/nordic/nrf54lm20_a_b.dtsi" 1 3 4
 
 
 
@@ -1085,11 +1036,11 @@
 
 
 
-# 1 "/opt/nordic/ncs/v3.3.1/zephyr/dts/vendor/nordic/nrf_common.dtsi" 1 3 4
-# 16 "/opt/nordic/ncs/v3.3.1/zephyr/dts/vendor/nordic/nrf_common.dtsi" 3 4
-# 1 "/opt/nordic/ncs/v3.3.1/zephyr/dts/arm/nordic/override.dtsi" 1 3 4
-# 17 "/opt/nordic/ncs/v3.3.1/zephyr/dts/vendor/nordic/nrf_common.dtsi" 2 3 4
-# 25 "/opt/nordic/ncs/v3.3.1/zephyr/dts/vendor/nordic/nrf_common.dtsi" 3 4
+# 1 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/vendor/nordic/nrf_common.dtsi" 1 3 4
+# 16 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/vendor/nordic/nrf_common.dtsi" 3 4
+# 1 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/arm/nordic/override.dtsi" 1 3 4
+# 17 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/vendor/nordic/nrf_common.dtsi" 2 3 4
+# 25 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/vendor/nordic/nrf_common.dtsi" 3 4
 / {
  pinctrl: pin-controller {
 
@@ -1112,7 +1063,7 @@
   #pwm-cells = <3>;
  };
 };
-# 9 "/opt/nordic/ncs/v3.3.1/zephyr/dts/vendor/nordic/nrf54lm20_a_b.dtsi" 2 3 4
+# 9 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/vendor/nordic/nrf54lm20_a_b.dtsi" 2 3 4
 
 
 
@@ -1210,11 +1161,8 @@
   uicr: uicr@ffd000 {
    compatible = "nordic,nrf-uicr";
    reg = <0xffd000 0x1000>;
-   ranges = <0x0 0xffd000 0x1000>;
-   #address-cells = <1>;
-   #size-cells = <1>;
   };
-# 122 "/opt/nordic/ncs/v3.3.1/zephyr/dts/vendor/nordic/nrf54lm20_a_b.dtsi" 3 4
+# 119 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/vendor/nordic/nrf54lm20_a_b.dtsi" 3 4
   cpuapp_sram: memory@20000000 {
    compatible = "mmio-sram";
    reg = <0x20000000 ((511) * 1024)>;
@@ -1230,7 +1178,7 @@
    #size-cells = <1>;
    ranges = <0x0 0x20067c00 ((96) * 1024)>;
   };
-# 146 "/opt/nordic/ncs/v3.3.1/zephyr/dts/vendor/nordic/nrf54lm20_a_b.dtsi" 3 4
+# 143 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/vendor/nordic/nrf54lm20_a_b.dtsi" 3 4
   global_peripherals: peripheral@50000000 {
    reg = <0x50000000 0x10000000>;
    ranges = <0x0 0x50000000 0x10000000>;
@@ -1242,22 +1190,18 @@
     compatible = "nordic,nrf-dppic";
     reg = <0x42000 0x808>;
     status = "disabled";
-    channels = <16>;
-    groups = <2>;
    };
 
    ppib00: ppib@44000 {
     compatible = "nordic,nrf-ppib";
     reg = <0x44000 0x1000>;
     status = "disabled";
-    channels = <12>;
    };
 
    ppib01: ppib@45000 {
     compatible = "nordic,nrf-ppib";
     reg = <0x45000 0x1000>;
     status = "disabled";
-    channels = <8>;
    };
 
    cpuflpr_vpr: vpr@4c000 {
@@ -1330,53 +1274,35 @@
     prescaler = <0>;
    };
 
-   usbhs_wrapper: usbhs_wrapper@5a000 {
-    compatible = "nordic,nrf-usbhs-wrapper";
-    reg = <0x5a000 0x1000>;
-    ranges = <0x20000 0x20000 0x1a000>;
-    #address-cells = <1>;
-    #size-cells = <1>;
-    regulator = <&vregusb>;
-
-    usbhs: usbhs@20000 {
-     compatible = "nordic,nrf-usbhs-nrf54l", "snps,dwc2";
-     reg = <0x20000 0x1a000>;
-     interrupts = <90 1>;
-     num-in-eps = <16>;
-     num-out-eps = <16>;
-     ghwcfg1 = <0x0>;
-     ghwcfg2 = <0x22affc52>;
-     ghwcfg4 = <0x3e10aa60>;
-     status = "disabled";
-    };
-
-    usbhs_bc12: usbhs_bc12 {
-     compatible = "nordic,nrf-usbhs-bc12";
-     charging-mode = "BC12_TYPE_NONE";
-     status = "disabled";
-    };
+   usbhs: usbhs@5a000 {
+    compatible = "nordic,nrf-usbhs-nrf54l", "snps,dwc2";
+    reg = <0x5a000 0x1000>, <0x20000 0x1a000>;
+    reg-names = "wrapper", "core";
+    interrupts = <90 1>;
+    num-in-eps = <16>;
+    num-out-eps = <16>;
+    ghwcfg1 = <0x0>;
+    ghwcfg2 = <0x22affc52>;
+    ghwcfg4 = <0x3e10aa60>;
+    status = "disabled";
    };
 
    dppic10: dppic@82000 {
     compatible = "nordic,nrf-dppic";
     reg = <0x82000 0x808>;
     status = "disabled";
-    channels = <24>;
-    groups = <6>;
    };
 
    ppib10: ppib@83000 {
     compatible = "nordic,nrf-ppib";
     reg = <0x83000 0x1000>;
     status = "disabled";
-    channels = <12>;
    };
 
    ppib11: ppib@84000 {
     compatible = "nordic,nrf-ppib";
     reg = <0x84000 0x1000>;
     status = "disabled";
-    channels = <16>;
    };
 
    timer10: timer@85000 {
@@ -1431,29 +1357,24 @@
     compatible = "nordic,nrf-dppic";
     reg = <0xc2000 0x808>;
     status = "disabled";
-    channels = <16>;
-    groups = <6>;
    };
 
    ppib20: ppib@c3000 {
     compatible = "nordic,nrf-ppib";
     reg = <0xc3000 0x1000>;
     status = "disabled";
-    channels = <8>;
    };
 
    ppib21: ppib@c4000 {
     compatible = "nordic,nrf-ppib";
     reg = <0xc4000 0x1000>;
     status = "disabled";
-    channels = <16>;
    };
 
    ppib22: ppib@c5000 {
     compatible = "nordic,nrf-ppib";
     reg = <0xc5000 0x1000>;
     status = "disabled";
-    channels = <4>;
    };
 
    i2c20: i2c@c6000 {
@@ -1463,7 +1384,6 @@
     reg = <0xc6000 0x1000>;
     interrupts = <198 1>;
     easydma-maxcnt-bits = <16>;
-    clock-tolerance-percent = <6>;
     status = "disabled";
     zephyr,pm-device-runtime-auto;
    };
@@ -1503,7 +1423,6 @@
     reg = <0xc7000 0x1000>;
     interrupts = <199 1>;
     easydma-maxcnt-bits = <16>;
-    clock-tolerance-percent = <6>;
     status = "disabled";
     zephyr,pm-device-runtime-auto;
    };
@@ -1543,7 +1462,6 @@
     reg = <0xc8000 0x1000>;
     interrupts = <200 1>;
     easydma-maxcnt-bits = <16>;
-    clock-tolerance-percent = <6>;
     status = "disabled";
     zephyr,pm-device-runtime-auto;
    };
@@ -1744,7 +1662,6 @@
     clocks = <&lfxo>, <&pclk>;
     clock-names = "lfclock", "hfclock";
     status = "disabled";
-    extended-channels = <0>;
    };
 
    tdm: tdm@e8000 {
@@ -1765,7 +1682,6 @@
     reg = <0xed000 0x1000>;
     interrupts = <237 1>;
     easydma-maxcnt-bits = <16>;
-    clock-tolerance-percent = <6>;
     status = "disabled";
     zephyr,pm-device-runtime-auto;
    };
@@ -1805,7 +1721,6 @@
     reg = <0xee000 0x1000>;
     interrupts = <238 1>;
     easydma-maxcnt-bits = <16>;
-    clock-tolerance-percent = <6>;
     status = "disabled";
     zephyr,pm-device-runtime-auto;
    };
@@ -1842,15 +1757,12 @@
     compatible = "nordic,nrf-dppic";
     reg = <0x102000 0x808>;
     status = "disabled";
-    channels = <4>;
-    groups = <2>;
    };
 
    ppib30: ppib@103000 {
     compatible = "nordic,nrf-ppib";
     reg = <0x103000 0x1000>;
     status = "disabled";
-    channels = <4>;
    };
 
    i2c30: i2c@104000 {
@@ -1860,7 +1772,6 @@
     reg = <0x104000 0x1000>;
     interrupts = <260 1>;
     easydma-maxcnt-bits = <16>;
-    clock-tolerance-percent = <6>;
     status = "disabled";
     zephyr,pm-device-runtime-auto;
    };
@@ -1975,26 +1886,17 @@
 
    regulators: regulator@120000 {
     compatible = "nordic,nrf54l-regulators";
-    reg = <0x120000 0x2000>;
-    ranges = <0x0 0x120000 0x2000>;
+    reg = <0x120000 0x1000>;
     status = "disabled";
     #address-cells = <1>;
     #size-cells = <1>;
 
-    vregmain: regulator@0 {
+    vregmain: regulator@120600 {
      compatible = "nordic,nrf5x-regulator";
-     reg = <0x0 0x1000>;
+     reg = <0x120600 0x1>;
      status = "disabled";
      regulator-name = "VREGMAIN";
      regulator-initial-mode = <0>;
-    };
-
-    vregusb: regulator@1000 {
-     compatible = "nordic,vregusb-regulator";
-     reg = <0x1000 0x1000>;
-     status = "disabled";
-     regulator-name = "VREGUSB";
-     interrupts = <289 1>;
     };
    };
   };
@@ -2005,7 +1907,7 @@
    interrupts = <78 1>;
    #address-cells = <1>;
    #size-cells = <1>;
-# 932 "/opt/nordic/ncs/v3.3.1/zephyr/dts/vendor/nordic/nrf54lm20_a_b.dtsi" 3 4
+# 883 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/vendor/nordic/nrf54lm20_a_b.dtsi" 3 4
    cpuapp_rram: rram@0 {
     compatible = "soc-nv-flash";
     reg = <0x0 ((1940) * 1024)>;
@@ -2058,7 +1960,7 @@
   };
  };
 };
-# 8 "/opt/nordic/ncs/v3.3.1/zephyr/dts/arm/nordic/nrf54lm20_a_b_cpuapp.dtsi" 2 3 4
+# 8 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/arm/nordic/nrf54lm20_a_b_cpuapp.dtsi" 2 3 4
 
 cpu: &cpuapp {};
 
@@ -2199,18 +2101,18 @@ nvic: &cpuapp_nvic {};
 &ppib30 {
  status = "okay";
 };
-# 9 "/opt/nordic/ncs/v3.3.1/zephyr/dts/arm/nordic/nrf54lm20b_cpuapp.dtsi" 2 3 4
-# 10 "/opt/nordic/ncs/v3.3.1/zephyr/boards/nordic/nrf54lm20dk/nrf54lm20dk_nrf54lm20b_cpuapp.dts" 2
-# 1 "/opt/nordic/ncs/v3.3.1/zephyr/boards/nordic/nrf54lm20dk/nrf54lm20_a_b_cpuapp_common.dtsi" 1
-# 9 "/opt/nordic/ncs/v3.3.1/zephyr/boards/nordic/nrf54lm20dk/nrf54lm20_a_b_cpuapp_common.dtsi"
-# 1 "/opt/nordic/ncs/v3.3.1/zephyr/dts/arm/nordic/nrf54lm20_a_b_cpuapp.dtsi" 1 3 4
+# 9 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/arm/nordic/nrf54lm20b_cpuapp.dtsi" 2 3 4
+# 10 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/boards/nordic/nrf54lm20dk/nrf54lm20dk_nrf54lm20b_cpuapp.dts" 2
+# 1 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/boards/nordic/nrf54lm20dk/nrf54lm20_a_b_cpuapp_common.dtsi" 1
+# 9 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/boards/nordic/nrf54lm20dk/nrf54lm20_a_b_cpuapp_common.dtsi"
+# 1 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/arm/nordic/nrf54lm20_a_b_cpuapp.dtsi" 1 3 4
 
 
 
 
 
 
-# 1 "/opt/nordic/ncs/v3.3.1/zephyr/dts/vendor/nordic/nrf54lm20_a_b.dtsi" 1 3 4
+# 1 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/vendor/nordic/nrf54lm20_a_b.dtsi" 1 3 4
 
 
 
@@ -2218,11 +2120,11 @@ nvic: &cpuapp_nvic {};
 
 
 
-# 1 "/opt/nordic/ncs/v3.3.1/zephyr/dts/vendor/nordic/nrf_common.dtsi" 1 3 4
-# 16 "/opt/nordic/ncs/v3.3.1/zephyr/dts/vendor/nordic/nrf_common.dtsi" 3 4
-# 1 "/opt/nordic/ncs/v3.3.1/zephyr/dts/arm/nordic/override.dtsi" 1 3 4
-# 17 "/opt/nordic/ncs/v3.3.1/zephyr/dts/vendor/nordic/nrf_common.dtsi" 2 3 4
-# 25 "/opt/nordic/ncs/v3.3.1/zephyr/dts/vendor/nordic/nrf_common.dtsi" 3 4
+# 1 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/vendor/nordic/nrf_common.dtsi" 1 3 4
+# 16 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/vendor/nordic/nrf_common.dtsi" 3 4
+# 1 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/arm/nordic/override.dtsi" 1 3 4
+# 17 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/vendor/nordic/nrf_common.dtsi" 2 3 4
+# 25 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/vendor/nordic/nrf_common.dtsi" 3 4
 / {
  pinctrl: pin-controller {
 
@@ -2245,7 +2147,7 @@ nvic: &cpuapp_nvic {};
   #pwm-cells = <3>;
  };
 };
-# 9 "/opt/nordic/ncs/v3.3.1/zephyr/dts/vendor/nordic/nrf54lm20_a_b.dtsi" 2 3 4
+# 9 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/vendor/nordic/nrf54lm20_a_b.dtsi" 2 3 4
 
 
 
@@ -2343,11 +2245,8 @@ nvic: &cpuapp_nvic {};
   uicr: uicr@ffd000 {
    compatible = "nordic,nrf-uicr";
    reg = <0xffd000 0x1000>;
-   ranges = <0x0 0xffd000 0x1000>;
-   #address-cells = <1>;
-   #size-cells = <1>;
   };
-# 122 "/opt/nordic/ncs/v3.3.1/zephyr/dts/vendor/nordic/nrf54lm20_a_b.dtsi" 3 4
+# 119 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/vendor/nordic/nrf54lm20_a_b.dtsi" 3 4
   cpuapp_sram: memory@20000000 {
    compatible = "mmio-sram";
    reg = <0x20000000 ((511) * 1024)>;
@@ -2363,7 +2262,7 @@ nvic: &cpuapp_nvic {};
    #size-cells = <1>;
    ranges = <0x0 0x20067c00 ((96) * 1024)>;
   };
-# 146 "/opt/nordic/ncs/v3.3.1/zephyr/dts/vendor/nordic/nrf54lm20_a_b.dtsi" 3 4
+# 143 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/vendor/nordic/nrf54lm20_a_b.dtsi" 3 4
   global_peripherals: peripheral@50000000 {
    reg = <0x50000000 0x10000000>;
    ranges = <0x0 0x50000000 0x10000000>;
@@ -2375,22 +2274,18 @@ nvic: &cpuapp_nvic {};
     compatible = "nordic,nrf-dppic";
     reg = <0x42000 0x808>;
     status = "disabled";
-    channels = <16>;
-    groups = <2>;
    };
 
    ppib00: ppib@44000 {
     compatible = "nordic,nrf-ppib";
     reg = <0x44000 0x1000>;
     status = "disabled";
-    channels = <12>;
    };
 
    ppib01: ppib@45000 {
     compatible = "nordic,nrf-ppib";
     reg = <0x45000 0x1000>;
     status = "disabled";
-    channels = <8>;
    };
 
    cpuflpr_vpr: vpr@4c000 {
@@ -2463,53 +2358,35 @@ nvic: &cpuapp_nvic {};
     prescaler = <0>;
    };
 
-   usbhs_wrapper: usbhs_wrapper@5a000 {
-    compatible = "nordic,nrf-usbhs-wrapper";
-    reg = <0x5a000 0x1000>;
-    ranges = <0x20000 0x20000 0x1a000>;
-    #address-cells = <1>;
-    #size-cells = <1>;
-    regulator = <&vregusb>;
-
-    usbhs: usbhs@20000 {
-     compatible = "nordic,nrf-usbhs-nrf54l", "snps,dwc2";
-     reg = <0x20000 0x1a000>;
-     interrupts = <90 1>;
-     num-in-eps = <16>;
-     num-out-eps = <16>;
-     ghwcfg1 = <0x0>;
-     ghwcfg2 = <0x22affc52>;
-     ghwcfg4 = <0x3e10aa60>;
-     status = "disabled";
-    };
-
-    usbhs_bc12: usbhs_bc12 {
-     compatible = "nordic,nrf-usbhs-bc12";
-     charging-mode = "BC12_TYPE_NONE";
-     status = "disabled";
-    };
+   usbhs: usbhs@5a000 {
+    compatible = "nordic,nrf-usbhs-nrf54l", "snps,dwc2";
+    reg = <0x5a000 0x1000>, <0x20000 0x1a000>;
+    reg-names = "wrapper", "core";
+    interrupts = <90 1>;
+    num-in-eps = <16>;
+    num-out-eps = <16>;
+    ghwcfg1 = <0x0>;
+    ghwcfg2 = <0x22affc52>;
+    ghwcfg4 = <0x3e10aa60>;
+    status = "disabled";
    };
 
    dppic10: dppic@82000 {
     compatible = "nordic,nrf-dppic";
     reg = <0x82000 0x808>;
     status = "disabled";
-    channels = <24>;
-    groups = <6>;
    };
 
    ppib10: ppib@83000 {
     compatible = "nordic,nrf-ppib";
     reg = <0x83000 0x1000>;
     status = "disabled";
-    channels = <12>;
    };
 
    ppib11: ppib@84000 {
     compatible = "nordic,nrf-ppib";
     reg = <0x84000 0x1000>;
     status = "disabled";
-    channels = <16>;
    };
 
    timer10: timer@85000 {
@@ -2564,29 +2441,24 @@ nvic: &cpuapp_nvic {};
     compatible = "nordic,nrf-dppic";
     reg = <0xc2000 0x808>;
     status = "disabled";
-    channels = <16>;
-    groups = <6>;
    };
 
    ppib20: ppib@c3000 {
     compatible = "nordic,nrf-ppib";
     reg = <0xc3000 0x1000>;
     status = "disabled";
-    channels = <8>;
    };
 
    ppib21: ppib@c4000 {
     compatible = "nordic,nrf-ppib";
     reg = <0xc4000 0x1000>;
     status = "disabled";
-    channels = <16>;
    };
 
    ppib22: ppib@c5000 {
     compatible = "nordic,nrf-ppib";
     reg = <0xc5000 0x1000>;
     status = "disabled";
-    channels = <4>;
    };
 
    i2c20: i2c@c6000 {
@@ -2596,7 +2468,6 @@ nvic: &cpuapp_nvic {};
     reg = <0xc6000 0x1000>;
     interrupts = <198 1>;
     easydma-maxcnt-bits = <16>;
-    clock-tolerance-percent = <6>;
     status = "disabled";
     zephyr,pm-device-runtime-auto;
    };
@@ -2636,7 +2507,6 @@ nvic: &cpuapp_nvic {};
     reg = <0xc7000 0x1000>;
     interrupts = <199 1>;
     easydma-maxcnt-bits = <16>;
-    clock-tolerance-percent = <6>;
     status = "disabled";
     zephyr,pm-device-runtime-auto;
    };
@@ -2676,7 +2546,6 @@ nvic: &cpuapp_nvic {};
     reg = <0xc8000 0x1000>;
     interrupts = <200 1>;
     easydma-maxcnt-bits = <16>;
-    clock-tolerance-percent = <6>;
     status = "disabled";
     zephyr,pm-device-runtime-auto;
    };
@@ -2877,7 +2746,6 @@ nvic: &cpuapp_nvic {};
     clocks = <&lfxo>, <&pclk>;
     clock-names = "lfclock", "hfclock";
     status = "disabled";
-    extended-channels = <0>;
    };
 
    tdm: tdm@e8000 {
@@ -2898,7 +2766,6 @@ nvic: &cpuapp_nvic {};
     reg = <0xed000 0x1000>;
     interrupts = <237 1>;
     easydma-maxcnt-bits = <16>;
-    clock-tolerance-percent = <6>;
     status = "disabled";
     zephyr,pm-device-runtime-auto;
    };
@@ -2938,7 +2805,6 @@ nvic: &cpuapp_nvic {};
     reg = <0xee000 0x1000>;
     interrupts = <238 1>;
     easydma-maxcnt-bits = <16>;
-    clock-tolerance-percent = <6>;
     status = "disabled";
     zephyr,pm-device-runtime-auto;
    };
@@ -2975,15 +2841,12 @@ nvic: &cpuapp_nvic {};
     compatible = "nordic,nrf-dppic";
     reg = <0x102000 0x808>;
     status = "disabled";
-    channels = <4>;
-    groups = <2>;
    };
 
    ppib30: ppib@103000 {
     compatible = "nordic,nrf-ppib";
     reg = <0x103000 0x1000>;
     status = "disabled";
-    channels = <4>;
    };
 
    i2c30: i2c@104000 {
@@ -2993,7 +2856,6 @@ nvic: &cpuapp_nvic {};
     reg = <0x104000 0x1000>;
     interrupts = <260 1>;
     easydma-maxcnt-bits = <16>;
-    clock-tolerance-percent = <6>;
     status = "disabled";
     zephyr,pm-device-runtime-auto;
    };
@@ -3108,26 +2970,17 @@ nvic: &cpuapp_nvic {};
 
    regulators: regulator@120000 {
     compatible = "nordic,nrf54l-regulators";
-    reg = <0x120000 0x2000>;
-    ranges = <0x0 0x120000 0x2000>;
+    reg = <0x120000 0x1000>;
     status = "disabled";
     #address-cells = <1>;
     #size-cells = <1>;
 
-    vregmain: regulator@0 {
+    vregmain: regulator@120600 {
      compatible = "nordic,nrf5x-regulator";
-     reg = <0x0 0x1000>;
+     reg = <0x120600 0x1>;
      status = "disabled";
      regulator-name = "VREGMAIN";
      regulator-initial-mode = <0>;
-    };
-
-    vregusb: regulator@1000 {
-     compatible = "nordic,vregusb-regulator";
-     reg = <0x1000 0x1000>;
-     status = "disabled";
-     regulator-name = "VREGUSB";
-     interrupts = <289 1>;
     };
    };
   };
@@ -3138,7 +2991,7 @@ nvic: &cpuapp_nvic {};
    interrupts = <78 1>;
    #address-cells = <1>;
    #size-cells = <1>;
-# 932 "/opt/nordic/ncs/v3.3.1/zephyr/dts/vendor/nordic/nrf54lm20_a_b.dtsi" 3 4
+# 883 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/vendor/nordic/nrf54lm20_a_b.dtsi" 3 4
    cpuapp_rram: rram@0 {
     compatible = "soc-nv-flash";
     reg = <0x0 ((1940) * 1024)>;
@@ -3191,7 +3044,7 @@ nvic: &cpuapp_nvic {};
   };
  };
 };
-# 8 "/opt/nordic/ncs/v3.3.1/zephyr/dts/arm/nordic/nrf54lm20_a_b_cpuapp.dtsi" 2 3 4
+# 8 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/arm/nordic/nrf54lm20_a_b_cpuapp.dtsi" 2 3 4
 
 cpu: &cpuapp {};
 
@@ -3332,15 +3185,15 @@ nvic: &cpuapp_nvic {};
 &ppib30 {
  status = "okay";
 };
-# 10 "/opt/nordic/ncs/v3.3.1/zephyr/boards/nordic/nrf54lm20dk/nrf54lm20_a_b_cpuapp_common.dtsi" 2
-# 1 "/opt/nordic/ncs/v3.3.1/zephyr/boards/nordic/nrf54lm20dk/nrf54lm20dk_common.dtsi" 1
+# 10 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/boards/nordic/nrf54lm20dk/nrf54lm20_a_b_cpuapp_common.dtsi" 2
+# 1 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/boards/nordic/nrf54lm20dk/nrf54lm20dk_common.dtsi" 1
 
 
 
 
 
 
-# 1 "/opt/nordic/ncs/v3.3.1/zephyr/boards/nordic/nrf54lm20dk/nrf54lm20dk_nrf54lm20_a_b-pinctrl.dtsi" 1
+# 1 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/boards/nordic/nrf54lm20dk/nrf54lm20dk_nrf54lm20_a_b-pinctrl.dtsi" 1
 
 
 
@@ -3442,40 +3295,8 @@ nvic: &cpuapp_nvic {};
    low-power-enable;
   };
  };
-
- spi22_default: spi22_default {
-  group1 {
-   psels = <((((((3) * 32U) + (3)) & 0x1FFU) << 0U) | ((4U & 0xFFU) << 24U))>,
-    <((((((3) * 32U) + (1)) & 0x1FFU) << 0U) | ((6U & 0xFFU) << 24U))>,
-    <((((((3) * 32U) + (0)) & 0x1FFU) << 0U) | ((5U & 0xFFU) << 24U))>;
-   bias-pull-down;
-  };
- };
-
- spi22_sleep: spi22_sleep {
-  group1 {
-   psels = <((((((3) * 32U) + (3)) & 0x1FFU) << 0U) | ((4U & 0xFFU) << 24U))>,
-    <((((((3) * 32U) + (1)) & 0x1FFU) << 0U) | ((6U & 0xFFU) << 24U))>,
-    <((((((3) * 32U) + (0)) & 0x1FFU) << 0U) | ((5U & 0xFFU) << 24U))>;
-   bias-pull-down;
-   low-power-enable;
-  };
- };
-
- pwm21_default: pwm21_default {
-  group1 {
-   psels = <((((((3) * 32U) + (4)) & 0x1FFU) << 0U) | ((22U & 0xFFU) << 24U))>;
-  };
- };
-
- pwm21_sleep: pwm21_sleep {
-  group1 {
-   psels = <((((((3) * 32U) + (4)) & 0x1FFU) << 0U) | ((22U & 0xFFU) << 24U))>;
-   low-power-enable;
-  };
- };
 };
-# 8 "/opt/nordic/ncs/v3.3.1/zephyr/boards/nordic/nrf54lm20dk/nrf54lm20dk_common.dtsi" 2
+# 8 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/boards/nordic/nrf54lm20dk/nrf54lm20dk_common.dtsi" 2
 
 / {
  leds {
@@ -3556,35 +3377,6 @@ nvic: &cpuapp_nvic {};
   sw3 = &button3;
   watchdog0 = &wdt31;
  };
-
- nordic_expansion_header: nordic_expansion_header {
-  compatible = "nordic,expansion-board-header";
-  #gpio-cells = <2>;
-  gpio-map-mask = <0xffffffff 0xffffffc0>;
-  gpio-map-pass-thru = <0 0x3f>;
-  gpio-map = <0 0 &gpio3 5 0>,
-      <1 0 &gpio3 4 0>,
-      <2 0 &gpio1 2 0>,
-      <3 0 &gpio1 3 0>,
-      <4 0 &gpio1 4 0>,
-      <5 0 &gpio1 13 0>,
-      <6 0 &gpio3 0 0>,
-      <7 0 &gpio3 1 0>,
-      <8 0 &gpio0 3 0>,
-      <9 0 &gpio0 4 0>,
-      <10 0 &gpio3 2 0>,
-      <11 0 &gpio3 3 0>,
-      <12 0 &gpio1 7 0>,
-      <13 0 &gpio1 6 0>,
-      <14 0 &gpio1 5 0>,
-      <15 0 &gpio3 6 0>,
-      <16 0 &gpio2 0 0>,
-      <17 0 &gpio2 1 0>,
-      <18 0 &gpio2 2 0>,
-      <19 0 &gpio2 3 0>,
-      <20 0 &gpio2 4 0>,
-      <21 0 &gpio2 5 0>;
- };
 };
 
 &uart20 {
@@ -3607,7 +3399,7 @@ nvic: &cpuapp_nvic {};
  pinctrl-1 = <&pwm20_sleep>;
  pinctrl-names = "default", "sleep";
 };
-# 11 "/opt/nordic/ncs/v3.3.1/zephyr/boards/nordic/nrf54lm20dk/nrf54lm20_a_b_cpuapp_common.dtsi" 2
+# 11 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/boards/nordic/nrf54lm20dk/nrf54lm20_a_b_cpuapp_common.dtsi" 2
 
 / {
  chosen {
@@ -3619,13 +3411,11 @@ nvic: &cpuapp_nvic {};
   zephyr,flash-controller = &rram_controller;
   zephyr,flash = &cpuapp_rram;
   zephyr,ieee802154 = &ieee802154;
-  zephyr,usb-bc12 = &usbhs_bc12;
  };
 
  aliases {
   mcuboot-button0 = &button0;
   mcuboot-led0 = &led0;
-  adc = &adc;
  };
 };
 
@@ -3650,10 +3440,6 @@ nvic: &cpuapp_nvic {};
 &vregmain {
  status = "okay";
  regulator-initial-mode = <1>;
-};
-
-&vregusb {
- status = "okay";
 };
 
 &grtc {
@@ -3683,10 +3469,6 @@ nvic: &cpuapp_nvic {};
  status = "okay";
 };
 
-&gpio3 {
- status = "okay";
-};
-
 &gpiote20 {
  status = "okay";
 };
@@ -3699,7 +3481,7 @@ nvic: &cpuapp_nvic {};
  status = "okay";
 };
 
-temp_sensor: &temp {
+&temp {
  status = "okay";
 };
 
@@ -3712,10 +3494,6 @@ temp_sensor: &temp {
 };
 
 zephyr_udc0: &usbhs {
- status = "okay";
-};
-
-&usbhs_bc12 {
  status = "okay";
 };
 
@@ -3744,35 +3522,17 @@ zephyr_udc0: &usbhs {
  };
 };
 
-&adc {
- status = "okay";
-};
 
-
-
-
-
-nordic_expansion_spi: &spi22 {
- cs-gpios = <&gpio3 2 (1 << 0)>;
- pinctrl-0 = <&spi22_default>;
- pinctrl-1 = <&spi22_sleep>;
- pinctrl-names = "default", "sleep";
-};
-
-nordic_expansion_pwm: &pwm21 {
- pinctrl-0 = <&pwm21_default>;
- pinctrl-1 = <&pwm21_sleep>;
- pinctrl-names = "default", "sleep";
-};
-# 11 "/opt/nordic/ncs/v3.3.1/zephyr/boards/nordic/nrf54lm20dk/nrf54lm20dk_nrf54lm20b_cpuapp.dts" 2
-# 1 "/opt/nordic/ncs/v3.3.1/zephyr/dts/vendor/nordic/nrf54lm20b_cpuapp_partition.dtsi" 1 3 4
+wifi_spi: &spi22 {};
+# 11 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/boards/nordic/nrf54lm20dk/nrf54lm20dk_nrf54lm20b_cpuapp.dts" 2
+# 1 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/vendor/nordic/nrf54lm20b_cpuapp_partition.dtsi" 1 3 4
 
 
 
 
 
 
-# 1 "/opt/nordic/ncs/v3.3.1/zephyr/dts/vendor/nordic/nrf54lm20_a_b_cpuapp_partition.dtsi" 1 3 4
+# 1 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/vendor/nordic/nrf54lm20_a_b_cpuapp_partition.dtsi" 1 3 4
 
 
 
@@ -3810,14 +3570,8 @@ nordic_expansion_pwm: &pwm21 {
   };
  };
 };
-
-&uicr {
- bl_storage: uicr@500 {
-  reg = <0x500 0x460>;
- };
-};
-# 8 "/opt/nordic/ncs/v3.3.1/zephyr/dts/vendor/nordic/nrf54lm20b_cpuapp_partition.dtsi" 2 3 4
-# 12 "/opt/nordic/ncs/v3.3.1/zephyr/boards/nordic/nrf54lm20dk/nrf54lm20dk_nrf54lm20b_cpuapp.dts" 2
+# 8 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/vendor/nordic/nrf54lm20b_cpuapp_partition.dtsi" 2 3 4
+# 12 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/boards/nordic/nrf54lm20dk/nrf54lm20dk_nrf54lm20b_cpuapp.dts" 2
 
 / {
  compatible = "nordic,nrf54lm20dk_nrf54lm20b-cpuapp";
@@ -3829,16 +3583,15 @@ nordic_expansion_pwm: &pwm21 {
  };
 };
 # 0 "<command-line>" 2
-# 1 "/Users/shreybae/Documents/iLAB/nRF_SDK/04_wakeWord/boards/nrf54lm20dk_nrf54lm20b_cpuapp.overlay" 1
-
-
-
-
-
-
-/ {
+# 1 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/04_wakeWord/boards/nrf54lm20dk_nrf54lm20b_cpuapp.overlay" 1
+# 15 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/04_wakeWord/boards/nrf54lm20dk_nrf54lm20b_cpuapp.overlay"
+ / {
  chosen {
   ncs,control-output-uart = &uart30;
+ };
+
+ aliases {
+  i2s-mic-rx = &tdm;
  };
 };
 
@@ -3847,23 +3600,23 @@ nordic_expansion_pwm: &pwm21 {
 };
 
 &pinctrl {
- pdm20_default_alt: pdm20_default_alt {
+ tdm_default: tdm_default {
   group1 {
-   psels = <((((((1) * 32U) + (4)) & 0x1FFU) << 0U) | ((20U & 0xFFU) << 24U))>,
-    <((((((1) * 32U) + (5)) & 0x1FFU) << 0U) | ((21U & 0xFFU) << 24U))>;
+   psels = <((((((3) * 32U) + (3)) & 0x1FFU) << 0U) | ((71U & 0xFFU) << 24U))>,
+    <((((((1) * 32U) + (13)) & 0x1FFU) << 0U) | ((73U & 0xFFU) << 24U))>,
+    <((((((3) * 32U) + (6)) & 0x1FFU) << 0U) | ((75U & 0xFFU) << 24U))>;
   };
  };
 };
 
-dmic_dev: &pdm20 {
+&tdm {
  status = "okay";
- pinctrl-0 = <&pdm20_default_alt>;
+ pinctrl-0 = <&tdm_default>;
  pinctrl-names = "default";
- clock-source = "PCLK32M";
 };
 
 &axon {
  status = "okay";
 };
 # 0 "<command-line>" 2
-# 1 "/opt/nordic/ncs/v3.3.1/zephyr/misc/empty_file.c"
+# 1 "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/misc/empty_file.c"
