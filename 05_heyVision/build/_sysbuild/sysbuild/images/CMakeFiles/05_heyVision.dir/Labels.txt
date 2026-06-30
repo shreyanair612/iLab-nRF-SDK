@@ -1,0 +1,13 @@
+# Target labels
+ 05_heyVision
+# Source files and their labels
+/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/05_heyVision/build/_sysbuild/sysbuild/images/CMakeFiles/05_heyVision
+/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/05_heyVision/build/_sysbuild/sysbuild/images/CMakeFiles/05_heyVision.rule
+/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/05_heyVision/build/_sysbuild/sysbuild/images/CMakeFiles/05_heyVision-complete.rule
+/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/05_heyVision/build/_sysbuild/sysbuild/images/05_heyVision-prefix/src/05_heyVision-stamp/05_heyVision-build.rule
+/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/05_heyVision/build/_sysbuild/sysbuild/images/05_heyVision-prefix/src/05_heyVision-stamp/05_heyVision-configure.rule
+/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/05_heyVision/build/_sysbuild/sysbuild/images/05_heyVision-prefix/src/05_heyVision-stamp/05_heyVision-download.rule
+/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/05_heyVision/build/_sysbuild/sysbuild/images/05_heyVision-prefix/src/05_heyVision-stamp/05_heyVision-install.rule
+/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/05_heyVision/build/_sysbuild/sysbuild/images/05_heyVision-prefix/src/05_heyVision-stamp/05_heyVision-mkdir.rule
+/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/05_heyVision/build/_sysbuild/sysbuild/images/05_heyVision-prefix/src/05_heyVision-stamp/05_heyVision-patch.rule
+/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/05_heyVision/build/_sysbuild/sysbuild/images/05_heyVision-prefix/src/05_heyVision-stamp/05_heyVision-update.rule

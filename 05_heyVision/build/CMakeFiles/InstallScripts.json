@@ -1,0 +1,15 @@
+{
+	"InstallScripts" : 
+	[
+		"/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/05_heyVision/build/cmake_install.cmake",
+		"/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/05_heyVision/build/_sysbuild/cmake_install.cmake",
+		"/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/05_heyVision/build/_sysbuild/sysbuild/images/cmake_install.cmake",
+		"/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/05_heyVision/build/_sysbuild/sysbuild/images/bootloader/cmake_install.cmake",
+		"/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/05_heyVision/build/_sysbuild/sysbuild/images/firmware_loader/cmake_install.cmake",
+		"/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/05_heyVision/build/modules/nrf/cmake_install.cmake",
+		"/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/05_heyVision/build/modules/mcuboot/cmake_install.cmake",
+		"/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/05_heyVision/build/_sysbuild/sysbuild/images/boards/cmake_install.cmake",
+		"/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/05_heyVision/build/_sysbuild/sysbuild/images/soc/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

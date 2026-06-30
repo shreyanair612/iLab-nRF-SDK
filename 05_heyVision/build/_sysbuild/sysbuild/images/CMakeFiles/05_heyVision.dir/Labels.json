@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/05_heyVision/build/_sysbuild/sysbuild/images/CMakeFiles/05_heyVision"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/05_heyVision/build/_sysbuild/sysbuild/images/CMakeFiles/05_heyVision.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/05_heyVision/build/_sysbuild/sysbuild/images/CMakeFiles/05_heyVision-complete.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/05_heyVision/build/_sysbuild/sysbuild/images/05_heyVision-prefix/src/05_heyVision-stamp/05_heyVision-build.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/05_heyVision/build/_sysbuild/sysbuild/images/05_heyVision-prefix/src/05_heyVision-stamp/05_heyVision-configure.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/05_heyVision/build/_sysbuild/sysbuild/images/05_heyVision-prefix/src/05_heyVision-stamp/05_heyVision-download.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/05_heyVision/build/_sysbuild/sysbuild/images/05_heyVision-prefix/src/05_heyVision-stamp/05_heyVision-install.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/05_heyVision/build/_sysbuild/sysbuild/images/05_heyVision-prefix/src/05_heyVision-stamp/05_heyVision-mkdir.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/05_heyVision/build/_sysbuild/sysbuild/images/05_heyVision-prefix/src/05_heyVision-stamp/05_heyVision-patch.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/05_heyVision/build/_sysbuild/sysbuild/images/05_heyVision-prefix/src/05_heyVision-stamp/05_heyVision-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"05_heyVision"
+		],
+		"name" : "05_heyVision"
+	}
+}

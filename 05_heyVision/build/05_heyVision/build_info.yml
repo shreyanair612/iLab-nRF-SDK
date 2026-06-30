@@ -1,0 +1,57 @@
+cmake:
+  application:
+    configuration-dir: '/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/05_heyVision'
+    source-dir: '/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/05_heyVision'
+  board:
+    name: 'nrf54lm20dk'
+    path:
+     - '/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/boards/nordic/nrf54lm20dk'
+    qualifiers: 'nrf54lm20b/cpuapp'
+    revision: ''
+  devicetree:
+    bindings-dirs:
+     - '/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/nrf/dts/bindings'
+     - '/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/bindings'
+    files:
+     - '/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/boards/nordic/nrf54lm20dk/nrf54lm20dk_nrf54lm20b_cpuapp.dts'
+     - '/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/05_heyVision/boards/nrf54lm20dk_nrf54lm20b_cpuapp.overlay'
+    include-dirs:
+     - '/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/nrf/include'
+     - '/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/nrf/dts/common'
+     - '/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/nrf/dts/riscv'
+     - '/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/nrf/dts/arm'
+     - '/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/nrf/dts'
+     - '/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/include'
+     - '/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/include/zephyr'
+     - '/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/common'
+     - '/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/vendor'
+     - '/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/rx'
+     - '/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/x86'
+     - '/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/xtensa'
+     - '/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/sparc'
+     - '/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/riscv'
+     - '/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/posix'
+     - '/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/arm64'
+     - '/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/arm'
+     - '/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts/arc'
+     - '/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/dts'
+    user-files:
+     - '/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/05_heyVision/boards/nrf54lm20dk_nrf54lm20b_cpuapp.overlay'
+  kconfig:
+    files:
+     - '/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr/boards/nordic/nrf54lm20dk/nrf54lm20dk_nrf54lm20b_cpuapp_defconfig'
+     - '/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/05_heyVision/prj.conf'
+     - '/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/05_heyVision/build/05_heyVision/zephyr/misc/generated/extra_kconfig_options.conf'
+     - '/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/05_heyVision/build/05_heyVision/zephyr/.config.sysbuild'
+    user-files:
+     - '/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/05_heyVision/prj.conf'
+  toolchain:
+    name: 'zephyr'
+    path: '/opt/nordic/ncs/toolchains/0c0f19d91c/opt/zephyr-sdk'
+  vendor-specific:
+    nordic:
+      svdfile: '/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/modules/hal/nordic/nrfx/bsp/stable/mdk/nrf54lm20b_application.svd'
+  zephyr:
+    version: '4.3.99'
+    zephyr-base: '/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/zephyr'
+version: '0.1.0'
