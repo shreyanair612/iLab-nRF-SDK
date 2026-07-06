@@ -1,0 +1,13 @@
+# Target labels
+ 08_dualChannel_i2s
+# Source files and their labels
+/Users/shreybae/Documents/iLAB/nRF_SDK/08_dualChannel_i2s/build/_sysbuild/sysbuild/images/CMakeFiles/08_dualChannel_i2s
+/Users/shreybae/Documents/iLAB/nRF_SDK/08_dualChannel_i2s/build/_sysbuild/sysbuild/images/CMakeFiles/08_dualChannel_i2s.rule
+/Users/shreybae/Documents/iLAB/nRF_SDK/08_dualChannel_i2s/build/_sysbuild/sysbuild/images/CMakeFiles/08_dualChannel_i2s-complete.rule
+/Users/shreybae/Documents/iLAB/nRF_SDK/08_dualChannel_i2s/build/_sysbuild/sysbuild/images/08_dualChannel_i2s-prefix/src/08_dualChannel_i2s-stamp/08_dualChannel_i2s-build.rule
+/Users/shreybae/Documents/iLAB/nRF_SDK/08_dualChannel_i2s/build/_sysbuild/sysbuild/images/08_dualChannel_i2s-prefix/src/08_dualChannel_i2s-stamp/08_dualChannel_i2s-configure.rule
+/Users/shreybae/Documents/iLAB/nRF_SDK/08_dualChannel_i2s/build/_sysbuild/sysbuild/images/08_dualChannel_i2s-prefix/src/08_dualChannel_i2s-stamp/08_dualChannel_i2s-download.rule
+/Users/shreybae/Documents/iLAB/nRF_SDK/08_dualChannel_i2s/build/_sysbuild/sysbuild/images/08_dualChannel_i2s-prefix/src/08_dualChannel_i2s-stamp/08_dualChannel_i2s-install.rule
+/Users/shreybae/Documents/iLAB/nRF_SDK/08_dualChannel_i2s/build/_sysbuild/sysbuild/images/08_dualChannel_i2s-prefix/src/08_dualChannel_i2s-stamp/08_dualChannel_i2s-mkdir.rule
+/Users/shreybae/Documents/iLAB/nRF_SDK/08_dualChannel_i2s/build/_sysbuild/sysbuild/images/08_dualChannel_i2s-prefix/src/08_dualChannel_i2s-stamp/08_dualChannel_i2s-patch.rule
+/Users/shreybae/Documents/iLAB/nRF_SDK/08_dualChannel_i2s/build/_sysbuild/sysbuild/images/08_dualChannel_i2s-prefix/src/08_dualChannel_i2s-stamp/08_dualChannel_i2s-update.rule

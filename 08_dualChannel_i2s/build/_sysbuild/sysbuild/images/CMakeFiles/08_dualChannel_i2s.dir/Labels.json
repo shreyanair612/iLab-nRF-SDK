@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nRF_SDK/08_dualChannel_i2s/build/_sysbuild/sysbuild/images/CMakeFiles/08_dualChannel_i2s"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nRF_SDK/08_dualChannel_i2s/build/_sysbuild/sysbuild/images/CMakeFiles/08_dualChannel_i2s.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nRF_SDK/08_dualChannel_i2s/build/_sysbuild/sysbuild/images/CMakeFiles/08_dualChannel_i2s-complete.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nRF_SDK/08_dualChannel_i2s/build/_sysbuild/sysbuild/images/08_dualChannel_i2s-prefix/src/08_dualChannel_i2s-stamp/08_dualChannel_i2s-build.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nRF_SDK/08_dualChannel_i2s/build/_sysbuild/sysbuild/images/08_dualChannel_i2s-prefix/src/08_dualChannel_i2s-stamp/08_dualChannel_i2s-configure.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nRF_SDK/08_dualChannel_i2s/build/_sysbuild/sysbuild/images/08_dualChannel_i2s-prefix/src/08_dualChannel_i2s-stamp/08_dualChannel_i2s-download.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nRF_SDK/08_dualChannel_i2s/build/_sysbuild/sysbuild/images/08_dualChannel_i2s-prefix/src/08_dualChannel_i2s-stamp/08_dualChannel_i2s-install.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nRF_SDK/08_dualChannel_i2s/build/_sysbuild/sysbuild/images/08_dualChannel_i2s-prefix/src/08_dualChannel_i2s-stamp/08_dualChannel_i2s-mkdir.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nRF_SDK/08_dualChannel_i2s/build/_sysbuild/sysbuild/images/08_dualChannel_i2s-prefix/src/08_dualChannel_i2s-stamp/08_dualChannel_i2s-patch.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nRF_SDK/08_dualChannel_i2s/build/_sysbuild/sysbuild/images/08_dualChannel_i2s-prefix/src/08_dualChannel_i2s-stamp/08_dualChannel_i2s-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"08_dualChannel_i2s"
+		],
+		"name" : "08_dualChannel_i2s"
+	}
+}
