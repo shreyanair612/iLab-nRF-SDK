@@ -1,0 +1,7 @@
+default: 07_heyVision_pdm
+build_dir: /Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/07_heyVision_pdm/build
+domains:
+  - name: 07_heyVision_pdm
+    build_dir: /Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/07_heyVision_pdm/build/07_heyVision_pdm
+flash_order:
+  - 07_heyVision_pdm

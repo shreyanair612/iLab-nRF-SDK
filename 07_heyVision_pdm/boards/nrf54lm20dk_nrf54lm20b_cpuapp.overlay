@@ -1,0 +1,33 @@
+/*
+ * Copyright (c) 2026 Nordic Semiconductor ASA
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+#include "nrf54lm20dk_nrf54lm20_common.dtsi"
+
+/ {
+    chosen {
+        ncs,control-output-uart = &uart30;
+    };
+};
+
+&uart30 {
+	status = "okay";
+};
+
+&pinctrl {
+    pdm0_default: pdm0_default {
+        group1 {
+	    // set the pin configuration for PDM_CLK and PDM_DIN
+	    psels = <NRF_PSEL(PDM_CLK,1,14)>, <NRF_PSEL(PDM_DIN,1,13)>;
+	};
+    };
+};
+
+&pdm20 {
+    status = "okay"; // turns on PDM driver
+    pinctrl-0 = <&pdm0_default>;
+    pinctrl-names = "default";
+};
+
