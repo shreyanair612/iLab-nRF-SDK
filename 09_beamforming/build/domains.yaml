@@ -1,7 +1,0 @@
-default: 09_beamforming
-build_dir: /Users/shreybae/Documents/iLAB/nRF_SDK/09_beamforming/build
-domains:
-  - name: 09_beamforming
-    build_dir: /Users/shreybae/Documents/iLAB/nRF_SDK/09_beamforming/build/09_beamforming
-flash_order:
-  - 09_beamforming

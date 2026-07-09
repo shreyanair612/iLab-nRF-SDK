@@ -19,8 +19,6 @@
 #include <zephyr/sys/printk.h>
 #include <stdbool.h>
 #include <stdint.h>
-#include <arm_math.h>
-#include "beamformer.h"
 
 #define I2S_MIC_RX DT_NODELABEL(tdm)
 
