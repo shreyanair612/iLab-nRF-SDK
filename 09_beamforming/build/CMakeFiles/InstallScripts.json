@@ -1,0 +1,15 @@
+{
+	"InstallScripts" : 
+	[
+		"/Users/shreybae/Documents/iLAB/nRF_SDK/09_beamforming/build/cmake_install.cmake",
+		"/Users/shreybae/Documents/iLAB/nRF_SDK/09_beamforming/build/_sysbuild/cmake_install.cmake",
+		"/Users/shreybae/Documents/iLAB/nRF_SDK/09_beamforming/build/_sysbuild/sysbuild/images/cmake_install.cmake",
+		"/Users/shreybae/Documents/iLAB/nRF_SDK/09_beamforming/build/_sysbuild/sysbuild/images/bootloader/cmake_install.cmake",
+		"/Users/shreybae/Documents/iLAB/nRF_SDK/09_beamforming/build/_sysbuild/sysbuild/images/firmware_loader/cmake_install.cmake",
+		"/Users/shreybae/Documents/iLAB/nRF_SDK/09_beamforming/build/modules/nrf/cmake_install.cmake",
+		"/Users/shreybae/Documents/iLAB/nRF_SDK/09_beamforming/build/modules/mcuboot/cmake_install.cmake",
+		"/Users/shreybae/Documents/iLAB/nRF_SDK/09_beamforming/build/_sysbuild/sysbuild/images/boards/cmake_install.cmake",
+		"/Users/shreybae/Documents/iLAB/nRF_SDK/09_beamforming/build/_sysbuild/sysbuild/images/soc/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
