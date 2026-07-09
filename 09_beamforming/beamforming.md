@@ -45,8 +45,8 @@ Delay-and-sum beamforming uses this difference:
 For the simplest center-beam prototype, the desired direction is approximately the midpoint between the microphones, so the compensation is close to zero delay.
 In that case, the beamformed signal is:
 
-\[
+$$
 y[n] = \frac{x_L[n] + x_R[n]}{2}
-\]
+$$
 
 This amplifies signals that look similar across both microphones and attenuates signals that do not.
