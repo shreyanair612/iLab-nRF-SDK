@@ -2,7 +2,7 @@
 
 ## Physics intuition
 
-Sound travels at \(c \approx 343\ \text{m/s}\), so a wavefront reaches the two microphones at slightly different times depending on its angle of arrival.
+Sound travels at $c \approx 343 \text{ m/s}$, so a wavefront reaches the two microphones at slightly different times depending on its angle of arrival.
 This angle-dependent **Time Difference Of Arrival (TDOA)** is the core cue exploited for spatial selectivity.
 
 ## Why beamforming on glasses
@@ -17,23 +17,23 @@ On the glasses, the angle of arrival of the user’s voice is approximately fixe
 That angle can be estimated from average head size and mic spacing, then hard-coded into a delay-and-sum beamformer.
 Because beams are generally wide, this approximation is acceptable.
 
-The quantity that must be measured precisely is **\(d\)**, the physical distance between the left and right microphones, because it directly determines the TDOA that must be compensated.
+The quantity that must be measured precisely is **$$d$$**, the physical distance between the left and right microphones, because it directly determines the TDOA that must be compensated.
 
 ## Hardware and data format
 
 Each INMP441 outputs **24-bit, two’s-complement PCM audio** over I2S.
 Both microphones share WS and SCK, so their streams are synchronized in time.
 
-At each sample index \(n\):
+At each sample index $$n$$:
 
-- \(x_L[n]\): left microphone signed amplitude sample
-- \(x_R[n]\): right microphone signed amplitude sample
+- $$x_L[n]$$: left microphone signed amplitude sample
+- $$x_R[n]$$: right microphone signed amplitude sample
 
 So the data being processed is **time-domain PCM**: a signed amplitude value per sample, over time, for each microphone.
 
 ## Algorithmic idea
 
-If a source is roughly equidistant from both microphones, the same waveform reaches them at nearly the same time and shape, so \(x_L[n]\) and \(x_R[n]\) look very similar.
+If a source is roughly equidistant from both microphones, the same waveform reaches them at nearly the same time and shape, so $$x_L[n]$$ and $$x_R[n]$$ look very similar.
 If a source is off-axis, one microphone receives it earlier than the other, so the two streams are misaligned in time.
 
 Delay-and-sum beamforming uses this difference:
