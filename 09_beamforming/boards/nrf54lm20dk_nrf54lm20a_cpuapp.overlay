@@ -11,6 +11,7 @@
 / {
 	aliases {
 		i2s-mic-rx = &tdm;
+		led1 = &led1;
 	};
 };
 
