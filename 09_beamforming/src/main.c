@@ -1,24 +1,29 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
+ *
+ * Dual-channel I2S microphone capture with:
+ * - simple broadside delay-and-sum beamforming (center beam)
+ * - optional difference-channel debug signal
+ * - adaptive RMS-threshold VAD on beamformed output
+ *
+ * Hardware intent:
+ * - 2x INMP441 microphones
+ * - shared SCK + WS
+ * - one mic strapped L/R low, the other high
+ * - stereo I2S RX into Zephyr I2S driver
  */
-
-#include <errno.h>
-#include <stdbool.h>
-#include <stddef.h>
-#include <stdint.h>
-#include <limits.h>
 
 #include <zephyr/kernel.h>
 #include <zephyr/device.h>
 #include <zephyr/drivers/i2s.h>
 #include <zephyr/drivers/gpio.h>
-#include <zephyr/logging/log.h>
+#include <zephyr/sys/printk.h>
 
-#include "control_output.h"
-#include "leds.h"
-#include "wakeword.h"
-
-LOG_MODULE_REGISTER(main, LOG_LEVEL_INF);
+#include <stdbool.h>
+#include <stddef.h>
+#include <stdint.h>
+#include <limits.h>
+#include <errno.h>
 
 #define I2S_MIC_RX DT_NODELABEL(tdm)
 #define LED1_NODE  DT_ALIAS(led1)
@@ -44,6 +49,25 @@ LOG_MODULE_REGISTER(main, LOG_LEVEL_INF);
 
 #define SILENCE_CHUNKS_OFF    5U
 
+/*
+ * Dynamic-threshold knobs:
+ *
+ * noise_rms tracks the background noise floor on the beamformed signal.
+ * TH_ON  = noise_rms + margin_on
+ * TH_OFF = noise_rms + margin_off
+ *
+ * margin_on  ↑ : fewer false triggers, but may miss quiet speech
+ * margin_on  ↓ : more sensitive to quiet speech, but more false positives
+ *
+ * margin_off ↑ : speech state ends sooner
+ * margin_off ↓ : speech state holds longer
+ *
+ * noise_alpha_den ↑ : slower noise-floor adaptation
+ * noise_alpha_den ↓ : faster noise-floor adaptation
+ *
+ * silence_chunks_off ↑ : LED stays on longer after speech
+ * silence_chunks_off ↓ : LED turns off sooner
+ */
 #define NOISE_INIT_RMS        20U
 #define NOISE_MARGIN_ON       40U
 #define NOISE_MARGIN_OFF      20U
@@ -55,7 +79,7 @@ LOG_MODULE_REGISTER(main, LOG_LEVEL_INF);
 K_MEM_SLAB_DEFINE_IN_SECT_STATIC(rx_mem_slab, __nocache,
                  BLOCK_SIZE, BLOCK_COUNT, 4);
 
-static const struct gpio_dt_spec led1 = GPIO_DT_SPEC_GET(LED1_NODE, gpios);
+static const struct gpio_dt_spec led = GPIO_DT_SPEC_GET(LED1_NODE, gpios);
 
 static int16_t pcm_left[SAMPLES_PER_CHUNK];
 static int16_t pcm_right[SAMPLES_PER_CHUNK];
@@ -77,6 +101,10 @@ struct chunk_stats {
 
 static int32_t extract_sample(int32_t raw)
 {
+    /*
+     * INMP441 presents 24-bit signed sample data over I2S, commonly
+     * carried in a 32-bit container. Arithmetic right shift preserves sign.
+     */
     return raw >> 8;
 }
 
@@ -160,8 +188,7 @@ static void analyze_chunk(const int16_t *samples, size_t count,
     stats->rms = isqrt64(energy / count);
     stats->peak = peak_abs;
     stats->zcr = crossings;
-    stats->est_hz = (count > 1U) ?
-        ((crossings * SAMPLE_RATE_HZ) / (2U * count)) : 0U;
+    stats->est_hz = (count > 1U) ? ((crossings * SAMPLE_RATE_HZ) / (2U * count)) : 0U;
 }
 
 static void unpack_and_beamform(const int32_t *raw, size_t frames)
@@ -169,12 +196,24 @@ static void unpack_and_beamform(const int32_t *raw, size_t frames)
     for (size_t i = 0; i < frames; i++) {
         int32_t left = extract_sample(raw[i * CHANNELS + 0]);
         int32_t right = extract_sample(raw[i * CHANNELS + 1]);
+
+        /*
+         * Center-steered broadside 2-mic beamformer:
+         * y[n] = (L[n] + R[n]) / 2
+         */
         int32_t sum = (left + right) / 2;
 
 #if LOG_DIFF_CHANNEL
+        /*
+         * Debug difference channel:
+         * d[n] = (L[n] - R[n]) / 2
+         */
         int32_t diff = (left - right) / 2;
 #endif
 
+        /*
+         * Downscale into int16 for chunk-level stats and VAD.
+         */
         pcm_left[i] = saturate_int16(left >> 8);
         pcm_right[i] = saturate_int16(right >> 8);
         pcm_sum[i] = saturate_int16(sum >> 8);
@@ -199,10 +238,13 @@ static void update_noise_estimate(uint32_t beam_rms)
 {
     uint32_t th_off = vad_th_off();
 
+    /*
+     * Only learn noise floor from frames that look non-speech-ish.
+     * This keeps speech from dragging the noise baseline upward.
+     */
     if (beam_rms < th_off) {
         int32_t diff = (int32_t)beam_rms - (int32_t)noise_rms;
-        int32_t step =
-            (diff * (int32_t)NOISE_ALPHA_NUM) / (int32_t)NOISE_ALPHA_DEN;
+        int32_t step = (diff * (int32_t)NOISE_ALPHA_NUM) / (int32_t)NOISE_ALPHA_DEN;
         noise_rms = (uint32_t)((int32_t)noise_rms + step);
     }
 }
@@ -231,6 +273,21 @@ static void update_vad(uint32_t beam_rms)
     }
 }
 
+static void stop_i2s_rx(const struct device *i2s_dev)
+{
+    int ret;
+
+    ret = i2s_trigger(i2s_dev, I2S_DIR_RX, I2S_TRIGGER_STOP);
+    if (ret < 0) {
+        printk("warn: I2S stop failed: %d\n", ret);
+    }
+
+    ret = i2s_trigger(i2s_dev, I2S_DIR_RX, I2S_TRIGGER_DROP);
+    if (ret < 0) {
+        printk("warn: I2S drop failed: %d\n", ret);
+    }
+}
+
 int main(void)
 {
     const struct device *const i2s_dev = DEVICE_DT_GET(I2S_MIC_RX);
@@ -246,60 +303,50 @@ int main(void)
         .timeout = I2S_TIMEOUT_MS,
     };
 
-    int err;
+    int ret;
 
-    err = leds_init();
-    if (err) {
-        return err;
-    }
-
-    err = control_output_init();
-    if (err) {
-        return err;
-    }
-
-    err = ww_init();
-    if (err) {
-        return err;
-    }
+    printk("Dual-channel I2S mic monitor + center beamformer + adaptive VAD\n");
+    printk("sample_rate=%u chunk_ms=%u channels=%u bits=%u block_size=%u\n",
+           SAMPLE_RATE_HZ, CHUNK_MS, CHANNELS, SAMPLE_BIT_WIDTH, BLOCK_SIZE);
+    printk("fields: L[rms peak zcr est_hz] R[rms peak zcr est_hz] S[rms peak zcr est_hz]");
+#if LOG_DIFF_CHANNEL
+    printk(" D[rms peak zcr est_hz]");
+#endif
+    printk("\n");
 
     if (!device_is_ready(i2s_dev)) {
-        LOG_ERR("I2S device is not ready");
-        return -ENODEV;
+        printk("error: I2S device is not ready\n");
+        return 0;
     }
 
-    if (!gpio_is_ready_dt(&led1)) {
-        LOG_ERR("LED1 gpio is not ready");
-        return -ENODEV;
+    if (!gpio_is_ready_dt(&led)) {
+        printk("error: LED device is not ready\n");
+        return 0;
     }
 
-    err = gpio_pin_configure_dt(&led1, GPIO_OUTPUT_INACTIVE);
-    if (err < 0) {
-        LOG_ERR("failed to configure LED1: %d", err);
-        return err;
+    ret = gpio_pin_configure_dt(&led, GPIO_OUTPUT_INACTIVE);
+    if (ret < 0) {
+        printk("error: failed to configure LED: %d\n", ret);
+        return 0;
     }
 
-    err = i2s_configure(i2s_dev, I2S_DIR_RX, &i2s_cfg);
-    if (err < 0) {
-        LOG_ERR("i2s_configure failed: %d", err);
-        return err;
+    ret = i2s_configure(i2s_dev, I2S_DIR_RX, &i2s_cfg);
+    if (ret < 0) {
+        printk("error: i2s_configure failed: %d\n", ret);
+        return 0;
     }
 
-    err = i2s_trigger(i2s_dev, I2S_DIR_RX, I2S_TRIGGER_START);
-    if (err < 0) {
-        LOG_ERR("I2S start failed: %d", err);
-        return err;
+    ret = i2s_trigger(i2s_dev, I2S_DIR_RX, I2S_TRIGGER_START);
+    if (ret < 0) {
+        printk("error: I2S start failed: %d\n", ret);
+        return 0;
     }
-
-    LOG_INF("Initialization completed");
-    print_control_output((struct control_message){CONTROL_MESSAGE_WAITING_WW});
 
     while (true) {
         void *mem_block = NULL;
         size_t block_size = 0;
         int32_t *raw;
         size_t frames;
-        bool ww_detected = false;
 
         struct chunk_stats stats_l;
         struct chunk_stats stats_r;
@@ -308,19 +355,21 @@ int main(void)
         struct chunk_stats stats_d;
 #endif
 
-        err = i2s_read(i2s_dev, &mem_block, &block_size);
-        if (err < 0) {
-            LOG_ERR("i2s_read failed: %d", err);
-            return err;
+        ret = i2s_read(i2s_dev, &mem_block, &block_size);
+        if (ret < 0) {
+            printk("error: i2s_read failed: %d\n", ret);
+            k_msleep(CHUNK_MS);
+            continue;
         }
 
         if ((mem_block == NULL) || (block_size == 0U)) {
-            LOG_WRN("empty I2S block");
+            printk("warn: empty I2S block\n");
             continue;
         }
 
         raw = (int32_t *)mem_block;
         frames = block_size / FRAME_SIZE_BYTES;
+
         if (frames > SAMPLES_PER_CHUNK) {
             frames = SAMPLES_PER_CHUNK;
         }
@@ -337,25 +386,25 @@ int main(void)
         update_noise_estimate(stats_s.rms);
         update_vad(stats_s.rms);
 
-        (void)gpio_pin_set_dt(&led1, speech_active ? 1 : 0);
+        printk("L[%u %d %u %u] R[%u %d %u %u] S[%u %d %u %u]",
+               stats_l.rms, stats_l.peak, stats_l.zcr, stats_l.est_hz,
+               stats_r.rms, stats_r.peak, stats_r.zcr, stats_r.est_hz,
+               stats_s.rms, stats_s.peak, stats_s.zcr, stats_s.est_hz);
+#if LOG_DIFF_CHANNEL
+        printk(" D[%u %d %u %u]",
+               stats_d.rms, stats_d.peak, stats_d.zcr, stats_d.est_hz);
+#endif
+        printk("\n");
 
-        if (speech_active) {
-            err = ww_process(pcm_sum, (uint16_t)frames, &ww_detected);
-            if ((err != 0) && (err != -EBUSY)) {
-                LOG_ERR("Wakeword detection failed (err %d)", err);
-                k_mem_slab_free(&rx_mem_slab, mem_block);
-                return err;
-            }
+        (void)gpio_pin_set_dt(&led, speech_active ? 1 : 0);
 
-            if (ww_detected) {
-                LOG_INF("Wake word detected");
-                leds_blink_led0();
-                print_control_output((struct control_message){CONTROL_MESSAGE_WW_DETECTED});
-            }
-        }
+        printk("noise=%u th_on=%u th_off=%u S_rms=%u vad=%d silence_chunks=%u\n",
+               noise_rms, vad_th_on(), vad_th_off(),
+               stats_s.rms, speech_active ? 1 : 0, silence_chunks);
 
         k_mem_slab_free(&rx_mem_slab, mem_block);
     }
 
+    stop_i2s_rx(i2s_dev);
     return 0;
 }

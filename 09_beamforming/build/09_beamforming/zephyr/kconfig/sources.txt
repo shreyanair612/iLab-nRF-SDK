@@ -1,3 +1,4 @@
+/Users/shreybae/Documents/iLAB/nRF_SDK/09_beamforming/Kconfig
 /Users/shreybae/Documents/iLAB/nRF_SDK/09_beamforming/build/09_beamforming/Kconfig/Kconfig.dts
 /Users/shreybae/Documents/iLAB/nRF_SDK/09_beamforming/build/09_beamforming/Kconfig/Kconfig.modules
 /Users/shreybae/Documents/iLAB/nRF_SDK/09_beamforming/build/09_beamforming/Kconfig/Kconfig.shield
@@ -403,7 +404,6 @@
 /opt/nordic/ncs/v3.3.1/nrfxlib/nrf_modem/Kconfig
 /opt/nordic/ncs/v3.3.1/nrfxlib/nrf_rpc/Kconfig
 /opt/nordic/ncs/v3.3.1/nrfxlib/openthread/Kconfig
-/opt/nordic/ncs/v3.3.1/zephyr/Kconfig
 /opt/nordic/ncs/v3.3.1/zephyr/Kconfig.constants
 /opt/nordic/ncs/v3.3.1/zephyr/Kconfig.zephyr
 /opt/nordic/ncs/v3.3.1/zephyr/arch/Kconfig

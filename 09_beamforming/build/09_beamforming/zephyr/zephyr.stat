@@ -10,7 +10,7 @@ ELF Header:
   Version:                           0x1
   Entry point address:               0x2ce1
   Start of program headers:          52 (bytes into file)
-  Start of section headers:          1914604 (bytes into file)
+  Start of section headers:          1914732 (bytes into file)
   Flags:                             0x5000200, Version5 EABI, soft-float ABI
   Size of this header:               52 (bytes)
   Size of program headers:           32 (bytes)
@@ -50,7 +50,7 @@ Section Headers:
   [26] .debug_aranges    PROGBITS        00000000 00c238 002b18 00      0   0  8
   [27] .debug_info       PROGBITS        00000000 00ed50 0e4770 00      0   0  1
   [28] .debug_abbrev     PROGBITS        00000000 0f34c0 01727c 00      0   0  1
-  [29] .debug_line       PROGBITS        00000000 10a73c 044979 00      0   0  1
+  [29] .debug_line       PROGBITS        00000000 10a73c 04497c 00      0   0  1
   [30] .debug_frame      PROGBITS        00000000 14f0b8 006f24 00      0   0  4
   [31] .debug_str        PROGBITS        00000000 155fdc 0177d4 01  MS  0   0  1
   [32] .debug_loc        PROGBITS        00000000 16d7b0 046b74 00      0   0  1
@@ -59,9 +59,9 @@ Section Headers:
   [35] .last_section     PROGBITS        0000c130 00c210 000004 00  WA  0   0  4
   [36] bss               NOBITS          200003c8 00c218 00f1e1 00  WA  0   0  8
   [37] noinit            NOBITS          2000f5b0 00c218 001040 00  WA  0   0  8
-  [38] .symtab           SYMTAB          00000000 1be74c 00b050 10     39 1503  4
-  [39] .strtab           STRTAB          00000000 1c979c 009d36 00      0   0  1
-  [40] .shstrtab         STRTAB          00000000 1d34d2 000217 00      0   0  1
+  [38] .symtab           SYMTAB          00000000 1be74c 00b080 10     39 1503  4
+  [39] .strtab           STRTAB          00000000 1c97cc 009d87 00      0   0  1
+  [40] .shstrtab         STRTAB          00000000 1d3553 000217 00      0   0  1
 Key to Flags:
   W (write), A (alloc), X (execute), M (merge), S (strings), I (info),
   L (link order), O (extra OS processing required), G (group), T (TLS),
