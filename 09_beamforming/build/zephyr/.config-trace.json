@@ -132,29 +132,32 @@
     "y",
     "bool",
     "y",
-    "default",
+    "assign",
     [
-      "/opt/nordic/ncs/v3.3.1/nrf/modules/../sysbuild/Kconfig.sysbuild",
-      11
+      "/Users/shreybae/Documents/iLAB/nRF_SDK/09_beamforming/build/zephyr/.config",
+      29
     ]
   ],
   [
     "SB_CONFIG_PM_OVERRIDE_EXTERNAL_DRIVER_CHECK",
     "y",
     "bool",
-    null,
-    "unset",
-    null
+    "n",
+    "assign",
+    [
+      "/Users/shreybae/Documents/iLAB/nRF_SDK/09_beamforming/build/zephyr/.config",
+      30
+    ]
   ],
   [
     "SB_CONFIG_BUILD_OUTPUT_BIN",
     "y",
     "bool",
     "y",
-    "default",
+    "assign",
     [
-      "/opt/nordic/ncs/v3.3.1/nrf/modules/../sysbuild/Kconfig.sysbuild",
-      61
+      "/Users/shreybae/Documents/iLAB/nRF_SDK/09_beamforming/build/zephyr/.config",
+      31
     ]
   ],
   [
@@ -162,10 +165,10 @@
     "y",
     "bool",
     "y",
-    "default",
+    "assign",
     [
-      "/opt/nordic/ncs/v3.3.1/nrf/modules/../sysbuild/Kconfig.sysbuild",
-      69
+      "/Users/shreybae/Documents/iLAB/nRF_SDK/09_beamforming/build/zephyr/.config",
+      32
     ]
   ],
   [
@@ -228,11 +231,8 @@
     "y",
     "bool",
     "y",
-    "default",
-    [
-      "/opt/nordic/ncs/v3.3.1/nrf/modules/../sysbuild/Kconfig.flprcore",
-      29
-    ]
+    "assign",
+    null
   ],
   [
     "SB_CONFIG_FLPRCORE_EMPTY",
@@ -246,52 +246,67 @@
     "SB_CONFIG_HPF",
     "y",
     "bool",
-    null,
-    "unset",
-    null
+    "n",
+    "assign",
+    [
+      "/Users/shreybae/Documents/iLAB/nRF_SDK/09_beamforming/build/zephyr/.config",
+      44
+    ]
   ],
   [
     "SB_CONFIG_SECURE_BOOT_APPCORE",
     "y",
     "bool",
-    null,
-    "unset",
-    null
+    "n",
+    "assign",
+    [
+      "/Users/shreybae/Documents/iLAB/nRF_SDK/09_beamforming/build/zephyr/.config",
+      50
+    ]
   ],
   [
     "SB_CONFIG_BT_FAST_PAIR_MODEL_ID",
     "y",
     "hex",
     "0x1000000",
-    "default",
+    "assign",
     [
-      "/opt/nordic/ncs/v3.3.1/nrf/modules/../sysbuild/Kconfig.bt_fast_pair",
-      12
+      "/Users/shreybae/Documents/iLAB/nRF_SDK/09_beamforming/build/zephyr/.config",
+      56
     ]
   ],
   [
     "SB_CONFIG_BT_FAST_PAIR_ANTI_SPOOFING_PRIVATE_KEY",
     "y",
     "string",
-    null,
-    "unset",
-    null
+    "",
+    "assign",
+    [
+      "/Users/shreybae/Documents/iLAB/nRF_SDK/09_beamforming/build/zephyr/.config",
+      57
+    ]
   ],
   [
     "SB_CONFIG_MATTER",
     "y",
     "bool",
-    null,
-    "unset",
-    null
+    "n",
+    "assign",
+    [
+      "/Users/shreybae/Documents/iLAB/nRF_SDK/09_beamforming/build/zephyr/.config",
+      60
+    ]
   ],
   [
     "SB_CONFIG_WIFI_NRF70",
     "y",
     "bool",
-    null,
-    "unset",
-    null
+    "n",
+    "assign",
+    [
+      "/Users/shreybae/Documents/iLAB/nRF_SDK/09_beamforming/build/zephyr/.config",
+      65
+    ]
   ],
   [
     "SB_CONFIG_APPROTECT_DISABLE",
@@ -322,11 +337,8 @@
     "y",
     "bool",
     "y",
-    "default",
-    [
-      "/opt/nordic/ncs/v3.3.1/nrf/modules/../sysbuild/Kconfig.approtect",
-      8
-    ]
+    "assign",
+    null
   ],
   [
     "SB_CONFIG_SECURE_APPROTECT_DISABLE",
@@ -357,11 +369,8 @@
     "y",
     "bool",
     "y",
-    "default",
-    [
-      "/opt/nordic/ncs/v3.3.1/nrf/modules/../sysbuild/Kconfig.approtect",
-      46
-    ]
+    "assign",
+    null
   ],
   [
     "SB_CONFIG_SUPPORT_CRACEN",
@@ -862,9 +871,12 @@
     "SB_CONFIG_WARN_EXPERIMENTAL",
     "y",
     "bool",
-    null,
-    "unset",
-    null
+    "n",
+    "assign",
+    [
+      "/Users/shreybae/Documents/iLAB/nRF_SDK/09_beamforming/build/zephyr/.config",
+      129
+    ]
   ],
   [
     "SB_CONFIG_DEPRECATED",
@@ -881,10 +893,10 @@
     "y",
     "bool",
     "y",
-    "default",
+    "assign",
     [
-      "/opt/nordic/ncs/v3.3.1/zephyr/share/sysbuild/Kconfig",
-      66
+      "/Users/shreybae/Documents/iLAB/nRF_SDK/09_beamforming/build/zephyr/.config",
+      131
     ]
   ],
   [
@@ -914,11 +926,8 @@
     "y",
     "bool",
     "y",
-    "default",
-    [
-      "/opt/nordic/ncs/v3.3.1/zephyr/share/sysbuild/images/bootloader/Kconfig",
-      15
-    ]
+    "assign",
+    null
   ],
   [
     "SB_CONFIG_BOOTLOADER_MCUBOOT",
@@ -943,16 +952,22 @@
     "SB_CONFIG_COMPILER_WARNINGS_AS_ERRORS",
     "y",
     "bool",
-    null,
-    "unset",
-    null
+    "n",
+    "assign",
+    [
+      "/Users/shreybae/Documents/iLAB/nRF_SDK/09_beamforming/build/zephyr/.config",
+      141
+    ]
   ],
   [
     "SB_CONFIG_MERGED_HEX_FILES",
     "y",
     "bool",
-    null,
-    "unset",
-    null
+    "n",
+    "assign",
+    [
+      "/Users/shreybae/Documents/iLAB/nRF_SDK/09_beamforming/build/zephyr/.config",
+      142
+    ]
   ]
 ]
