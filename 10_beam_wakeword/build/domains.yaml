@@ -1,0 +1,7 @@
+default: 10_beam_wakeword
+build_dir: /Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/10_beam_wakeword/build
+domains:
+  - name: 10_beam_wakeword
+    build_dir: /Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/10_beam_wakeword/build/10_beam_wakeword
+flash_order:
+  - 10_beam_wakeword

@@ -1,0 +1,13 @@
+# Target labels
+ 10_beam_wakeword
+# Source files and their labels
+/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/10_beam_wakeword/build/_sysbuild/sysbuild/images/CMakeFiles/10_beam_wakeword
+/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/10_beam_wakeword/build/_sysbuild/sysbuild/images/CMakeFiles/10_beam_wakeword.rule
+/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/10_beam_wakeword/build/_sysbuild/sysbuild/images/CMakeFiles/10_beam_wakeword-complete.rule
+/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/10_beam_wakeword/build/_sysbuild/sysbuild/images/10_beam_wakeword-prefix/src/10_beam_wakeword-stamp/10_beam_wakeword-build.rule
+/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/10_beam_wakeword/build/_sysbuild/sysbuild/images/10_beam_wakeword-prefix/src/10_beam_wakeword-stamp/10_beam_wakeword-configure.rule
+/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/10_beam_wakeword/build/_sysbuild/sysbuild/images/10_beam_wakeword-prefix/src/10_beam_wakeword-stamp/10_beam_wakeword-download.rule
+/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/10_beam_wakeword/build/_sysbuild/sysbuild/images/10_beam_wakeword-prefix/src/10_beam_wakeword-stamp/10_beam_wakeword-install.rule
+/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/10_beam_wakeword/build/_sysbuild/sysbuild/images/10_beam_wakeword-prefix/src/10_beam_wakeword-stamp/10_beam_wakeword-mkdir.rule
+/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/10_beam_wakeword/build/_sysbuild/sysbuild/images/10_beam_wakeword-prefix/src/10_beam_wakeword-stamp/10_beam_wakeword-patch.rule
+/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/10_beam_wakeword/build/_sysbuild/sysbuild/images/10_beam_wakeword-prefix/src/10_beam_wakeword-stamp/10_beam_wakeword-update.rule

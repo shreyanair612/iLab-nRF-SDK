@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/10_beam_wakeword/build/_sysbuild/sysbuild/images/CMakeFiles/10_beam_wakeword"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/10_beam_wakeword/build/_sysbuild/sysbuild/images/CMakeFiles/10_beam_wakeword.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/10_beam_wakeword/build/_sysbuild/sysbuild/images/CMakeFiles/10_beam_wakeword-complete.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/10_beam_wakeword/build/_sysbuild/sysbuild/images/10_beam_wakeword-prefix/src/10_beam_wakeword-stamp/10_beam_wakeword-build.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/10_beam_wakeword/build/_sysbuild/sysbuild/images/10_beam_wakeword-prefix/src/10_beam_wakeword-stamp/10_beam_wakeword-configure.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/10_beam_wakeword/build/_sysbuild/sysbuild/images/10_beam_wakeword-prefix/src/10_beam_wakeword-stamp/10_beam_wakeword-download.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/10_beam_wakeword/build/_sysbuild/sysbuild/images/10_beam_wakeword-prefix/src/10_beam_wakeword-stamp/10_beam_wakeword-install.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/10_beam_wakeword/build/_sysbuild/sysbuild/images/10_beam_wakeword-prefix/src/10_beam_wakeword-stamp/10_beam_wakeword-mkdir.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/10_beam_wakeword/build/_sysbuild/sysbuild/images/10_beam_wakeword-prefix/src/10_beam_wakeword-stamp/10_beam_wakeword-patch.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/10_beam_wakeword/build/_sysbuild/sysbuild/images/10_beam_wakeword-prefix/src/10_beam_wakeword-stamp/10_beam_wakeword-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"10_beam_wakeword"
+		],
+		"name" : "10_beam_wakeword"
+	}
+}

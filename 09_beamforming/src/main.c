@@ -42,26 +42,6 @@
 #define I2S_TIMEOUT_MS        2000U
 
 #define SILENCE_CHUNKS_OFF    5U
-
-/*
- * Dynamic-threshold knobs:
- *
- * noise_rms tracks the background noise floor on the beamformed signal.
- * TH_ON  = noise_rms + margin_on
- * TH_OFF = noise_rms + margin_off
- *
- * margin_on  ↑ : fewer false triggers, but may miss quiet speech
- * margin_on  ↓ : more sensitive to quiet speech, but more false positives
- *
- * margin_off ↑ : speech state ends sooner
- * margin_off ↓ : speech state holds longer
- *
- * noise_alpha_den ↑ : slower noise-floor adaptation
- * noise_alpha_den ↓ : faster noise-floor adaptation
- *
- * silence_chunks_off ↑ : LED stays on longer after speech
- * silence_chunks_off ↓ : LED turns off sooner
- */
 #define NOISE_INIT_RMS        20U
 #define NOISE_MARGIN_ON       40U
 #define NOISE_MARGIN_OFF      20U
