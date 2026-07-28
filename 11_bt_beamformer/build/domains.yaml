@@ -1,0 +1,7 @@
+default: 11_bt_beamformer
+build_dir: /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build
+domains:
+  - name: 11_bt_beamformer
+    build_dir: /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer
+flash_order:
+  - 11_bt_beamformer

@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/_sysbuild/sysbuild/images/CMakeFiles/11_bt_beamformer"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/_sysbuild/sysbuild/images/CMakeFiles/11_bt_beamformer.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/_sysbuild/sysbuild/images/CMakeFiles/11_bt_beamformer-complete.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/_sysbuild/sysbuild/images/11_bt_beamformer-prefix/src/11_bt_beamformer-stamp/11_bt_beamformer-build.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/_sysbuild/sysbuild/images/11_bt_beamformer-prefix/src/11_bt_beamformer-stamp/11_bt_beamformer-configure.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/_sysbuild/sysbuild/images/11_bt_beamformer-prefix/src/11_bt_beamformer-stamp/11_bt_beamformer-download.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/_sysbuild/sysbuild/images/11_bt_beamformer-prefix/src/11_bt_beamformer-stamp/11_bt_beamformer-install.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/_sysbuild/sysbuild/images/11_bt_beamformer-prefix/src/11_bt_beamformer-stamp/11_bt_beamformer-mkdir.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/_sysbuild/sysbuild/images/11_bt_beamformer-prefix/src/11_bt_beamformer-stamp/11_bt_beamformer-patch.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/_sysbuild/sysbuild/images/11_bt_beamformer-prefix/src/11_bt_beamformer-stamp/11_bt_beamformer-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"11_bt_beamformer"
+		],
+		"name" : "11_bt_beamformer"
+	}
+}
