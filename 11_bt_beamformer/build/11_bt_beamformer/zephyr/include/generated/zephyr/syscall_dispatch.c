@@ -87,18 +87,6 @@ uintptr_t z_mrsh_sys_csrand_get(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
          uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
 
 __weak ALIAS_OF(handler_no_syscall)
-uintptr_t z_mrsh_sys_cache_data_flush_range(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
-         uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
-
-__weak ALIAS_OF(handler_no_syscall)
-uintptr_t z_mrsh_sys_cache_data_invd_range(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
-         uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
-
-__weak ALIAS_OF(handler_no_syscall)
-uintptr_t z_mrsh_sys_cache_data_flush_and_invd_range(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
-         uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
-
-__weak ALIAS_OF(handler_no_syscall)
 uintptr_t z_mrsh_entropy_get_entropy(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
          uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
 
@@ -200,6 +188,22 @@ uintptr_t z_mrsh_gpio_port_toggle_bits(uintptr_t arg1, uintptr_t arg2, uintptr_t
 
 __weak ALIAS_OF(handler_no_syscall)
 uintptr_t z_mrsh_gpio_get_pending_int(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
+         uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
+
+__weak ALIAS_OF(handler_no_syscall)
+uintptr_t z_mrsh_i2s_configure(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
+         uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
+
+__weak ALIAS_OF(handler_no_syscall)
+uintptr_t z_mrsh_i2s_buf_read(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
+         uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
+
+__weak ALIAS_OF(handler_no_syscall)
+uintptr_t z_mrsh_i2s_buf_write(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
+         uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
+
+__weak ALIAS_OF(handler_no_syscall)
+uintptr_t z_mrsh_i2s_trigger(uintptr_t arg1, uintptr_t arg2, uintptr_t arg3,
          uintptr_t arg4, uintptr_t arg5, uintptr_t arg6, void *ssf);
 
 __weak ALIAS_OF(handler_no_syscall)
@@ -730,9 +734,6 @@ const _k_syscall_handler_t _k_syscall_table[K_SYSCALL_LIMIT] = {
 	[K_SYSCALL_LOG_FRONTEND_FILTER_SET] = z_mrsh_log_frontend_filter_set,
 	[K_SYSCALL_SYS_RAND_GET] = z_mrsh_sys_rand_get,
 	[K_SYSCALL_SYS_CSRAND_GET] = z_mrsh_sys_csrand_get,
-	[K_SYSCALL_SYS_CACHE_DATA_FLUSH_RANGE] = z_mrsh_sys_cache_data_flush_range,
-	[K_SYSCALL_SYS_CACHE_DATA_INVD_RANGE] = z_mrsh_sys_cache_data_invd_range,
-	[K_SYSCALL_SYS_CACHE_DATA_FLUSH_AND_INVD_RANGE] = z_mrsh_sys_cache_data_flush_and_invd_range,
 	[K_SYSCALL_ENTROPY_GET_ENTROPY] = z_mrsh_entropy_get_entropy,
 	[K_SYSCALL_FLASH_READ] = z_mrsh_flash_read,
 	[K_SYSCALL_FLASH_WRITE] = z_mrsh_flash_write,
@@ -759,6 +760,10 @@ const _k_syscall_handler_t _k_syscall_table[K_SYSCALL_LIMIT] = {
 	[K_SYSCALL_GPIO_PORT_CLEAR_BITS_RAW] = z_mrsh_gpio_port_clear_bits_raw,
 	[K_SYSCALL_GPIO_PORT_TOGGLE_BITS] = z_mrsh_gpio_port_toggle_bits,
 	[K_SYSCALL_GPIO_GET_PENDING_INT] = z_mrsh_gpio_get_pending_int,
+	[K_SYSCALL_I2S_CONFIGURE] = z_mrsh_i2s_configure,
+	[K_SYSCALL_I2S_BUF_READ] = z_mrsh_i2s_buf_read,
+	[K_SYSCALL_I2S_BUF_WRITE] = z_mrsh_i2s_buf_write,
+	[K_SYSCALL_I2S_TRIGGER] = z_mrsh_i2s_trigger,
 	[K_SYSCALL_UART_ERR_CHECK] = z_mrsh_uart_err_check,
 	[K_SYSCALL_UART_POLL_IN] = z_mrsh_uart_poll_in,
 	[K_SYSCALL_UART_POLL_IN_U16] = z_mrsh_uart_poll_in_u16,

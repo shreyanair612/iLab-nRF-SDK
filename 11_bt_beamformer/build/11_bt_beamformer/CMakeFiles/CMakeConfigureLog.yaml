@@ -3682,37 +3682,6 @@ events:
       CMAKE_SYSTEM_PROGRAM_PATH:
         - "/bin"
   -
-    kind: "try_compile-v1"
-    backtrace:
-      - "/opt/nordic/ncs/toolchains/0c0f19d91c/share/cmake/Modules/Internal/CheckSourceCompiles.cmake:104 (try_compile)"
-      - "/opt/nordic/ncs/toolchains/0c0f19d91c/share/cmake/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
-      - "/opt/nordic/ncs/toolchains/0c0f19d91c/share/cmake/Modules/CheckCCompilerFlag.cmake:105 (cmake_check_compiler_flag)"
-      - "/opt/nordic/ncs/v3.3.1/zephyr/cmake/modules/extensions.cmake:2336 (check_c_compiler_flag)"
-      - "/opt/nordic/ncs/v3.3.1/zephyr/cmake/modules/extensions.cmake:1199 (check_compiler_flag)"
-      - "/opt/nordic/ncs/v3.3.1/zephyr/cmake/modules/extensions.cmake:2375 (zephyr_check_compiler_flag)"
-      - "/opt/nordic/ncs/v3.3.1/zephyr/cmake/modules/extensions.cmake:2351 (target_cc_option_fallback)"
-      - "/opt/nordic/ncs/v3.3.1/zephyr/cmake/modules/extensions.cmake:156 (target_cc_option)"
-      - "/opt/nordic/ncs/v3.3.1/zephyr/CMakeLists.txt:657 (zephyr_cc_option)"
-    directories:
-      source: "/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/CMakeFiles/CMakeScratch/TryCompile-h1OENA"
-      binary: "/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/CMakeFiles/CMakeScratch/TryCompile-h1OENA"
-    cmakeVariables:
-      CMAKE_C_FLAGS: ""
-      CMAKE_C_FLAGS_DEBUG: "-g"
-      CMAKE_EXE_LINKER_FLAGS: ""
-      CMAKE_MODULE_PATH: "/opt/nordic/ncs/v3.3.1/nrf/cmake/modules;/opt/nordic/ncs/v3.3.1/zephyr/cmake/modules"
-    buildResult:
-      variable: "check_fmacro_prefix_map__Users_shreybae_Documents_iLAB_nRF_SDK_11_bt_beamformer_CMAKE_SOURCE_DIR_C__nostartfiles__nostdlib__isystem___opt_nordic_ncs_toolchains_0c0f19d91c_opt_zephyr_sdk_arm_zephyr_eabi_bin____lib_gcc_arm_zephyr_eabi_12_2_0_include___isystem___opt_nordic_ncs_toolchains_0c0f19d91c_opt_zephyr_sdk_arm_zephyr_eabi_bin____lib_gcc_arm_zephyr_eabi_12_2_0_include_fixed___Wl___unresolved_symbols_ignore_in_object_files__Wl___entry_0__fuse_ld_bfd"
-      cached: true
-      stdout: |
-        Change Dir: '/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/CMakeFiles/CMakeScratch/TryCompile-h1OENA'
-        
-        Run Build Command(s): /opt/nordic/ncs/toolchains/0c0f19d91c/bin/ninja -v cmTC_64044
-        [1/2] /opt/nordic/ncs/toolchains/0c0f19d91c/opt/zephyr-sdk/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc -Dcheck_fmacro_prefix_map__Users_shreybae_Documents_iLAB_nRF_SDK_11_bt_beamformer_CMAKE_SOURCE_DIR_C__nostartfiles__nostdlib__isystem___opt_nordic_ncs_toolchains_0c0f19d91c_opt_zephyr_sdk_arm_zephyr_eabi_bin____lib_gcc_arm_zephyr_eabi_12_2_0_include___isystem___opt_nordic_ncs_toolchains_0c0f19d91c_opt_zephyr_sdk_arm_zephyr_eabi_bin____lib_gcc_arm_zephyr_eabi_12_2_0_include_fixed___Wl___unresolved_symbols_ignore_in_object_files__Wl___entry_0__fuse_ld_bfd  -nostartfiles -nostdlib -isystem "/opt/nordic/ncs/toolchains/0c0f19d91c/opt/zephyr-sdk/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/include" -isystem "/opt/nordic/ncs/toolchains/0c0f19d91c/opt/zephyr-sdk/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/include-fixed" -Wl,--unresolved-symbols=ignore-in-object-files -Wl,--entry=0 -fuse-ld=bfd   -fmacro-prefix-map=/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer=CMAKE_SOURCE_DIR -o CMakeFiles/cmTC_64044.dir/src.c.obj -c /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/CMakeFiles/CMakeScratch/TryCompile-h1OENA/src.c
-        [2/2] : && /opt/nordic/ncs/toolchains/0c0f19d91c/opt/zephyr-sdk/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc -nostartfiles -nostdlib -isystem "/opt/nordic/ncs/toolchains/0c0f19d91c/opt/zephyr-sdk/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/include" -isystem "/opt/nordic/ncs/toolchains/0c0f19d91c/opt/zephyr-sdk/arm-zephyr-eabi/bin/../lib/gcc/arm-zephyr-eabi/12.2.0/include-fixed" -Wl,--unresolved-symbols=ignore-in-object-files -Wl,--entry=0 -fuse-ld=bfd  CMakeFiles/cmTC_64044.dir/src.c.obj -o cmTC_64044   && :
-        
-      exitCode: 0
-  -
     kind: "find-v1"
     backtrace:
       - "/opt/nordic/ncs/toolchains/0c0f19d91c/share/cmake/Modules/FindGit.cmake:111 (find_program)"

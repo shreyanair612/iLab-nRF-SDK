@@ -161,30 +161,6 @@
     ],
     [
         [
-            "int sys_cache_data_flush_range",
-            "void *addr, size_t size"
-        ],
-        "cache.h",
-        true
-    ],
-    [
-        [
-            "int sys_cache_data_invd_range",
-            "void *addr, size_t size"
-        ],
-        "cache.h",
-        true
-    ],
-    [
-        [
-            "int sys_cache_data_flush_and_invd_range",
-            "void *addr, size_t size"
-        ],
-        "cache.h",
-        true
-    ],
-    [
-        [
             "int entropy_get_entropy",
             "const struct device *dev,\n\t\t\t\t  uint8_t *buffer,\n\t\t\t\t  uint16_t length"
         ],
@@ -389,6 +365,38 @@
             "const struct device *dev"
         ],
         "gpio.h",
+        true
+    ],
+    [
+        [
+            "int i2s_configure",
+            "const struct device *dev, enum i2s_dir dir,\n\t\t\t    const struct i2s_config *cfg"
+        ],
+        "i2s.h",
+        true
+    ],
+    [
+        [
+            "int i2s_buf_read",
+            "const struct device *dev, void *buf, size_t *size"
+        ],
+        "i2s.h",
+        true
+    ],
+    [
+        [
+            "int i2s_buf_write",
+            "const struct device *dev, void *buf, size_t size"
+        ],
+        "i2s.h",
+        true
+    ],
+    [
+        [
+            "int i2s_trigger",
+            "const struct device *dev, enum i2s_dir dir,\n\t\t\t  enum i2s_trigger_cmd cmd"
+        ],
+        "i2s.h",
         true
     ],
     [
@@ -1422,6 +1430,30 @@
         ],
         "time_units.h",
         true
+    ],
+    [
+        [
+            "int sys_cache_data_flush_range",
+            "void *addr, size_t size"
+        ],
+        "cache.h",
+        false
+    ],
+    [
+        [
+            "int sys_cache_data_invd_range",
+            "void *addr, size_t size"
+        ],
+        "cache.h",
+        false
+    ],
+    [
+        [
+            "int sys_cache_data_flush_and_invd_range",
+            "void *addr, size_t size"
+        ],
+        "cache.h",
+        false
     ],
     [
         [
@@ -2685,38 +2717,6 @@
             "const struct device *dev"
         ],
         "i2c.h",
-        false
-    ],
-    [
-        [
-            "int i2s_configure",
-            "const struct device *dev, enum i2s_dir dir,\n\t\t\t    const struct i2s_config *cfg"
-        ],
-        "i2s.h",
-        false
-    ],
-    [
-        [
-            "int i2s_buf_read",
-            "const struct device *dev, void *buf, size_t *size"
-        ],
-        "i2s.h",
-        false
-    ],
-    [
-        [
-            "int i2s_buf_write",
-            "const struct device *dev, void *buf, size_t size"
-        ],
-        "i2s.h",
-        false
-    ],
-    [
-        [
-            "int i2s_trigger",
-            "const struct device *dev, enum i2s_dir dir,\n\t\t\t  enum i2s_trigger_cmd cmd"
-        ],
-        "i2s.h",
         false
     ],
     [

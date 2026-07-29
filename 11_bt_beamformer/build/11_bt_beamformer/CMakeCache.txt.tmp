@@ -27,7 +27,7 @@ APPLICATION_SOURCE_DIR:PATH=/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamfor
 ARM_MBEDTLS_PATH:STRING=/opt/nordic/ncs/v3.3.1/modules/crypto/mbedtls
 
 //Selected board
-BOARD:STRING=nrf54lm20dk/nrf54lm20b/cpuapp
+BOARD:STRING=nrf54lm20dk/nrf54lm20b/cpuapp/ns
 
 //Main board directory for board (nrf54lm20dk)
 BOARD_DIR:PATH=/opt/nordic/ncs/v3.3.1/zephyr/boards/nordic/nrf54lm20dk
@@ -44,8 +44,11 @@ BYPRODUCT_KERNEL_ELF_NAME:FILEPATH=/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_
 //Kernel hex file
 BYPRODUCT_KERNEL_HEX_NAME:FILEPATH=/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/zephyr/zephyr.hex
 
+//Kernel hex file
+BYPRODUCT_KERNEL_SIGNED_HEX_NAME:FILEPATH=/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/zephyr/tfm_merged.hex
+
 //Selected board
-CACHED_BOARD:STRING=nrf54lm20dk/nrf54lm20b/cpuapp
+CACHED_BOARD:STRING=nrf54lm20dk/nrf54lm20b/cpuapp/ns
 
 //Selected shield
 CACHED_SHIELD:STRING=
@@ -321,7 +324,7 @@ CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 // listed, e.g. CONF_FILE="prj1.conf;prj2.conf" The CACHED_CONF_FILE
 // is internal Zephyr variable used between CMake runs. To change
 // CONF_FILE, use the CONF_FILE variable.
-CONF_FILE:STRING=/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/prj.conf
+CONF_FILE:STRING=/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/prj.conf;/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/boards/nrf54lm20dk_nrf54lm20b_cpuapp_ns.conf
 
 //Path to a program.
 DTC:FILEPATH=/opt/nordic/ncs/toolchains/0c0f19d91c/bin/dtc
@@ -331,7 +334,7 @@ DTC:FILEPATH=/opt/nordic/ncs/toolchains/0c0f19d91c/bin/dtc
 // parameter. These settings will override the settings in the
 // board's .dts file. Multiple files may be listed, e.g. DTC_OVERLAY_FILE="dts1.overlay
 // dts2.overlay"
-DTC_OVERLAY_FILE:STRING=
+DTC_OVERLAY_FILE:STRING=/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/boards/nrf54lm20dk_nrf54lm20b_cpuapp_ns.overlay
 
 //Use to ensure we add links only once
 EXTERNAL_CRYPTO_CORE_HANDLED_PSA_CRYPTO_CONFIG:BOOL=False
@@ -677,12 +680,18 @@ HWM:INTERNAL=v2
 //Zephyr hardware model
 HWMv2:INTERNAL=True
 KERNEL_META_PATH:INTERNAL=/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/zephyr/zephyr.meta
+//shared var
+PM_YML_DEP_FILES:INTERNAL=/opt/nordic/ncs/v3.3.1/nrf/subsys/partition_manager/pm.yml.settings;/opt/nordic/ncs/v3.3.1/nrf/subsys/partition_manager/pm.yml.bootconf;/opt/nordic/ncs/v3.3.1/nrf/subsys/partition_manager/pm.yml.tfm;/opt/nordic/ncs/v3.3.1/nrf/subsys/partition_manager/pm.yml.trustzone
+//shared var
+PM_YML_FILES:INTERNAL=/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/modules/nrf/subsys/partition_manager/pm.yml.settings;/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/modules/nrf/subsys/partition_manager/pm.yml.bootconf;/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/modules/nrf/subsys/partition_manager/pm.yml.tfm;/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/modules/nrf/subsys/partition_manager/pm.yml.trustzone
 //List of SoC directories for SoC (nrf54lm20b)
 SOC_DIRECTORIES:INTERNAL=/opt/nordic/ncs/v3.3.1/zephyr/soc/nordic
 //SoC Linker script
 SOC_LINKER_SCRIPT:INTERNAL=/opt/nordic/ncs/v3.3.1/zephyr/include/zephyr/arch/arm/cortex_m/scripts/linker.ld
 //West
 WEST:INTERNAL=/opt/nordic/ncs/toolchains/0c0f19d91c/opt/python@3.12/bin/python3.12;-m;west
+//shared var
+ZEPHYR_BINARY_DIR:INTERNAL=/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/zephyr
 //Cached environment variable ZEPHYR_SDK_INSTALL_DIR
 ZEPHYR_SDK_INSTALL_DIR:INTERNAL=/opt/nordic/ncs/toolchains/0c0f19d91c/opt/zephyr-sdk
 //Cached environment variable ZEPHYR_TOOLCHAIN_VARIANT
@@ -697,6 +706,4 @@ _Python3_INTERPRETER_PROPERTIES:INTERNAL=Python;3;12;4;64;<none>;cpython-312-dar
 _Python3_INTERPRETER_SIGNATURE:INTERNAL=a36f39f063d014ea95f9a23dc489f97e
 //NumPy reason failure
 _Python3_NumPy_REASON_FAILURE:INTERNAL=
-//Test check_fmacro_prefix_map__Users_shreybae_Documents_iLAB_nRF_SDK_11_bt_beamformer_CMAKE_SOURCE_DIR_C__nostartfiles__nostdlib__isystem___opt_nordic_ncs_toolchains_0c0f19d91c_opt_zephyr_sdk_arm_zephyr_eabi_bin____lib_gcc_arm_zephyr_eabi_12_2_0_include___isystem___opt_nordic_ncs_toolchains_0c0f19d91c_opt_zephyr_sdk_arm_zephyr_eabi_bin____lib_gcc_arm_zephyr_eabi_12_2_0_include_fixed___Wl___unresolved_symbols_ignore_in_object_files__Wl___entry_0__fuse_ld_bfd
-check_fmacro_prefix_map__Users_shreybae_Documents_iLAB_nRF_SDK_11_bt_beamformer_CMAKE_SOURCE_DIR_C__nostartfiles__nostdlib__isystem___opt_nordic_ncs_toolchains_0c0f19d91c_opt_zephyr_sdk_arm_zephyr_eabi_bin____lib_gcc_arm_zephyr_eabi_12_2_0_include___isystem___opt_nordic_ncs_toolchains_0c0f19d91c_opt_zephyr_sdk_arm_zephyr_eabi_bin____lib_gcc_arm_zephyr_eabi_12_2_0_include_fixed___Wl___unresolved_symbols_ignore_in_object_files__Wl___entry_0__fuse_ld_bfd:INTERNAL=1
 

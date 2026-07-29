@@ -6,14 +6,15 @@ cmake:
     name: 'nrf54lm20dk'
     path:
      - '/opt/nordic/ncs/v3.3.1/zephyr/boards/nordic/nrf54lm20dk'
-    qualifiers: 'nrf54lm20b/cpuapp'
+    qualifiers: 'nrf54lm20b/cpuapp/ns'
     revision: ''
   devicetree:
     bindings-dirs:
      - '/opt/nordic/ncs/v3.3.1/nrf/dts/bindings'
      - '/opt/nordic/ncs/v3.3.1/zephyr/dts/bindings'
     files:
-     - '/opt/nordic/ncs/v3.3.1/zephyr/boards/nordic/nrf54lm20dk/nrf54lm20dk_nrf54lm20b_cpuapp.dts'
+     - '/opt/nordic/ncs/v3.3.1/zephyr/boards/nordic/nrf54lm20dk/nrf54lm20dk_nrf54lm20b_cpuapp_ns.dts'
+     - '/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/boards/nrf54lm20dk_nrf54lm20b_cpuapp_ns.overlay'
     include-dirs:
      - '/opt/nordic/ncs/v3.3.1/nrf/include'
      - '/opt/nordic/ncs/v3.3.1/nrf/dts/common'
@@ -34,14 +35,21 @@ cmake:
      - '/opt/nordic/ncs/v3.3.1/zephyr/dts/arm'
      - '/opt/nordic/ncs/v3.3.1/zephyr/dts/arc'
      - '/opt/nordic/ncs/v3.3.1/zephyr/dts'
+    user-files:
+     - '/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/boards/nrf54lm20dk_nrf54lm20b_cpuapp_ns.overlay'
+  images:
+   - name: 'tfm'
+     source-dir: '/opt/nordic/ncs/v3.3.1/modules/tee/tf-m/trusted-firmware-m'
   kconfig:
     files:
-     - '/opt/nordic/ncs/v3.3.1/zephyr/boards/nordic/nrf54lm20dk/nrf54lm20dk_nrf54lm20b_cpuapp_defconfig'
+     - '/opt/nordic/ncs/v3.3.1/zephyr/boards/nordic/nrf54lm20dk/nrf54lm20dk_nrf54lm20b_cpuapp_ns_defconfig'
      - '/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/prj.conf'
+     - '/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/boards/nrf54lm20dk_nrf54lm20b_cpuapp_ns.conf'
      - '/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/zephyr/misc/generated/extra_kconfig_options.conf'
      - '/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/zephyr/.config.sysbuild'
     user-files:
      - '/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/prj.conf'
+     - '/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/boards/nrf54lm20dk_nrf54lm20b_cpuapp_ns.conf'
   toolchain:
     name: 'zephyr'
     path: '/opt/nordic/ncs/toolchains/0c0f19d91c/opt/zephyr-sdk'

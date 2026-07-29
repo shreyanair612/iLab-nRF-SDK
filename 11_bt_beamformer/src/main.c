@@ -565,7 +565,7 @@ static struct i2s_config i2s_cfg = {
 	.word_size = MIC_WORD_SIZE_BITS,
 	.channels = MIC_NUM_CHANNELS,
 	.format = I2S_FMT_DATA_FORMAT_I2S,
-	.options = I2S_OPT_BIT_CLK_CONTOLLER | I2S_OPT_FRAME_CLK_CONTROLLER,
+	.options = I2S_OPT_BIT_CLK_CONT | I2S_OPT_FRAME_CLK_MASTER,
 	.frame_clk_freq = MIC_SAMPLE_RATE_HZ,
 	.mem_slab =  &mic_rx_mem_slab,
 	.block_size = MIC_BLOCK_SIZE_BYTES,
@@ -575,7 +575,7 @@ static struct i2s_config i2s_cfg = {
 #define AUDIO_CHUNK_SAMPLES 512
 
 struct audio_chunk {
-	sys_snote_t node;
+	sys_snode_t node;
 	uint16_t count;
 	int16_t samples[AUDIO_CHUNK_SAMPLES];
 };
@@ -598,8 +598,8 @@ static atomic_t data_pending_send = ATOMIC_INIT(0);
 static atomic_t notifications_enabled = ATOMIC_INIT(0);
 
 static K_SEM_DEFINE(audio_tx_sem, 0, 1);
-
-static structu k_thread capture_thread_data;
+ 
+static struct k_thread capture_thread_data;
 K_THREAD_STACK_DEFINE(capture_thread_stack, 2048);
 
 #define CAPTURE_THREAD_PRIORITY 6
@@ -675,8 +675,8 @@ static void capture_thread_fn(void *p1, void *p2, void *p3) {
 			audio_buffer_append(mono);
 			samples_since_log++;
 
-			if(total_sampels_captured >= MAX_RECORDING_SAMPLES) {
-				LOG_WRN("Max recording length reached (%u samples)", "auto-stopping", (unsigned int)MAX_RECORDING_SAMPLES);
+			if(total_samples_captured >= MAX_RECORDING_SAMPLES) {
+				LOG_WRN("Max recording length reached (%u samples), auto-stopping", (unsigned int)MAX_RECORDING_SAMPLES);
 				atomic_set(&stop_requested, 1);
 				break;
 			}
@@ -809,7 +809,7 @@ static void ble_tx_thread(void *p1, void *p2, void *p3) {
 }
 
 #define TX_THREAD_STACK_SIZE 2048
-#define TX_THREAD_CAPACITY 7
+#define TX_THREAD_PRIORITY 7
 
 K_THREAD_DEFINE(ble_tx_thread_id, TX_THREAD_STACK_SIZE, ble_tx_thread, NULL, NULL, NULL, TX_THREAD_PRIORITY, 0, 0);
 
@@ -832,7 +832,7 @@ static struct bt_nus_cb nus_cb = {
 };
 
 void error(void) {
-	dk_set_leds_stats(DK_ALL_LEDS_MSK, DK_NO_LEDS_MSK);
+	dk_set_leds_state(DK_ALL_LEDS_MSK, DK_NO_LEDS_MSK);
 	while (true) {
 		k_sleep(K_MSEC(1000));
 	}
@@ -858,7 +858,7 @@ void button_changed(uint32_t button_state, uint32_t has_changed) {
 
 #ifdef CONFIG_BT_NUS_SECURITY_ENABLED
 	if (auth_conn) {
-		if(buttons & KEY_PASSWORD_ACCEPT) {
+		if(buttons & KEY_PASSKEY_ACCEPT) {
 			num_comp_reply(true);
 		}
 
@@ -937,7 +937,7 @@ int main(void)
 	}
 
 	/* I2S MICROPHONE INTERFACE */
-	if (!device_is_read(i2s_dev)) {
+	if (!device_is_ready(i2s_dev)) {
 		LOG_ERR("I2S/TDM device not ready - beamformer recording will be unavailable");
 	} else {
 		err = i2s_configure(i2s_dev,I2S_DIR_RX, &i2s_cfg);

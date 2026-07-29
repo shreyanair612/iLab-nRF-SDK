@@ -14,7 +14,7 @@ config:
   board_dir: /opt/nordic/ncs/v3.3.1/zephyr/boards/nordic/nrf54lm20dk
   # Build outputs:
   elf_file: zephyr.elf
-  hex_file: zephyr.hex
+  hex_file: /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/merged.hex
   bin_file: zephyr.bin
   # Host tools:
   gdb: /opt/nordic/ncs/toolchains/0c0f19d91c/opt/zephyr-sdk/arm-zephyr-eabi/bin/arm-zephyr-eabi-gdb

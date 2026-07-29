@@ -3,7 +3,7 @@ cmake:
     name: 'nrf54lm20dk'
     path:
      - '/opt/nordic/ncs/v3.3.1/zephyr/boards/nordic/nrf54lm20dk'
-    qualifiers: 'nrf54lm20b/cpuapp'
+    qualifiers: 'nrf54lm20b/cpuapp/ns'
     revision: ''
   images:
    - name: '11_bt_beamformer'
@@ -17,6 +17,6 @@ cmake:
      - '/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/_sysbuild/empty.conf'
 version: '0.1.0'
 west:
-  command: '/opt/nordic/ncs/toolchains/0c0f19d91c/bin/west build --build-dir /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer --pristine --board nrf54lm20dk/nrf54lm20b/cpuapp -- -DCONFIG_DEBUG_THREAD_INFO=y'
+  command: '/opt/nordic/ncs/toolchains/0c0f19d91c/bin/west build --build-dir /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer --pristine --board nrf54lm20dk/nrf54lm20b/cpuapp/ns -- -DCONFIG_DEBUG_THREAD_INFO=y'
   topdir: '/opt/nordic/ncs/v3.3.1'
   version: '1.5.0'

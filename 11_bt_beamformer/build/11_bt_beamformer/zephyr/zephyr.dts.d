@@ -1,5 +1,5 @@
 empty_file.o: /opt/nordic/ncs/v3.3.1/zephyr/misc/empty_file.c \
- /opt/nordic/ncs/v3.3.1/zephyr/boards/nordic/nrf54lm20dk/nrf54lm20dk_nrf54lm20b_cpuapp.dts \
+ /opt/nordic/ncs/v3.3.1/zephyr/boards/nordic/nrf54lm20dk/nrf54lm20dk_nrf54lm20b_cpuapp_ns.dts \
  /opt/nordic/ncs/v3.3.1/zephyr/dts/arm/nordic/nrf54lm20b_cpuapp.dtsi \
  /opt/nordic/ncs/v3.3.1/zephyr/dts/vendor/nordic/nrf54lm20b.dtsi \
  /opt/nordic/ncs/v3.3.1/zephyr/dts/vendor/nordic/nrf54lm20_a_b.dtsi \
@@ -31,5 +31,7 @@ empty_file.o: /opt/nordic/ncs/v3.3.1/zephyr/misc/empty_file.c \
  /opt/nordic/ncs/v3.3.1/zephyr/dts/arm/nordic/nrf54lm20_a_b_cpuapp.dtsi \
  /opt/nordic/ncs/v3.3.1/zephyr/boards/nordic/nrf54lm20dk/nrf54lm20dk_common.dtsi \
  /opt/nordic/ncs/v3.3.1/zephyr/boards/nordic/nrf54lm20dk/nrf54lm20dk_nrf54lm20_a_b-pinctrl.dtsi \
- /opt/nordic/ncs/v3.3.1/zephyr/dts/vendor/nordic/nrf54lm20b_cpuapp_partition.dtsi \
- /opt/nordic/ncs/v3.3.1/zephyr/dts/vendor/nordic/nrf54lm20_a_b_cpuapp_partition.dtsi
+ /opt/nordic/ncs/v3.3.1/zephyr/dts/vendor/nordic/nrf54lm20b_cpuapp_ns_partition.dtsi \
+ /opt/nordic/ncs/v3.3.1/zephyr/dts/vendor/nordic/nrf54lm20_a_b_cpuapp_ns_partition.dtsi \
+ /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/boards/nrf54lm20dk_nrf54lm20b_cpuapp_ns.overlay \
+ /opt/nordic/ncs/v3.3.1/zephyr/include/zephyr/dt-bindings/pinctrl/nrf-pinctrl.h

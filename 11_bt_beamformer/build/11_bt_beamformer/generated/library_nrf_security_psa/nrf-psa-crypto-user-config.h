@@ -270,26 +270,26 @@
  * NCSDK-20700: Make PSA CRACEN driver configurable.
  */
 #define PSA_CRYPTO_DRIVER_CRACEN                           1
-/* #undef PSA_NEED_CRACEN_AEAD_DRIVER */
+#define PSA_NEED_CRACEN_AEAD_DRIVER                        1
 #define PSA_NEED_CRACEN_CIPHER_DRIVER                      1
 #define PSA_NEED_CRACEN_KEY_AGREEMENT_DRIVER               1
 /* #undef PSA_NEED_CRACEN_ASYMMETRIC_SIGNATURE_DRIVER */
 /* #undef PSA_NEED_CRACEN_ASYMMETRIC_ENCRYPTION_DRIVER */
-/* #undef PSA_NEED_CRACEN_HASH_DRIVER */
+#define PSA_NEED_CRACEN_HASH_DRIVER                        1
 #define PSA_NEED_CRACEN_KEY_MANAGEMENT_DRIVER              1
 #define PSA_NEED_CRACEN_KMU_DRIVER                         1
 #define PSA_NEED_CRACEN_MAC_DRIVER                         1
 /* #undef PSA_NEED_CRACEN_PAKE_DRIVER */
-/* #undef PSA_NEED_CRACEN_KEY_DERIVATION_DRIVER */
+#define PSA_NEED_CRACEN_KEY_DERIVATION_DRIVER              1
 #define PSA_NEED_CRACEN_CTR_DRBG_DRIVER                    1
 
 #define PSA_NEED_CRACEN_KMU_KEY_IMPORT                     1
 #define PSA_NEED_CRACEN_KMU_KEY_GENERATE                   1
 #define PSA_NEED_CRACEN_KMU_KEY_COPY                       1
-/* #undef PSA_NEED_CRACEN_KMU_ENCRYPTED_KEYS */
+#define PSA_NEED_CRACEN_KMU_ENCRYPTED_KEYS                 1
 /* #undef PSA_NEED_CRACEN_CCM_AES */
-/* #undef PSA_NEED_CRACEN_GCM_AES */
-/* #undef PSA_NEED_CRACEN_CHACHA20_POLY1305 */
+#define PSA_NEED_CRACEN_GCM_AES                            1
+#define PSA_NEED_CRACEN_CHACHA20_POLY1305                  1
 /* #undef PSA_NEED_CRACEN_CTR_AES */
 /* #undef PSA_NEED_CRACEN_CBC_PKCS7_AES */
 /* #undef PSA_NEED_CRACEN_CBC_NO_PADDING_AES */
@@ -340,7 +340,7 @@
 /* #undef PSA_NEED_CRACEN_RSA_PKCS1V15_CRYPT */
 /* #undef PSA_NEED_CRACEN_SHA_1 */
 /* #undef PSA_NEED_CRACEN_SHA_224 */
-/* #undef PSA_NEED_CRACEN_SHA_256 */
+#define PSA_NEED_CRACEN_SHA_256                            1
 /* #undef PSA_NEED_CRACEN_SHA_384 */
 /* #undef PSA_NEED_CRACEN_SHA_512 */
 /* #undef PSA_NEED_CRACEN_SHA3_224 */
@@ -470,7 +470,7 @@
 /* #undef PSA_NEED_CRACEN_KEY_TYPE_RSA_KEY_PAIR_EXPORT */
 /* #undef PSA_NEED_CRACEN_KEY_TYPE_RSA_KEY_PAIR_GENERATE */
 
-/* #undef PSA_NEED_CRACEN_HMAC */
+#define PSA_NEED_CRACEN_HMAC                               1
 #define PSA_NEED_CRACEN_CMAC                               1
 /* #undef PSA_NEED_CRACEN_SRP_6 */
 /* #undef PSA_NEED_CRACEN_SRP_PASSWORD_HASH */
@@ -479,8 +479,8 @@
 /* #undef PSA_NEED_CRACEN_SPAKE2P */
 /* #undef PSA_NEED_CRACEN_WPA3_SAE */
 /* #undef PSA_NEED_CRACEN_WPA3_SAE_H2E */
-/* #undef PSA_NEED_CRACEN_HKDF */
-/* #undef PSA_NEED_CRACEN_SP800_108_COUNTER_CMAC */
+#define PSA_NEED_CRACEN_HKDF                               1
+#define PSA_NEED_CRACEN_SP800_108_COUNTER_CMAC             1
 /* #undef PSA_NEED_CRACEN_SP800_108_COUNTER_HMAC */
 /* #undef PSA_NEED_CRACEN_TLS12_ECJPAKE_TO_PMS */
 /* #undef PSA_NEED_CRACEN_TLS12_PRF */
@@ -500,7 +500,7 @@
 
 /* PSA and drivers */
 #define MBEDTLS_PSA_CRYPTO_C
-/* #undef MBEDTLS_PSA_CRYPTO_STORAGE_C */
+#define MBEDTLS_PSA_CRYPTO_STORAGE_C
 /* MBEDTLS_PSA_CRYPTO_DRIVERS is defined to 1 by TF-M's build system. */
 #define MBEDTLS_PSA_CRYPTO_DRIVERS                         1
 #define MBEDTLS_PSA_CRYPTO_CLIENT

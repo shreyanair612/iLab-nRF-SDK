@@ -2,8 +2,8 @@
 _region_min_align = 32;
 MEMORY
     {
-    FLASH (rx) : ORIGIN = (0x0 + 0x0), LENGTH = (1940 * 1024 - 0x0 - 0x0)
-    RAM (wx) : ORIGIN = 0x20000000, LENGTH = (511 * 1K)
+    FLASH (rx) : ORIGIN = 0x4a000, LENGTH = 0x1b1000
+    RAM (wx) : ORIGIN = 0x20010000, LENGTH = 0x6fe40
    
     IDT_LIST (wx) : ORIGIN = 0xFFFF7FFF, LENGTH = 32K
     }
@@ -41,7 +41,7 @@ SECTIONS
  *(.iplt)
  }
    
- __rom_region_start = (0x0 + 0x0);
+ __rom_region_start = 0x4a000;
     rom_start :
  {
 HIDDEN(__rom_start_address = .);
@@ -116,6 +116,7 @@ __device_deps_end = .;
 entropy_driver_api_area : { _entropy_driver_api_list_start = .; KEEP(*(SORT_BY_NAME(._entropy_driver_api.static.*))); _entropy_driver_api_list_end = .;; } > FLASH
 flash_driver_api_area : { _flash_driver_api_list_start = .; KEEP(*(SORT_BY_NAME(._flash_driver_api.static.*))); _flash_driver_api_list_end = .;; } > FLASH
 gpio_driver_api_area : { _gpio_driver_api_list_start = .; KEEP(*(SORT_BY_NAME(._gpio_driver_api.static.*))); _gpio_driver_api_list_end = .;; } > FLASH
+i2s_driver_api_area : { _i2s_driver_api_list_start = .; KEEP(*(SORT_BY_NAME(._i2s_driver_api.static.*))); _i2s_driver_api_list_end = .;; } > FLASH
 shared_irq_driver_api_area : { _shared_irq_driver_api_list_start = .; KEEP(*(SORT_BY_NAME(._shared_irq_driver_api.static.*))); _shared_irq_driver_api_list_end = .;; } > FLASH
 crypto_driver_api_area : { _crypto_driver_api_list_start = .; KEEP(*(SORT_BY_NAME(._crypto_driver_api.static.*))); _crypto_driver_api_list_end = .;; } > FLASH
 adc_driver_api_area : { _adc_driver_api_list_start = .; KEEP(*(SORT_BY_NAME(._adc_driver_api.static.*))); _adc_driver_api_list_end = .;; } > FLASH
@@ -148,7 +149,6 @@ haptics_driver_api_area : { _haptics_driver_api_list_start = .; KEEP(*(SORT_BY_N
 hwspinlock_driver_api_area : { _hwspinlock_driver_api_list_start = .; KEEP(*(SORT_BY_NAME(._hwspinlock_driver_api.static.*))); _hwspinlock_driver_api_list_end = .;; } > FLASH
 i2c_driver_api_area : { _i2c_driver_api_list_start = .; KEEP(*(SORT_BY_NAME(._i2c_driver_api.static.*))); _i2c_driver_api_list_end = .;; } > FLASH
 i2c_target_driver_api_area : { _i2c_target_driver_api_list_start = .; KEEP(*(SORT_BY_NAME(._i2c_target_driver_api.static.*))); _i2c_target_driver_api_list_end = .;; } > FLASH
-i2s_driver_api_area : { _i2s_driver_api_list_start = .; KEEP(*(SORT_BY_NAME(._i2s_driver_api.static.*))); _i2s_driver_api_list_end = .;; } > FLASH
 i3c_driver_api_area : { _i3c_driver_api_list_start = .; KEEP(*(SORT_BY_NAME(._i3c_driver_api.static.*))); _i3c_driver_api_list_end = .;; } > FLASH
 ipm_driver_api_area : { _ipm_driver_api_list_start = .; KEEP(*(SORT_BY_NAME(._ipm_driver_api.static.*))); _ipm_driver_api_list_end = .;; } > FLASH
 led_driver_api_area : { _led_driver_api_list_start = .; KEEP(*(SORT_BY_NAME(._led_driver_api.static.*))); _led_driver_api_list_end = .;; } > FLASH
@@ -289,23 +289,9 @@ ztest :
  *(.igot)
  }
    
- . = 0x20000000;
+ . = 0x20010000;
  . = ALIGN(_region_min_align);
  _image_ram_start = .;
-# This section must be loaded first of all the
-# custom sections because we want it to be placed
-# at the top address of RAM.
-NRF_KMU_RESERVED_PUSH_SECTION (NOLOAD) :
-{
-    __nrf_kmu_reserved_push_area = .;
-    *(.nrf_kmu_reserved_push_area)
-    __nrf_kmu_reserved_push_area_end = .;
-} > RAM AT > RAM
- # It doesn't seem to be possible to enforce placing a section
-# at a specific address in memory using the Zephyr .section macros.
-# So this assert is necessary to avoid accidentatly moving this
-# section to a different address.
-ASSERT(__nrf_kmu_reserved_push_area == 0x20000000, "Error:   The section NRF_KMU_RESERVED_PUSH_SECTION needs to be     placed on the top RAM address but it is not, please edit  your linker scripts to make sure that it is placed on     the to RAM address.")
 _RTT_SECTION_NAME (NOLOAD) : ALIGN_WITH_INPUT
 {
 __rtt_buff_data_start = .;
@@ -436,7 +422,7 @@ noinit (NOLOAD) :
         *(.noinit)
         *(".noinit.*")
 } > RAM AT > RAM
-    __kernel_ram_end = 0x20000000 + (511 * 1K);
+    __kernel_ram_end = 0x20010000 + 0x6fe40;
     __kernel_ram_size = __kernel_ram_end - __kernel_ram_start;
     .last_ram_section (NOLOAD) :
     {

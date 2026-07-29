@@ -9,6 +9,9 @@
 /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/_sysbuild/CMakeFiles/build_info_yaml_saved.dir
 /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/_sysbuild/CMakeFiles/11_bt_beamformer_cache.dir
 /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/_sysbuild/CMakeFiles/11_bt_beamformer_extra_byproducts.dir
+/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/_sysbuild/CMakeFiles/partition_manager.dir
+/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/_sysbuild/CMakeFiles/merged_hex.dir
+/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/_sysbuild/CMakeFiles/partition_manager_report.dir
 /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/_sysbuild/CMakeFiles/edit_cache.dir
 /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/_sysbuild/CMakeFiles/rebuild_cache.dir
 /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/_sysbuild/sysbuild/images/CMakeFiles/menuconfig.dir

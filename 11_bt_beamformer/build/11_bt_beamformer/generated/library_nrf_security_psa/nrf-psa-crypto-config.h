@@ -15,7 +15,7 @@
 /* #undef PSA_WANT_ALG_CBC_PKCS7 */
 /* #undef PSA_WANT_ALG_CCM */
 /* #undef PSA_WANT_ALG_CCM_STAR_NO_TAG */
-/* #undef PSA_WANT_ALG_CHACHA20_POLY1305 */
+#define PSA_WANT_ALG_CHACHA20_POLY1305                     1
 #define PSA_WANT_ALG_CMAC                                  1
 /* #undef PSA_WANT_ALG_CTR */
 #define PSA_WANT_ALG_CTR_DRBG                              1
@@ -26,11 +26,11 @@
 /* #undef PSA_WANT_ALG_ECDSA_ANY */
 /* #undef PSA_WANT_ALG_ED25519PH */
 /* #undef PSA_WANT_ALG_ED448PH */
-/* #undef PSA_WANT_ALG_GCM */
-/* #undef PSA_WANT_ALG_HKDF */
+#define PSA_WANT_ALG_GCM                                   1
+#define PSA_WANT_ALG_HKDF                                  1
 /* #undef PSA_WANT_ALG_HKDF_EXPAND */
 /* #undef PSA_WANT_ALG_HKDF_EXTRACT */
-/* #undef PSA_WANT_ALG_HMAC */
+#define PSA_WANT_ALG_HMAC                                  1
 /* #undef PSA_WANT_ALG_HMAC_DRBG */
 /* #undef PSA_WANT_ALG_JPAKE */
 /* #undef PSA_WANT_ALG_MD5 */
@@ -49,7 +49,7 @@
 /* #undef PSA_WANT_ALG_SHA3_512 */
 /* #undef PSA_WANT_ALG_SHA_1 */
 /* #undef PSA_WANT_ALG_SHA_224 */
-/* #undef PSA_WANT_ALG_SHA_256 */
+#define PSA_WANT_ALG_SHA_256                               1
 /* #undef PSA_WANT_ALG_SHA_384 */
 /* #undef PSA_WANT_ALG_SHA_512 */
 /* #undef PSA_WANT_ALG_SHA_512_224 */
@@ -124,7 +124,7 @@
 /* #undef PSA_WANT_RSA_KEY_SIZE_4096 */
 /* #undef PSA_WANT_RSA_KEY_SIZE_6144 */
 /* #undef PSA_WANT_RSA_KEY_SIZE_8192 */
-/* #undef PSA_WANT_ALG_SP800_108_COUNTER_CMAC */
+#define PSA_WANT_ALG_SP800_108_COUNTER_CMAC                1
 /* #undef PSA_WANT_ALG_SP800_108_COUNTER_HMAC */
 /* #undef PSA_WANT_ALG_HSS */
 /* #undef PSA_WANT_ALG_LMS */

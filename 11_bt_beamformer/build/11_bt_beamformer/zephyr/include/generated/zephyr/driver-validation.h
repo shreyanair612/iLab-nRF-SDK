@@ -10,6 +10,8 @@
 
 #define K_SYSCALL_DRIVER_GPIO(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, gpio, GPIO)
 
+#define K_SYSCALL_DRIVER_I2S(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, i2s, I2S)
+
 #define K_SYSCALL_DRIVER_SHARED_IRQ(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, shared_irq, SHARED_IRQ)
 
 #define K_SYSCALL_DRIVER_CRYPTO(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, crypto, CRYPTO)
@@ -73,8 +75,6 @@
 #define K_SYSCALL_DRIVER_I2C(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, i2c, I2C)
 
 #define K_SYSCALL_DRIVER_I2C_TARGET(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, i2c_target, I2C_TARGET)
-
-#define K_SYSCALL_DRIVER_I2S(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, i2s, I2S)
 
 #define K_SYSCALL_DRIVER_I3C(ptr, op) K_SYSCALL_DRIVER_GEN(ptr, op, i3c, I3C)
 
