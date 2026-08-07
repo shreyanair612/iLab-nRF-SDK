@@ -23,4 +23,4 @@ def extract_hex_from_log(log_path, out_path):
     print(f"Wrote combined hex to {out_path}")
 
 if __name__ == "__main__":
-    extract_hex_from_log("iLab-BeamformerProto.txt", "ble_hex.txt")
+    extract_hex_from_log("nrf_ble_packet_log.txt", "ble_hex.txt")
