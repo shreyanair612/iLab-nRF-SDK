@@ -667,7 +667,7 @@ static void capture_thread_fn(void *p1, void *p2, void *p3) {
 
 		for(size_t i = 0; i < num_pairs; i++) {
 			int16_t left = stereo[2*i];
-			int16_t right = stereo[2*i + i];
+			int16_t right = stereo[2*i + 1];
 			
 			int32_t sum = (int32_t)left + (int32_t)right;
 			int16_t mono = (int16_t)(sum/2);
@@ -959,7 +959,7 @@ int main(void)
 		dk_set_led(RUN_STATUS_LED, (++blink_status) % 2);
 		k_sleep(K_MSEC(RUN_LED_BLINK_INTERVAL));
 
-		bt_nus_send(NULL, test_msg, sizeof(test_msg) - 1);
+		// bt_nus_send(NULL, test_msg, sizeof(test_msg) - 1);
 	}
 }
 
