@@ -73,7 +73,6 @@ linker.cmd: \
  /opt/nordic/ncs/v3.3.1/zephyr/include/zephyr/linker/kobject-rom.ld \
  /opt/nordic/ncs/v3.3.1/zephyr/include/zephyr/linker/cplusplus-rom.ld \
  /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/zephyr/include/generated/snippets-ram-sections.ld \
- /opt/nordic/ncs/v3.3.1/zephyr/include/../modules/segger/segger_rtt.ld \
  /opt/nordic/ncs/v3.3.1/zephyr/include/../arch/common/ramfunc.ld \
  /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/zephyr/include/generated/snippets-ramfunc-section.ld \
  /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/zephyr/include/generated/snippets-rwdata.ld \

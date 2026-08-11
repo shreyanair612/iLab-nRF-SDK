@@ -12,11 +12,27 @@ final class PacketLogger: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
     private var packetNumber = 0
     private var totalBytes = 0
     private var logHandle: FileHandle?
+    private var packetLogHandle: FileHandle?
+    private var completionTimer: Timer?
+    private var transferActive = false
 
     override init() {
         FileManager.default.createFile(atPath: logURL.path, contents:nil)
         logHandle = try? FileHandle(forWritingTo: logURL)
         logHandle?.seekToEndOfFile()
+
+        FileManager.default.createFile(
+            atPath:URL(fileURLWithPath:FileManager.default.currentDirectoryPath)
+                .appendingPathComponent("nrf_ble_packet_log.txt").path,
+            contents: nil
+        )
+
+        let packetLogURL = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
+            .appendingPathComponent("nrf_ble_packet_log.txt")
+
+        packetLogHandle = try? FileHandle(forWritingTo: packetLogURL)
+        packetLogHandle?.seekToEndOfFile()
+
         super.init()
         log("=== BLE NUS Packet Logger started ===")
         log("Log file: \(logURL.path)")
@@ -60,7 +76,7 @@ final class PacketLogger: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
     }
 
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
-        log("ERROR: Failed to connect: \(error?.localizedDescription ?? "unknown error")")
+        log("ERROR: Connection failed: " + (error?.localizedDescription ?? "unknown error"))
         self.peripheral = nil
         central.scanForPeripherals(withServices: [nusServiceUUID])
     }
@@ -73,19 +89,15 @@ final class PacketLogger: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
 
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         if let error = error {
-            log("ERROR: Service discovery failed: \(error.localizedDescription)")
+            log("ERROR: Service discovery failed: " + error.localizedDescription)
             return
         }
-        guard let services = peripheral.services else {
-            log("ERROR: No services returned.")
-            return
-        }
-        guard let nusService = services.first(where: {$0.uuid == nusServiceUUID }) else {
+        guard let service = peripheral.services?.first(where: { $0.uuid == nusServiceUUID }) else {
             log("ERROR: Nordic UART Service was not found.")
             return
         }
         log("NUS service found. Discovering TX characteristic...")
-        peripheral.discoverCharacteristics([nusTXUUID], for: nusService)
+        peripheral.discoverCharacteristics([nusTXUUID], for: service)
     }
 
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
@@ -123,10 +135,40 @@ final class PacketLogger: NSObject, CBCentralManagerDelegate, CBPeripheralDelega
             return
         }
         guard let data = characteristic.value else { return }
-        packetNumber += 1
-        totalBytes += data.count
+
+        if !transferActive {
+            transferActive = true
+            log("Receiving audio packet stream...")
+        }
+
+        completionTimer?.invalidate()
+
+        // packetNumber += 1
+        // totalBytes += data.count
+        
         let hex = data.map { String(format: "%02X", $0) }.joined(separator: " ")
-        log("Normal Updated Value of Characteristic \(nusTXUUID.uuidString) packet=\(packetNumber) bytes=\(data.count) total_bytes=\(totalBytes) to \(hex)")
+        
+        // log("Normal Updated Value of Characteristic \(nusTXUUID.uuidString) packet=\(packetNumber) bytes=\(data.count) total_bytes=\(totalBytes) to \(hex)")
+        let packetLine = 
+            "\(Date().timeIntervalSince1970) " +
+            "Updated Value of Characteristic \(nusTXUUID.uuidString) " +
+            "bytes=\(data.count) to \(hex)\n"
+
+        if let packetData = packetLine.data(using: .utf8) {
+            packetLogHandle?.write(packetData)
+        }
+
+        completionTimer = Timer.scheduledTimer(
+            withTimeInterval: 1.0,
+            repeats: false
+        ) { [weak self] _ in
+            guard let self = self, self.transferActive else {
+                return
+            }
+
+            self.transferActive = false
+            self.log("Transfer complete. Packet data saved to nrf_ble_packet_log.txt")
+        }
     }
 }
 

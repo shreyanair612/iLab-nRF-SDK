@@ -11,6 +11,8 @@ project(NONE)
 # NORDIC SDK APP START
 target_sources(app PRIVATE
   src/main.c
+  src/beamform.c
+  src/bluetooth.c
 )
 
 # NORDIC SDK APP END

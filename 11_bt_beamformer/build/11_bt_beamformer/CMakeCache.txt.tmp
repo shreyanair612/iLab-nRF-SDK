@@ -127,8 +127,8 @@ CMAKE_CXX_FLAGS_RELEASE:STRING=-O3 -DNDEBUG
 //Flags used by the CXX compiler during RELWITHDEBINFO builds.
 CMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING=-O2 -g -DNDEBUG
 
-//C compiler
-CMAKE_C_COMPILER:STRING=/opt/nordic/ncs/toolchains/0c0f19d91c/opt/zephyr-sdk/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc
+//Path to a program.
+CMAKE_C_COMPILER:FILEPATH=/opt/nordic/ncs/toolchains/0c0f19d91c/opt/zephyr-sdk/arm-zephyr-eabi/bin/arm-zephyr-eabi-gcc
 
 //A wrapper around 'ar' adding the appropriate '--plugin' option
 // for the GCC compiler
@@ -441,6 +441,15 @@ Picolibc_IS_TOP_LEVEL:STATIC=OFF
 //Value Computed by CMake
 Picolibc_SOURCE_DIR:STATIC=/opt/nordic/ncs/v3.3.1/modules/lib/picolibc
 
+//Value Computed by CMake
+Project_BINARY_DIR:STATIC=/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer
+
+//Value Computed by CMake
+Project_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+Project_SOURCE_DIR:STATIC=/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer
+
 //Path to the SoC directory.
 SOC_FULL_DIR:PATH=/opt/nordic/ncs/v3.3.1/zephyr/soc/nordic
 
@@ -556,8 +565,6 @@ CMAKE_CXX_FLAGS_MINSIZEREL-ADVANCED:INTERNAL=1
 CMAKE_CXX_FLAGS_RELEASE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_CXX_FLAGS_RELWITHDEBINFO
 CMAKE_CXX_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CMAKE_C_COMPILER
-CMAKE_C_COMPILER-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_C_COMPILER_AR
 CMAKE_C_COMPILER_AR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_C_COMPILER_RANLIB
@@ -620,7 +627,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=203
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=200
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
@@ -681,9 +688,9 @@ HWM:INTERNAL=v2
 HWMv2:INTERNAL=True
 KERNEL_META_PATH:INTERNAL=/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/zephyr/zephyr.meta
 //shared var
-PM_YML_DEP_FILES:INTERNAL=/opt/nordic/ncs/v3.3.1/nrf/subsys/partition_manager/pm.yml.settings;/opt/nordic/ncs/v3.3.1/nrf/subsys/partition_manager/pm.yml.bootconf;/opt/nordic/ncs/v3.3.1/nrf/subsys/partition_manager/pm.yml.tfm;/opt/nordic/ncs/v3.3.1/nrf/subsys/partition_manager/pm.yml.trustzone
+PM_YML_DEP_FILES:INTERNAL=/opt/nordic/ncs/v3.3.1/nrf/subsys/partition_manager/pm.yml.settings;/opt/nordic/ncs/v3.3.1/nrf/subsys/partition_manager/pm.yml.bootconf;/opt/nordic/ncs/v3.3.1/nrf/subsys/partition_manager/pm.yml.tfm;/opt/nordic/ncs/v3.3.1/nrf/subsys/partition_manager/pm.yml.trustzone;/opt/nordic/ncs/v3.3.1/nrf/subsys/partition_manager/pm.yml.nvs
 //shared var
-PM_YML_FILES:INTERNAL=/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/modules/nrf/subsys/partition_manager/pm.yml.settings;/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/modules/nrf/subsys/partition_manager/pm.yml.bootconf;/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/modules/nrf/subsys/partition_manager/pm.yml.tfm;/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/modules/nrf/subsys/partition_manager/pm.yml.trustzone
+PM_YML_FILES:INTERNAL=/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/modules/nrf/subsys/partition_manager/pm.yml.settings;/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/modules/nrf/subsys/partition_manager/pm.yml.bootconf;/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/modules/nrf/subsys/partition_manager/pm.yml.tfm;/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/modules/nrf/subsys/partition_manager/pm.yml.trustzone;/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/modules/nrf/subsys/partition_manager/pm.yml.nvs
 //List of SoC directories for SoC (nrf54lm20b)
 SOC_DIRECTORIES:INTERNAL=/opt/nordic/ncs/v3.3.1/zephyr/soc/nordic
 //SoC Linker script
@@ -704,6 +711,8 @@ _Python3_EXECUTABLE:INTERNAL=/opt/nordic/ncs/toolchains/0c0f19d91c/opt/python@3.
 //Python3 Properties
 _Python3_INTERPRETER_PROPERTIES:INTERNAL=Python;3;12;4;64;<none>;cpython-312-darwin.so;abi3;/opt/nordic/ncs/toolchains/0c0f19d91c/opt/python@3.12/Frameworks/Python.framework/Versions/3.12/lib/python3.12;/opt/nordic/ncs/toolchains/0c0f19d91c/lib/python3.12;/opt/nordic/ncs/toolchains/0c0f19d91c/lib/python3.12/site-packages;/opt/nordic/ncs/toolchains/0c0f19d91c/lib/python3.12/site-packages
 _Python3_INTERPRETER_SIGNATURE:INTERNAL=a36f39f063d014ea95f9a23dc489f97e
+//Interpreter reason failure
+_Python3_Interpreter_REASON_FAILURE:INTERNAL=
 //NumPy reason failure
 _Python3_NumPy_REASON_FAILURE:INTERNAL=
 

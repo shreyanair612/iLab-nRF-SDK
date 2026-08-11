@@ -75,8 +75,8 @@
 #define PM_TFM_PS_DEFAULT_DRIVER_KCONFIG CONFIG_SOC_FLASH_NRF_RRAM
 #define PM_APP_OFFSET 0x4a000
 #define PM_APP_ADDRESS 0x4a000
-#define PM_APP_END_ADDRESS 0x1fb000
-#define PM_APP_SIZE 0x1b1000
+#define PM_APP_END_ADDRESS 0x1f5000
+#define PM_APP_SIZE 0x1ab000
 #define PM_APP_NAME app
 #define PM_APP_REGION flash_primary
 #define PM_APP_ID 6
@@ -87,8 +87,8 @@
 #define PM_APP_DEFAULT_DRIVER_KCONFIG CONFIG_SOC_FLASH_NRF_RRAM
 #define PM_TFM_NONSECURE_OFFSET 0x4a000
 #define PM_TFM_NONSECURE_ADDRESS 0x4a000
-#define PM_TFM_NONSECURE_END_ADDRESS 0x1fb000
-#define PM_TFM_NONSECURE_SIZE 0x1b1000
+#define PM_TFM_NONSECURE_END_ADDRESS 0x1f5000
+#define PM_TFM_NONSECURE_SIZE 0x1ab000
 #define PM_TFM_NONSECURE_NAME tfm_nonsecure
 #define PM_TFM_NONSECURE_REGION flash_primary
 #define PM_TFM_NONSECURE_ID 7
@@ -97,10 +97,10 @@
 #define PM_7_LABEL TFM_NONSECURE
 #define PM_TFM_NONSECURE_DEV rram_controller
 #define PM_TFM_NONSECURE_DEFAULT_DRIVER_KCONFIG CONFIG_SOC_FLASH_NRF_RRAM
-#define PM_NONSECURE_STORAGE_OFFSET 0x1fb000
-#define PM_NONSECURE_STORAGE_ADDRESS 0x1fb000
+#define PM_NONSECURE_STORAGE_OFFSET 0x1f5000
+#define PM_NONSECURE_STORAGE_ADDRESS 0x1f5000
 #define PM_NONSECURE_STORAGE_END_ADDRESS 0x1fd000
-#define PM_NONSECURE_STORAGE_SIZE 0x2000
+#define PM_NONSECURE_STORAGE_SIZE 0x8000
 #define PM_NONSECURE_STORAGE_NAME nonsecure_storage
 #define PM_NONSECURE_STORAGE_REGION flash_primary
 #define PM_NONSECURE_STORAGE_ID 8
@@ -109,16 +109,28 @@
 #define PM_8_LABEL NONSECURE_STORAGE
 #define PM_NONSECURE_STORAGE_DEV rram_controller
 #define PM_NONSECURE_STORAGE_DEFAULT_DRIVER_KCONFIG CONFIG_SOC_FLASH_NRF_RRAM
+#define PM_NVS_STORAGE_OFFSET 0x1f5000
+#define PM_NVS_STORAGE_ADDRESS 0x1f5000
+#define PM_NVS_STORAGE_END_ADDRESS 0x1fb000
+#define PM_NVS_STORAGE_SIZE 0x6000
+#define PM_NVS_STORAGE_NAME nvs_storage
+#define PM_NVS_STORAGE_REGION flash_primary
+#define PM_NVS_STORAGE_ID 9
+#define PM_nvs_storage_ID PM_NVS_STORAGE_ID
+#define PM_nvs_storage_IS_ENABLED 1
+#define PM_9_LABEL NVS_STORAGE
+#define PM_NVS_STORAGE_DEV rram_controller
+#define PM_NVS_STORAGE_DEFAULT_DRIVER_KCONFIG CONFIG_SOC_FLASH_NRF_RRAM
 #define PM_SETTINGS_STORAGE_OFFSET 0x1fb000
 #define PM_SETTINGS_STORAGE_ADDRESS 0x1fb000
 #define PM_SETTINGS_STORAGE_END_ADDRESS 0x1fd000
 #define PM_SETTINGS_STORAGE_SIZE 0x2000
 #define PM_SETTINGS_STORAGE_NAME settings_storage
 #define PM_SETTINGS_STORAGE_REGION flash_primary
-#define PM_SETTINGS_STORAGE_ID 9
+#define PM_SETTINGS_STORAGE_ID 10
 #define PM_settings_storage_ID PM_SETTINGS_STORAGE_ID
 #define PM_settings_storage_IS_ENABLED 1
-#define PM_9_LABEL SETTINGS_STORAGE
+#define PM_10_LABEL SETTINGS_STORAGE
 #define PM_SETTINGS_STORAGE_DEV rram_controller
 #define PM_SETTINGS_STORAGE_DEFAULT_DRIVER_KCONFIG CONFIG_SOC_FLASH_NRF_RRAM
 #define PM_BOOTCONF_OFFSET 0x0
@@ -157,10 +169,10 @@
 #define PM_SRAM_PRIMARY_SIZE 0x6fe40
 #define PM_SRAM_PRIMARY_NAME sram_primary
 #define PM_SRAM_PRIMARY_REGION sram_primary
-#define PM_NUM 10
-#define PM_ALL_BY_SIZE "bootconf otp settings_storage tfm_otp_nv_counters nonsecure_storage tfm_its tfm_ps tfm_storage tfm_sram sram_secure tfm tfm_secure sram_primary sram_nonsecure app tfm_nonsecure"
+#define PM_NUM 11
+#define PM_ALL_BY_SIZE "bootconf otp settings_storage tfm_otp_nv_counters tfm_its tfm_ps nvs_storage nonsecure_storage tfm_storage tfm_sram sram_secure tfm tfm_secure sram_primary sram_nonsecure app tfm_nonsecure"
 #define PM_ADDRESS 0x4a000
-#define PM_SIZE 0x1b1000
+#define PM_SIZE 0x1ab000
 #define PM_SRAM_ADDRESS 0x20010000
 #define PM_SRAM_SIZE 0x6fe40
 #endif /* PM_CONFIG_H__ */

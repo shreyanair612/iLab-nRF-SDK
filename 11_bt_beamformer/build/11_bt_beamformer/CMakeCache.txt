@@ -441,6 +441,15 @@ Picolibc_IS_TOP_LEVEL:STATIC=OFF
 //Value Computed by CMake
 Picolibc_SOURCE_DIR:STATIC=/opt/nordic/ncs/v3.3.1/modules/lib/picolibc
 
+//Value Computed by CMake
+Project_BINARY_DIR:STATIC=/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer
+
+//Value Computed by CMake
+Project_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+Project_SOURCE_DIR:STATIC=/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer
+
 //Path to the SoC directory.
 SOC_FULL_DIR:PATH=/opt/nordic/ncs/v3.3.1/zephyr/soc/nordic
 
@@ -618,7 +627,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=203
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=200
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
@@ -679,9 +688,9 @@ HWM:INTERNAL=v2
 HWMv2:INTERNAL=True
 KERNEL_META_PATH:INTERNAL=/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/zephyr/zephyr.meta
 //shared var
-PM_YML_DEP_FILES:INTERNAL=/opt/nordic/ncs/v3.3.1/nrf/subsys/partition_manager/pm.yml.settings;/opt/nordic/ncs/v3.3.1/nrf/subsys/partition_manager/pm.yml.bootconf;/opt/nordic/ncs/v3.3.1/nrf/subsys/partition_manager/pm.yml.tfm;/opt/nordic/ncs/v3.3.1/nrf/subsys/partition_manager/pm.yml.trustzone
+PM_YML_DEP_FILES:INTERNAL=/opt/nordic/ncs/v3.3.1/nrf/subsys/partition_manager/pm.yml.settings;/opt/nordic/ncs/v3.3.1/nrf/subsys/partition_manager/pm.yml.bootconf;/opt/nordic/ncs/v3.3.1/nrf/subsys/partition_manager/pm.yml.tfm;/opt/nordic/ncs/v3.3.1/nrf/subsys/partition_manager/pm.yml.trustzone;/opt/nordic/ncs/v3.3.1/nrf/subsys/partition_manager/pm.yml.nvs
 //shared var
-PM_YML_FILES:INTERNAL=/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/modules/nrf/subsys/partition_manager/pm.yml.settings;/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/modules/nrf/subsys/partition_manager/pm.yml.bootconf;/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/modules/nrf/subsys/partition_manager/pm.yml.tfm;/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/modules/nrf/subsys/partition_manager/pm.yml.trustzone
+PM_YML_FILES:INTERNAL=/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/modules/nrf/subsys/partition_manager/pm.yml.settings;/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/modules/nrf/subsys/partition_manager/pm.yml.bootconf;/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/modules/nrf/subsys/partition_manager/pm.yml.tfm;/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/modules/nrf/subsys/partition_manager/pm.yml.trustzone;/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/modules/nrf/subsys/partition_manager/pm.yml.nvs
 //List of SoC directories for SoC (nrf54lm20b)
 SOC_DIRECTORIES:INTERNAL=/opt/nordic/ncs/v3.3.1/zephyr/soc/nordic
 //SoC Linker script

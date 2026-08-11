@@ -119,8 +119,8 @@
 /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/zephyr/subsys/fb/CMakeFiles/rebuild_cache.dir
 /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/zephyr/subsys/fs/CMakeFiles/edit_cache.dir
 /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/zephyr/subsys/fs/CMakeFiles/rebuild_cache.dir
-/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/zephyr/subsys/fs/zms/CMakeFiles/edit_cache.dir
-/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/zephyr/subsys/fs/zms/CMakeFiles/rebuild_cache.dir
+/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/zephyr/subsys/fs/nvs/CMakeFiles/edit_cache.dir
+/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/zephyr/subsys/fs/nvs/CMakeFiles/rebuild_cache.dir
 /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/zephyr/subsys/gnss/CMakeFiles/edit_cache.dir
 /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/zephyr/subsys/gnss/CMakeFiles/rebuild_cache.dir
 /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/zephyr/subsys/instrumentation/CMakeFiles/edit_cache.dir
@@ -158,8 +158,6 @@
 /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/zephyr/subsys/stats/CMakeFiles/rebuild_cache.dir
 /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/zephyr/subsys/storage/CMakeFiles/edit_cache.dir
 /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/zephyr/subsys/storage/CMakeFiles/rebuild_cache.dir
-/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/zephyr/subsys/storage/flash_map/CMakeFiles/edit_cache.dir
-/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/zephyr/subsys/storage/flash_map/CMakeFiles/rebuild_cache.dir
 /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/zephyr/subsys/task_wdt/CMakeFiles/edit_cache.dir
 /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/zephyr/subsys/task_wdt/CMakeFiles/rebuild_cache.dir
 /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/zephyr/subsys/testsuite/CMakeFiles/edit_cache.dir
@@ -183,9 +181,6 @@
 /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/zephyr/subsys/bluetooth/crypto/CMakeFiles/rebuild_cache.dir
 /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/zephyr/subsys/bluetooth/lib/CMakeFiles/edit_cache.dir
 /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/zephyr/subsys/bluetooth/lib/CMakeFiles/rebuild_cache.dir
-/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/zephyr/subsys/crc/CMakeFiles/subsys__crc.dir
-/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/zephyr/subsys/crc/CMakeFiles/edit_cache.dir
-/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/zephyr/subsys/crc/CMakeFiles/rebuild_cache.dir
 /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/zephyr/subsys/settings/CMakeFiles/edit_cache.dir
 /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/zephyr/subsys/settings/CMakeFiles/rebuild_cache.dir
 /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/zephyr/subsys/settings/src/CMakeFiles/edit_cache.dir
@@ -227,9 +222,6 @@
 /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/zephyr/drivers/entropy/CMakeFiles/drivers__entropy.dir
 /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/zephyr/drivers/entropy/CMakeFiles/edit_cache.dir
 /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/zephyr/drivers/entropy/CMakeFiles/rebuild_cache.dir
-/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/zephyr/drivers/flash/CMakeFiles/drivers__flash.dir
-/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/zephyr/drivers/flash/CMakeFiles/edit_cache.dir
-/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/zephyr/drivers/flash/CMakeFiles/rebuild_cache.dir
 /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/zephyr/drivers/gpio/CMakeFiles/drivers__gpio.dir
 /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/zephyr/drivers/gpio/CMakeFiles/edit_cache.dir
 /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/zephyr/drivers/gpio/CMakeFiles/rebuild_cache.dir
@@ -366,7 +358,6 @@
 /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/modules/nrf/drivers/mpsl/clock_control/CMakeFiles/..__nrf__drivers__mpsl__clock_control.dir
 /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/modules/nrf/drivers/mpsl/clock_control/CMakeFiles/edit_cache.dir
 /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/modules/nrf/drivers/mpsl/clock_control/CMakeFiles/rebuild_cache.dir
-/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/modules/nrf/drivers/mpsl/flash_sync/CMakeFiles/..__nrf__drivers__mpsl__flash_sync.dir
 /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/modules/nrf/drivers/mpsl/flash_sync/CMakeFiles/edit_cache.dir
 /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/modules/nrf/drivers/mpsl/flash_sync/CMakeFiles/rebuild_cache.dir
 /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/modules/nrf/drivers/serial/CMakeFiles/edit_cache.dir
@@ -459,7 +450,6 @@
 /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/modules/percepio/CMakeFiles/rebuild_cache.dir
 /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/modules/picolibc/CMakeFiles/edit_cache.dir
 /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/modules/picolibc/CMakeFiles/rebuild_cache.dir
-/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/modules/segger/CMakeFiles/modules__segger.dir
 /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/modules/segger/CMakeFiles/edit_cache.dir
 /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/modules/segger/CMakeFiles/rebuild_cache.dir
 /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/11_bt_beamformer/modules/uoscore-uedhoc/CMakeFiles/edit_cache.dir

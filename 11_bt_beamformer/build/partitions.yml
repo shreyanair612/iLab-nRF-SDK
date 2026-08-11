@@ -1,21 +1,32 @@
 app:
   address: 0x4a000
-  end_address: 0x1fb000
+  end_address: 0x1f5000
   region: flash_primary
-  size: 0x1b1000
+  size: 0x1ab000
 bootconf:
   address: 0xffd080
   end_address: 0xffd084
   region: bootconf
   size: 0x4
 nonsecure_storage:
-  address: 0x1fb000
+  address: 0x1f5000
   end_address: 0x1fd000
   orig_span: &id001
   - settings_storage
+  - nvs_storage
   region: flash_primary
-  size: 0x2000
+  size: 0x8000
   span: *id001
+nvs_storage:
+  address: 0x1f5000
+  end_address: 0x1fb000
+  inside:
+  - nonsecure_storage
+  placement:
+    before:
+    - settings_storage
+  region: flash_primary
+  size: 0x6000
 otp:
   address: 0xffd500
   end_address: 0xffd980
@@ -74,11 +85,11 @@ tfm_its:
   size: 0x4000
 tfm_nonsecure:
   address: 0x4a000
-  end_address: 0x1fb000
+  end_address: 0x1f5000
   orig_span: &id004
   - app
   region: flash_primary
-  size: 0x1b1000
+  size: 0x1ab000
   span: *id004
 tfm_otp_nv_counters:
   address: 0x44000

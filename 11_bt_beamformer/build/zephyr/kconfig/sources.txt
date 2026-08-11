@@ -1,4 +1,3 @@
-/Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/Kconfig.sysbuild
 /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/Kconfig/Kconfig.sysbuild.modules
 /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/Kconfig/boards/Kconfig.nrf54lm20dk
 /Users/shreybae/Documents/iLAB/nRF_SDK/11_bt_beamformer/build/Kconfig/boards/Kconfig.sysbuild
