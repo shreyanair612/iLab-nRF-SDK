@@ -5,11 +5,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
-typedef void (*bluetooth_ready_cb_t)(void);
-
-int bluetooth_init(bluetooth_ready_cb_t ready_cb);
-bool bluetooth_can_send(void);
-
-int bluetooth_send_pcm(const int16_t *samples, size_t sample_count);
+int bluetooth_init(void);
+int bluetooth_enqueue_audio(const int16_t *samples, size_t count);
+bool bluetooth_tx_drained(void);
 
 #endif
