@@ -89,6 +89,10 @@ static void finalize_processing(void) {
 
 	if(current == STATE_FINALIZE && bluetooth_tx_drained()) {
 		enter_state(STATE_PROCESSING);
+
+		// fill in other behavior for processing
+
+		enter_state(STATE_IDLE);
 	}
 }
 
