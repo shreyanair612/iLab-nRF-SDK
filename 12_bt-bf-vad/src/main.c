@@ -6,6 +6,7 @@
 
 #include "beamform.h"
 #include "bluetooth.h"
+#include "vad.h"
 
 LOG_MODULE_REGISTER(main, LOG_LEVEL_INF);
 
@@ -20,6 +21,15 @@ enum audio_state {
 static atomic_t audio_state = ATOMIC_INIT(STATE_IDLE);
 static atomic_t capture_enabled = ATOMIC_INIT(0);
 
+static const struct vad_config vad_config = {
+	.sample_rate_hz = 16000U,
+	.noise_init_rms = 20U,
+	.margin_on = 250U,
+	.margin_off = 150U,
+	.silence_end_ms = 500U,
+	.noise_alpha_shift = 4U,
+};
+
 static void enter_state(enum audio_state next_state) {
 	atomic_set(&audio_state, next_state);
 
@@ -30,6 +40,7 @@ static void enter_state(enum audio_state next_state) {
 			break;
 		
 		case STATE_LISTENING:
+			vad_reset_endpoint();
 			atomic_set(&capture_enabled, 1);
 			LOG_INF("STATE_LISTENING: capture_enabled=1");
 			break;
@@ -58,13 +69,22 @@ static void enter_state(enum audio_state next_state) {
 }
 
 static void on_beamformed_chunk(const int16_t *samples, size_t count) {
-	if (!atomic_get(&capture_enabled)) {
+	enum vad_event event = vad_process(samples, count);
+	enum audio_state current = atomic_get(&audio_state);
+
+	if (current != STATE_LISTENING || !atomic_get(&capture_enabled)) {
+		return;
+	}
+
+	if (event == VAD_SPEECH_ENDED) {
+		LOG_INF("VAD endpoint: noise=%u th_on=%u th_off=%u",
+			vad_noise_rms(), vad_threshold_on(), vad_threshold_off());
+		enter_state(STATE_FINALIZE);
 		return;
 	}
 
 	int err = bluetooth_enqueue_audio(samples, count);
-
-	if(err) {
+	if(err && err != -ENOTCONN) {
 		LOG_WRN("BLE TX queue rejected audio chunk: %d", err);
 	}
 }
@@ -79,21 +99,19 @@ static void button_changed(uint32_t state, uint32_t changed) {
 	}
 	
 	// LISTENING -> FINALIZE
-	if ((pressed & DK_BTN2_MSK) && current == STATE_LISTENING) {
-		enter_state(STATE_FINALIZE);
-	}
+	// if ((pressed & DK_BTN2_MSK) && current == STATE_LISTENING) {
+	// 	enter_state(STATE_FINALIZE);
+	// }
 }
 
 static void finalize_processing(void) {
-	enum audio_state current = atomic_get(&audio_state);
-
-	if(current == STATE_FINALIZE && bluetooth_tx_drained()) {
-		enter_state(STATE_PROCESSING);
-
-		// fill in other behavior for processing
-
-		enter_state(STATE_IDLE);
+	if (atomic_get(&audio_state) != STATE_FINALIZE || !bluetooth_tx_drained()) {
+		return;
 	}
+
+	enter_state(STATE_PROCESSING);
+
+	enter_state(STATE_IDLE);
 }
 
 int main(void) {
@@ -101,10 +119,25 @@ int main(void) {
 	if(err) return err;
 	err = dk_buttons_init(button_changed);
 	if(err) return err;
+
+	err = vad_init(&vad_config);
+	if (err) { 
+		LOG_ERR("VAD initialization failed: %d", err);
+		return err;
+	}
+
 	err = bluetooth_init();
-	if(err) return err;
+	if(err) {
+		LOG_ERR("Bluetooth initialization failed: %d", err);
+		return err;
+	}
+
 	err = beamform_init(on_beamformed_chunk);
-	if(err) return err;
+	if (err) {
+		LOG_ERR("Beamformer initilization failed: %d", err);
+		return err;
+	}
+	
 	err = beamform_start();
 	if(err) {
 		LOG_ERR("Always-on beamforming failed to start: %d", err);
@@ -112,7 +145,8 @@ int main(void) {
 	}
 
 	enter_state(STATE_IDLE);
-	LOG_INF("Always-on beamforming active\nBTN1: IDLE->LISTENING, BTN2: LISTENING->FINALIZE");
+	LOG_INF("Beamforming & adaptive VAD active");
+	LOG_INF("BTN1: begin listening");
 
 	for (;;) {
 		finalize_processing();
