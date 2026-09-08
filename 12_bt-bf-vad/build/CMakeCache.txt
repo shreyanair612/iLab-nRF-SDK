@@ -42,7 +42,7 @@ CACHED_SNIPPET:STRING=
 CMAKE_EXPORT_BUILD_DATABASE:BOOL=
 
 //Enable/Disable output of compile commands during generation.
-CMAKE_EXPORT_COMPILE_COMMANDS:BOOL=ON
+CMAKE_EXPORT_COMPILE_COMMANDS:BOOL=
 
 //Value Computed by CMake.
 CMAKE_FIND_PACKAGE_REDIRECTS_DIR:STATIC=/Users/shreybae/Documents/iLAB/nRF_SDK/12_bt-bf-vad/build/CMakeFiles/pkgRedirects
