@@ -1,0 +1,119 @@
+#
+# Copyright (c) 2018 Nordic Semiconductor
+#
+# SPDX-License-Identifier: LicenseRef-Nordic-5-Clause
+#
+
+source "Kconfig.zephyr"
+
+menu "Beamformer VAD / endpointing"
+
+config APP_VAD_SAMPLE_RATE_HZ
+	int "PCM sample rate handed to the VAD (Hz)"
+	default 16000
+	help
+	  Must match the beamformer capture rate. Frame durations, and therefore
+	  the silence and onset frame counts, are derived from this.
+
+config APP_VAD_NOISE_INIT_RMS
+	int "Initial noise-floor RMS estimate"
+	default 25
+	help
+	  Seed value for the adaptive noise floor. Capture is always on, so the
+	  floor is normally well converged before the Start button is pressed.
+	  Matches the value proven in 10_beam_wakeword on the same int16 scale.
+
+config APP_VAD_MARGIN_ON
+	int "Speech-onset margin above the noise floor (RMS counts)"
+	default 120
+	help
+	  A frame counts as speech onset when its RMS exceeds
+	  noise_floor + this. Raise it for fewer false triggers in a noisy room,
+	  lower it to pick up quieter talkers. Must be greater than
+	  APP_VAD_MARGIN_OFF; that gap is the hysteresis.
+
+config APP_VAD_MARGIN_OFF
+	int "Speech-continuation margin above the noise floor (RMS counts)"
+	default 70
+	help
+	  Once speech has started, a frame below noise_floor + this counts
+	  towards the trailing silence. Lower it to hold the utterance open
+	  longer through quiet speech; raise it to end recordings sooner.
+
+config APP_VAD_ONSET_MS
+	int "Sustained loud audio required to declare speech onset (ms)"
+	default 32
+	help
+	  Debounces clicks, knocks and door slams. Rounded up to whole audio
+	  frames, so on a 16 ms frame this is two frames.
+
+config APP_VAD_SILENCE_END_MS
+	int "Continuous silence that ends an utterance (ms)"
+	default 800
+	help
+	  The endpoint pause. Ordinary gaps between words are shorter than this
+	  and do not stop the recording. 500-1000 is the useful range: shorter
+	  clips people who pause mid-sentence, longer adds latency.
+
+config APP_VAD_MIN_SPEECH_MS
+	int "Minimum utterance length before an endpoint may fire (ms)"
+	default 300
+	help
+	  Guards against a single spurious onset frame immediately endpointing
+	  and producing a near-empty recording.
+
+config APP_VAD_NOISE_ALPHA_SHIFT
+	int "Noise-floor adaptation shift"
+	default 5
+	help
+	  noise += (rms - noise) >> this. Larger adapts more slowly.
+	  5 gives a 1/32 step. The floor only adapts outside speech.
+
+config APP_VAD_DEBUG
+	bool "Verbose per-frame VAD telemetry"
+	default y
+	help
+	  Logs rate-limited frame geometry, RMS, noise floor, both thresholds
+	  and the silence/speech frame counters. Enough to see whether audio is
+	  still arriving after you stop talking and whether the silence run is
+	  reaching its target. Turn off for quiet production logs.
+
+endmenu
+
+menu "Nordic UART BLE GATT service sample"
+
+config BT_NUS_THREAD_STACK_SIZE
+	int "Thread stack size"
+	default 1024
+	help
+	  Stack size used in each of the two threads
+
+config BT_NUS_UART_BUFFER_SIZE
+	int "UART payload buffer element size"
+	default 40
+	help
+	  Size of the payload buffer in each RX and TX FIFO element
+
+config BT_NUS_SECURITY_ENABLED
+	bool "Security"
+	default y
+	select BT_SMP
+	help
+	  Enable Bluetooth LE security for the UART service
+
+config BT_NUS_UART_RX_WAIT_TIME
+	int "Timeout for UART RX complete event"
+	default 50000
+	help
+	  Wait for RX complete event time in microseconds
+
+config SETTINGS
+	default y
+
+config ZMS
+	default y if (SOC_FLASH_NRF_RRAM || SOC_FLASH_NRF_MRAM)
+
+config NVS
+	default y if !(SOC_FLASH_NRF_RRAM || SOC_FLASH_NRF_MRAM)
+
+endmenu
