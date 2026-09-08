@@ -1,3 +1,4 @@
+12_bt-bf-vad_DEBUG_THREAD_INFO:UNINITIALIZED=On
 12_bt-bf-vad_NCS_RUNNER_HEX:INTERNAL=/Users/shreybae/Documents/iLAB/nRF_SDK/12_bt-bf-vad/build/merged.hex
 APPLICATION_BINARY_DIR:PATH=/Users/shreybae/Documents/iLAB/nRF_SDK/12_bt-bf-vad/build
 APP_DIR:PATH=/Users/shreybae/Documents/iLAB/nRF_SDK/12_bt-bf-vad
@@ -7,6 +8,7 @@ CACHED_BOARD:STRING=nrf54lm20dk/nrf54lm20b/cpuapp/ns
 CACHED_SHIELD:STRING=
 CACHED_SNIPPET:STRING=
 CONFIG_DEBUG_THREAD_INFO:UNINITIALIZED=y
+DEBUG_THREAD_INFO:UNINITIALIZED=On
 FIND_PACKAGE_MESSAGE_DETAILS_Python3:INTERNAL=[/opt/nordic/ncs/toolchains/0c0f19d91c/opt/python@3.12/bin/python3.12][found components: Interpreter ][v3.12.4(3.10)]
 HWM:INTERNAL=v2
 HWMv2:INTERNAL=True
