@@ -1,0 +1,25 @@
+cmake:
+  application:
+    source-dir: '/opt/nordic/ncs/v3.3.1/zephyr/share/sysbuild'
+  board:
+    name: 'nrf54lm20dk'
+    path:
+     - '/opt/nordic/ncs/v3.3.1/zephyr/boards/nordic/nrf54lm20dk'
+    qualifiers: 'nrf54lm20b/cpuapp/ns'
+    revision: ''
+  images:
+   - name: '12_bt-bf-vad'
+     source-dir: '/Users/shreybae/Documents/iLAB/nRF_SDK/12_bt-bf-vad'
+     type: 'MAIN'
+  kconfig:
+    files:
+     - '/Users/shreybae/Documents/iLAB/nRF_SDK/12_bt-bf-vad/build/_sysbuild/empty.conf'
+     - '/Users/shreybae/Documents/iLAB/nRF_SDK/12_bt-bf-vad/build/_sysbuild/empty.conf'
+    user-files:
+     - '/Users/shreybae/Documents/iLAB/nRF_SDK/12_bt-bf-vad/build/_sysbuild/empty.conf'
+  sysbuild: 'true'
+version: '0.1.0'
+west:
+  command: '/opt/nordic/ncs/toolchains/0c0f19d91c/bin/west build --build-dir /Users/shreybae/Documents/iLAB/nRF_SDK/12_bt-bf-vad/build /Users/shreybae/Documents/iLAB/nRF_SDK/12_bt-bf-vad --pristine --board nrf54lm20dk/nrf54lm20b/cpuapp/ns -- -DCONFIG_DEBUG_THREAD_INFO=y'
+  topdir: '/opt/nordic/ncs/v3.3.1'
+  version: '1.5.0'

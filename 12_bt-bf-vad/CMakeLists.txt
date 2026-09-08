@@ -13,6 +13,7 @@ target_sources(app PRIVATE
   src/main.c
   src/beamform.c
   src/bluetooth.c
+  src/vad.c
 )
 
 # NORDIC SDK APP END

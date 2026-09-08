@@ -10,7 +10,7 @@ private let bitsPerSample: UInt16 = 16
 private let transferIdleTimeout: TimeInterval = 1.0
 
 final class BLEReceiver: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
-    private let outputDirectory = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
+    private let outputDirectory = URL(fileURLWithPath: "/Users/shreybae/Documents/iLAB/nRF_SDK/12_bt-bf-vad/bt_processing")
     private let logURL: URL
     private let packetLogURL: URL
     private let pcmURL: URL

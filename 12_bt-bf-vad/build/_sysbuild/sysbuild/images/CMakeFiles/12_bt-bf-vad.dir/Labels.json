@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nRF_SDK/12_bt-bf-vad/build/_sysbuild/sysbuild/images/CMakeFiles/12_bt-bf-vad"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nRF_SDK/12_bt-bf-vad/build/_sysbuild/sysbuild/images/CMakeFiles/12_bt-bf-vad.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nRF_SDK/12_bt-bf-vad/build/_sysbuild/sysbuild/images/CMakeFiles/12_bt-bf-vad-complete.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nRF_SDK/12_bt-bf-vad/build/_sysbuild/sysbuild/images/12_bt-bf-vad-prefix/src/12_bt-bf-vad-stamp/12_bt-bf-vad-build.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nRF_SDK/12_bt-bf-vad/build/_sysbuild/sysbuild/images/12_bt-bf-vad-prefix/src/12_bt-bf-vad-stamp/12_bt-bf-vad-configure.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nRF_SDK/12_bt-bf-vad/build/_sysbuild/sysbuild/images/12_bt-bf-vad-prefix/src/12_bt-bf-vad-stamp/12_bt-bf-vad-download.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nRF_SDK/12_bt-bf-vad/build/_sysbuild/sysbuild/images/12_bt-bf-vad-prefix/src/12_bt-bf-vad-stamp/12_bt-bf-vad-install.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nRF_SDK/12_bt-bf-vad/build/_sysbuild/sysbuild/images/12_bt-bf-vad-prefix/src/12_bt-bf-vad-stamp/12_bt-bf-vad-mkdir.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nRF_SDK/12_bt-bf-vad/build/_sysbuild/sysbuild/images/12_bt-bf-vad-prefix/src/12_bt-bf-vad-stamp/12_bt-bf-vad-patch.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nRF_SDK/12_bt-bf-vad/build/_sysbuild/sysbuild/images/12_bt-bf-vad-prefix/src/12_bt-bf-vad-stamp/12_bt-bf-vad-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"12_bt-bf-vad"
+		],
+		"name" : "12_bt-bf-vad"
+	}
+}

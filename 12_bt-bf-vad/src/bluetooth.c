@@ -26,9 +26,20 @@ struct audio_chunk {
 K_MSGQ_DEFINE(audio_tx_queue, sizeof(struct audio_chunk), AUDIO_QUEUE_DEPTH, 4);
 K_THREAD_STACK_DEFINE(ble_tx_stack, 2048);
 
+/* Longest a queued chunk waits for the link to come back before it is dropped.
+ * Bounded so STATE_FINALIZE can always drain and return the app to idle, even
+ * if the central disconnects mid-utterance. */
+#define TX_LINK_WAIT_MS 500
+
 static struct bt_conn *connection;
 static atomic_t subscribed = ATOMIC_INIT(0);
-static atomic_t tx_busy = ATOMIC_INIT(0);
+/*
+ * Chunks accepted by bluetooth_enqueue_audio() but not yet fully sent. This
+ * counts the one being transmitted as well as those still in the queue, so
+ * bluetooth_tx_drained() has no window where an in-flight chunk looks idle.
+ */
+static atomic_t tx_pending = ATOMIC_INIT(0);
+static atomic_t tx_dropped = ATOMIC_INIT(0);
 static struct k_thread ble_tx_thread_data;
 
 static const struct bt_data ad[] = {
@@ -114,18 +125,22 @@ static void ble_tx_worker(void *a, void *b, void *c) {
         int err = k_msgq_get(&audio_tx_queue, &chunk, K_FOREVER);
         if (err) continue;
 
-        atomic_set(&tx_busy, 1);
-
-        while(!bluetooth_ready()) {
+        for (int waited = 0; !bluetooth_ready() && waited < TX_LINK_WAIT_MS; waited += 20) {
             k_sleep(K_MSEC(20));
         }
 
-        err = send_chunk(&chunk);
-        if(err) {
-            LOG_WRN("BLE send failed; dropped one chunk: %d", err);
+        if (bluetooth_ready()) {
+            err = send_chunk(&chunk);
+            if (err) {
+                atomic_inc(&tx_dropped);
+                LOG_WRN("BLE send failed; dropped one chunk: %d", err);
+            }
+        } else {
+            atomic_inc(&tx_dropped);
+            LOG_WRN("BLE link down; dropped one chunk");
         }
 
-        atomic_clear(&tx_busy);
+        atomic_dec(&tx_pending);
     }
 }
 
@@ -162,10 +177,33 @@ int bluetooth_enqueue_audio(const int16_t *samples, size_t count) {
     };
 
     memcpy(chunk.pcm, samples, count*sizeof(int16_t));
-    
-    return k_msgq_put(&audio_tx_queue, &chunk, K_NO_WAIT);
+
+    /*
+     * Claim the slot before the put so the counter can never lag behind the
+     * queue. Released by the TX worker once the chunk has actually been sent.
+     */
+    atomic_inc(&tx_pending);
+
+    int err = k_msgq_put(&audio_tx_queue, &chunk, K_NO_WAIT);
+
+    if (err) {
+        atomic_dec(&tx_pending);
+        /* Queue full: the link is not keeping up and this frame is lost,
+         * which is audible as a gap. Surface it rather than hiding it. */
+        atomic_inc(&tx_dropped);
+    }
+
+    return err;
 }
 
 bool bluetooth_tx_drained(void) {
-    return k_msgq_num_used_get(&audio_tx_queue) == 0 && !atomic_get(&tx_busy);
+    return atomic_get(&tx_pending) == 0;
+}
+
+uint32_t bluetooth_tx_dropped_chunks(void) {
+    return (uint32_t)atomic_get(&tx_dropped);
+}
+
+void bluetooth_tx_reset_stats(void) {
+    atomic_clear(&tx_dropped);
 }

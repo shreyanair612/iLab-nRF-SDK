@@ -1,0 +1,13 @@
+# Target labels
+ 12_bt-bf-vad
+# Source files and their labels
+/Users/shreybae/Documents/iLAB/nRF_SDK/12_bt-bf-vad/build/_sysbuild/sysbuild/images/CMakeFiles/12_bt-bf-vad
+/Users/shreybae/Documents/iLAB/nRF_SDK/12_bt-bf-vad/build/_sysbuild/sysbuild/images/CMakeFiles/12_bt-bf-vad.rule
+/Users/shreybae/Documents/iLAB/nRF_SDK/12_bt-bf-vad/build/_sysbuild/sysbuild/images/CMakeFiles/12_bt-bf-vad-complete.rule
+/Users/shreybae/Documents/iLAB/nRF_SDK/12_bt-bf-vad/build/_sysbuild/sysbuild/images/12_bt-bf-vad-prefix/src/12_bt-bf-vad-stamp/12_bt-bf-vad-build.rule
+/Users/shreybae/Documents/iLAB/nRF_SDK/12_bt-bf-vad/build/_sysbuild/sysbuild/images/12_bt-bf-vad-prefix/src/12_bt-bf-vad-stamp/12_bt-bf-vad-configure.rule
+/Users/shreybae/Documents/iLAB/nRF_SDK/12_bt-bf-vad/build/_sysbuild/sysbuild/images/12_bt-bf-vad-prefix/src/12_bt-bf-vad-stamp/12_bt-bf-vad-download.rule
+/Users/shreybae/Documents/iLAB/nRF_SDK/12_bt-bf-vad/build/_sysbuild/sysbuild/images/12_bt-bf-vad-prefix/src/12_bt-bf-vad-stamp/12_bt-bf-vad-install.rule
+/Users/shreybae/Documents/iLAB/nRF_SDK/12_bt-bf-vad/build/_sysbuild/sysbuild/images/12_bt-bf-vad-prefix/src/12_bt-bf-vad-stamp/12_bt-bf-vad-mkdir.rule
+/Users/shreybae/Documents/iLAB/nRF_SDK/12_bt-bf-vad/build/_sysbuild/sysbuild/images/12_bt-bf-vad-prefix/src/12_bt-bf-vad-stamp/12_bt-bf-vad-patch.rule
+/Users/shreybae/Documents/iLAB/nRF_SDK/12_bt-bf-vad/build/_sysbuild/sysbuild/images/12_bt-bf-vad-prefix/src/12_bt-bf-vad-stamp/12_bt-bf-vad-update.rule

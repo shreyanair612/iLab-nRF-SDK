@@ -1,0 +1,13 @@
+# Target labels
+ tfm
+# Source files and their labels
+/Users/shreybae/Documents/iLAB/nRF_SDK/12_bt-bf-vad/build/12_bt-bf-vad/modules/trusted-firmware-m/CMakeFiles/tfm
+/Users/shreybae/Documents/iLAB/nRF_SDK/12_bt-bf-vad/build/12_bt-bf-vad/modules/trusted-firmware-m/CMakeFiles/tfm.rule
+/Users/shreybae/Documents/iLAB/nRF_SDK/12_bt-bf-vad/build/12_bt-bf-vad/modules/trusted-firmware-m/CMakeFiles/tfm-complete.rule
+/Users/shreybae/Documents/iLAB/nRF_SDK/12_bt-bf-vad/build/12_bt-bf-vad/modules/trusted-firmware-m/tfm-prefix/src/tfm-stamp/tfm-build.rule
+/Users/shreybae/Documents/iLAB/nRF_SDK/12_bt-bf-vad/build/12_bt-bf-vad/modules/trusted-firmware-m/tfm-prefix/src/tfm-stamp/tfm-configure.rule
+/Users/shreybae/Documents/iLAB/nRF_SDK/12_bt-bf-vad/build/12_bt-bf-vad/modules/trusted-firmware-m/tfm-prefix/src/tfm-stamp/tfm-download.rule
+/Users/shreybae/Documents/iLAB/nRF_SDK/12_bt-bf-vad/build/12_bt-bf-vad/modules/trusted-firmware-m/tfm-prefix/src/tfm-stamp/tfm-install.rule
+/Users/shreybae/Documents/iLAB/nRF_SDK/12_bt-bf-vad/build/12_bt-bf-vad/modules/trusted-firmware-m/tfm-prefix/src/tfm-stamp/tfm-mkdir.rule
+/Users/shreybae/Documents/iLAB/nRF_SDK/12_bt-bf-vad/build/12_bt-bf-vad/modules/trusted-firmware-m/tfm-prefix/src/tfm-stamp/tfm-patch.rule
+/Users/shreybae/Documents/iLAB/nRF_SDK/12_bt-bf-vad/build/12_bt-bf-vad/modules/trusted-firmware-m/tfm-prefix/src/tfm-stamp/tfm-update.rule

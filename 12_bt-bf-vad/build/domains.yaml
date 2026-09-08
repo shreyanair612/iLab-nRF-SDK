@@ -1,0 +1,7 @@
+default: 12_bt-bf-vad
+build_dir: /Users/shreybae/Documents/iLAB/nRF_SDK/12_bt-bf-vad/build
+domains:
+  - name: 12_bt-bf-vad
+    build_dir: /Users/shreybae/Documents/iLAB/nRF_SDK/12_bt-bf-vad/build/12_bt-bf-vad
+flash_order:
+  - 12_bt-bf-vad
