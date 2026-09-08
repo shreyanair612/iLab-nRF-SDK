@@ -8,6 +8,7 @@
 #include "beamform.h"
 #include "bluetooth.h"
 #include "vad.h"
+#include "wakeword.h"
 
 LOG_MODULE_REGISTER(main, LOG_LEVEL_INF);
 
@@ -32,6 +33,16 @@ enum stop_reason {
 	STOP_NO_SPEECH,
 };
 
+enum start_reason {
+	START_BUTTON = 0,
+	START_WAKEWORD,
+};
+
+static const char *const start_reason_name[] = {
+	[START_BUTTON] = "BTN1",
+	[START_WAKEWORD] = "wake word",
+};
+
 static const char *const stop_reason_name[] = {
 	[STOP_NONE] = "none",
 	[STOP_VAD_ENDPOINT] = "VAD_ENDPOINT (automatic)",
@@ -46,6 +57,8 @@ static atomic_t last_stop_reason = ATOMIC_INIT(STOP_NONE);
 
 /* Written by the capture thread, read by the main loop. */
 static atomic_t speech_started = ATOMIC_INIT(0);
+static atomic_t wakeword_ready = ATOMIC_INIT(0);
+static atomic_t last_start_reason = ATOMIC_INIT(START_BUTTON);
 
 static int64_t listening_start_ms;
 static int64_t speech_start_ms;
@@ -79,6 +92,8 @@ static void log_vad_telemetry(const char *tag, bool listening)
 		listening ? 1 : 0);
 }
 
+static void enter_state(enum audio_state next_state);
+
 static bool request_finalize(enum stop_reason reason)
 {
 	if (!atomic_cas(&audio_state, STATE_LISTENING, STATE_FINALIZE)) {
@@ -95,6 +110,18 @@ static bool request_finalize(enum stop_reason reason)
 	return true;
 }
 
+static bool request_listen(enum start_reason reason)
+{
+	if (!atomic_cas(&audio_state, STATE_IDLE, STATE_LISTENING)) {
+		return false;
+	}
+
+	atomic_set(&last_start_reason, reason);
+	enter_state(STATE_LISTENING);
+
+	return true;
+}
+
 static void enter_state(enum audio_state next_state)
 {
 	atomic_set(&audio_state, next_state);
@@ -102,18 +129,22 @@ static void enter_state(enum audio_state next_state)
 	switch (next_state) {
 	case STATE_IDLE:
 		atomic_clear(&capture_enabled);
-		LOG_INF("STATE_IDLE: press BTN1 to start recording");
+		ww_reset();
+		LOG_INF("STATE_IDLE: say the wake word or press BTN1");
 		break;
 
 	case STATE_LISTENING:
 		vad_reset_endpoint();
+		ww_reset();
 		bluetooth_tx_reset_stats();
 		atomic_clear(&speech_started);
 		atomic_set(&last_stop_reason, STOP_NONE);
 		listening_start_ms = k_uptime_get();
 		speech_start_ms = 0;
 		atomic_set(&capture_enabled, 1);
-		LOG_INF("STATE_LISTENING: waiting for speech, streaming enabled");
+		LOG_INF("STATE_LISTENING: started by %s, waiting for speech, "
+			"streaming enabled",
+			start_reason_name[atomic_get(&last_start_reason)]);
 		break;
 
 	case STATE_FINALIZE:
@@ -151,6 +182,19 @@ static void on_beamformed_chunk(const int16_t *samples, size_t count)
 	listening = (current == STATE_LISTENING) && atomic_get(&capture_enabled);
 
 	event = vad_process(samples, count, listening);
+
+	if (!listening && current == STATE_IDLE && atomic_get(&wakeword_ready)) {
+		bool ww_detected = false;
+
+		err = ww_process(samples, (uint16_t)count, &ww_detected);
+		if (err && err != -EBUSY) {
+			LOG_WRN("Wakeword inference failed: %d", err);
+		} else if (ww_detected) {
+			LOG_INF("Wake word detected");
+			request_listen(START_WAKEWORD);
+			return;
+		}
+	}
 
 	if (IS_ENABLED(CONFIG_APP_VAD_DEBUG)) {
 		uint32_t period = listening ? VAD_DEBUG_FRAMES_LISTENING
@@ -207,9 +251,8 @@ static void button_changed(uint32_t state, uint32_t changed)
 	enum audio_state current = (enum audio_state)atomic_get(&audio_state);
 
 	if (pressed & DK_BTN1_MSK) {
-		if (current == STATE_IDLE) {
+		if (request_listen(START_BUTTON)) {
 			LOG_INF("BTN1 start requested");
-			enter_state(STATE_LISTENING);
 		} else {
 			LOG_WRN("BTN1 ignored: session already active (state 0x%x)",
 				current);
@@ -283,6 +326,13 @@ int main(void)
 		return err;
 	}
 
+	err = ww_init();
+	if (err) {
+		LOG_ERR("Wakeword initialization failed: %d", err);
+		return err;
+	}
+	atomic_set(&wakeword_ready, 1);
+
 	err = bluetooth_init();
 	if (err) {
 		LOG_ERR("Bluetooth initialization failed: %d", err);
@@ -301,7 +351,7 @@ int main(void)
 		return err;
 	}
 
-	LOG_INF("Beamforming + adaptive VAD active");
+	LOG_INF("Beamforming + wake word + adaptive VAD active");
 	LOG_INF("VAD: %u Hz, endpoint after %u ms silence, min utterance %u ms, "
 		"margins on=+%u off=+%u, noise init=%u",
 		(uint32_t)CONFIG_APP_VAD_SAMPLE_RATE_HZ,
@@ -310,7 +360,11 @@ int main(void)
 		(uint32_t)CONFIG_APP_VAD_MARGIN_ON,
 		(uint32_t)CONFIG_APP_VAD_MARGIN_OFF,
 		(uint32_t)CONFIG_APP_VAD_NOISE_INIT_RMS);
-	LOG_INF("BTN1: start recording   BTN2: manual failsafe stop");
+	LOG_INF("Wakeword: prob>%u/1000, %u of last %u windows",
+		(uint32_t)CONFIG_WW_PROBABILITY_THRESHOLD,
+		(uint32_t)CONFIG_WW_COUNT_THRESHOLD,
+		(uint32_t)CONFIG_WW_HISTORY_SIZE);
+	LOG_INF("Wake word or BTN1: start recording   BTN2: manual failsafe stop");
 
 	enter_state(STATE_IDLE);
 

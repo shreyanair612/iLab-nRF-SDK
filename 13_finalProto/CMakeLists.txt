@@ -14,6 +14,8 @@ target_sources(app PRIVATE
   src/beamform.c
   src/bluetooth.c
   src/vad.c
+  src/wakeword.c
+  src/nrf_edgeai_generated/nrf_edgeai_user_model.c
 )
 
 # NORDIC SDK APP END
