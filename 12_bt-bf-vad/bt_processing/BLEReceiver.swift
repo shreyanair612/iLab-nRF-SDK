@@ -11,10 +11,10 @@ private let transferIdleTimeout: TimeInterval = 1.0
 
 final class BLEReceiver: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     private let outputDirectory = URL(fileURLWithPath: "/Users/shreybae/Documents/iLAB/nRF_SDK/12_bt-bf-vad/bt_processing")
+
+    private let recordingsRoot: URL
     private let logURL: URL
-    private let packetLogURL: URL
-    private let pcmURL: URL
-    private let wavURL: URL
+    private var recordingDirectory: URL?
 
     private var central: CBCentralManager!
     private var peripheral: CBPeripheral?
@@ -27,22 +27,21 @@ final class BLEReceiver: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
     private var packetNumber = 0
     private var totalPCMBytes: UInt32 = 0
     private var transferActive = false
+    private var recordingNumber = 0
+    private var transferStart = Date()
 
     override init() {
+        recordingsRoot = outputDirectory.appendingPathComponent("recordings")
         logURL = outputDirectory.appendingPathComponent("ble_receiver.log")
-        packetLogURL = outputDirectory.appendingPathComponent("ble_receiver.txt")
-        pcmURL = outputDirectory.appendingPathComponent("audio.pcm")
-        wavURL = outputDirectory.appendingPathComponent("audio.wav")
 
         super.init()
 
-        prepareTextFile(at: logURL, handle: &logHandle)
-        prepareTextFile(at: packetLogURL, handle: &packetLogHandle)
+        try? FileManager.default.createDirectory(at: recordingsRoot,
+                                                 withIntermediateDirectories: true)
+        openAppendLog(at: logURL, handle: &logHandle)
 
         log("=== BLE NUS receiver started ===")
-        log("Packet log: \(packetLogURL.path)")
-        log("Raw PCM: \(pcmURL.path)")
-        log("WAV audio: \(wavURL.path)")
+        log("Recordings folder: \(recordingsRoot.path)")
 
         central = CBCentralManager(delegate:self, queue:nil)
     }
@@ -55,10 +54,36 @@ final class BLEReceiver: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
         try? wavHandle?.close()
     }
 
+    /// Truncating open, for the per-recording files that start empty.
     private func prepareTextFile(at url: URL, handle: inout FileHandle?) {
         FileManager.default.createFile(atPath: url.path, contents:nil)
         handle = try? FileHandle(forWritingTo: url)
         try? handle?.seekToEnd()
+    }
+
+    /// Appending open, so the process-level log keeps its history.
+    private func openAppendLog(at url: URL, handle: inout FileHandle?) {
+        if !FileManager.default.fileExists(atPath: url.path) {
+            FileManager.default.createFile(atPath: url.path, contents: nil)
+        }
+        handle = try? FileHandle(forWritingTo: url)
+        try? handle?.seekToEnd()
+    }
+
+    private func timestamp(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd_HH-mm-ss"
+        return formatter.string(from: date)
+    }
+
+    /// Repoint `recordings/latest` at the folder just written, so a fixed path
+    /// always resolves to the newest capture.
+    private func updateLatestSymlink(to directory: URL) {
+        let latest = recordingsRoot.appendingPathComponent("latest")
+
+        try? FileManager.default.removeItem(at: latest)
+        try? FileManager.default.createSymbolicLink(at: latest,
+                                                    withDestinationURL: directory)
     }
 
     private func log(_ message: String) {
