@@ -16,7 +16,12 @@ LOG_MODULE_REGISTER(bluetooth, LOG_LEVEL_INF);
 #define DEVICE_NAME_LEN (sizeof(DEVICE_NAME) - 1)
 
 #define AUDIO_CHUNK_SAMPLES 256
-#define AUDIO_QUEUE_DEPTH 8
+/*
+ * Deep enough to hold a full preroll burst plus live audio while the link
+ * catches up. 8 chunks was only 128 ms, which the preroll flush alone would
+ * overrun.
+ */
+#define AUDIO_QUEUE_DEPTH 32
 
 struct audio_chunk {
     size_t samples;

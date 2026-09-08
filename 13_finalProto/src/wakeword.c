@@ -25,6 +25,15 @@ static uint16_t ww_input_fill;
 static uint32_t ww_count;
 static uint32_t ww_history;
 static int64_t last_detect_time_ms;
+static int64_t suppress_until_ms;
+
+/*
+ * The model is not fed while a session is open, so when idle resumes its
+ * internal state still holds the audio that triggered the last detection and
+ * it re-fires almost immediately. Keep feeding it after a reset so that state
+ * flushes, but refuse detections until this much fresh audio has gone in.
+ */
+#define WW_REFRACTORY_MS 1000
 
 BUILD_ASSERT(CONFIG_WW_HISTORY_SIZE <= 32, "WW_HISTORY_SIZE must fit in uint32_t");
 
@@ -54,6 +63,7 @@ void ww_reset(void)
     ww_input_fill = 0U;
     ww_count = 0U;
     ww_history = 0U;
+    suppress_until_ms = k_uptime_get() + WW_REFRACTORY_MS;
 }
 
 static bool ww_postprocess(void)
@@ -68,6 +78,12 @@ static bool ww_postprocess(void)
     const bool ww_frame_positive = class_probability > ww_threshold;
 
     const bool oldest_entry = (bool)(ww_history & BIT(CONFIG_WW_HISTORY_SIZE - 1));
+
+    if (now_ms < suppress_until_ms) {
+        ww_count = 0U;
+        ww_history = 0U;
+        return false;
+    }
 
     ww_count = ww_count + ww_frame_positive - oldest_entry;
     ww_history = (ww_history << 1) | ww_frame_positive;

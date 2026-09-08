@@ -13,17 +13,6 @@
 
 LOG_MODULE_REGISTER(beamform, LOG_LEVEL_INF);
 
-/*
- * Capture format.
- *
- * The microphones are INMP441 (or pin-compatible) I2S MEMS mics. They emit
- * 24-bit two's-complement samples, MSB first, left-justified inside a 32-bit
- * slot, and they require 64 SCK edges per LRCLK frame. Configuring a 16-bit
- * word size gives only 32 SCK per frame, which under-clocks the mic's
- * decimator and yields quiet, hash-filled audio. SAMPLE_BIT_WIDTH must stay
- * at 32 so SCK = 16000 * 2 * 32 = 1.024 MHz and the mic runs at its intended
- * 16 kHz (SCK / 64).
- */
 #define SAMPLE_RATE       16000
 #define SAMPLE_BIT_WIDTH  32
 #define CHANNELS          2
@@ -31,16 +20,17 @@ LOG_MODULE_REGISTER(beamform, LOG_LEVEL_INF);
 #define BLOCK_PAIRS       256
 #define BLOCK_BYTES       (BLOCK_PAIRS * CHANNELS * sizeof(int32_t))
 #define BLOCK_COUNT       4
-
-/*
- * Extra digital gain applied on the way from the mic's 24-bit domain to the
- * int16 output, in 6 dB steps. 0 keeps unity, i.e. the top 16 bits of the
- * 24-bit sample. Raise this only after measuring a real recording: every step
- * halves the headroom before saturate_int16() starts clipping.
- */
 #define CAPTURE_GAIN_SHIFT 0
 
 #define TDM_NODE DT_NODELABEL(tdm)
+
+#if !DT_NODE_EXISTS(TDM_NODE)
+#error "TDM node does not exist in the final devicetree"
+#endif
+
+#if !DT_NODE_HAS_STATUS(TDM_NODE, okay)
+#error "TDM node is not enabled in the final devicetree"
+#endif
 
 K_MEM_SLAB_DEFINE_IN_SECT_STATIC(rx_slab, __nocache, BLOCK_BYTES, BLOCK_COUNT, 4);
 K_THREAD_STACK_DEFINE(capture_stack, 4096);

@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/13_finalProto/build/_sysbuild/sysbuild/images/CMakeFiles/13_finalProto"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/13_finalProto/build/_sysbuild/sysbuild/images/CMakeFiles/13_finalProto.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/13_finalProto/build/_sysbuild/sysbuild/images/CMakeFiles/13_finalProto-complete.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/13_finalProto/build/_sysbuild/sysbuild/images/13_finalProto-prefix/src/13_finalProto-stamp/13_finalProto-build.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/13_finalProto/build/_sysbuild/sysbuild/images/13_finalProto-prefix/src/13_finalProto-stamp/13_finalProto-configure.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/13_finalProto/build/_sysbuild/sysbuild/images/13_finalProto-prefix/src/13_finalProto-stamp/13_finalProto-download.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/13_finalProto/build/_sysbuild/sysbuild/images/13_finalProto-prefix/src/13_finalProto-stamp/13_finalProto-install.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/13_finalProto/build/_sysbuild/sysbuild/images/13_finalProto-prefix/src/13_finalProto-stamp/13_finalProto-mkdir.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/13_finalProto/build/_sysbuild/sysbuild/images/13_finalProto-prefix/src/13_finalProto-stamp/13_finalProto-patch.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/13_finalProto/build/_sysbuild/sysbuild/images/13_finalProto-prefix/src/13_finalProto-stamp/13_finalProto-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"13_finalProto"
+		],
+		"name" : "13_finalProto"
+	}
+}

@@ -3,6 +3,7 @@
 #include <zephyr/logging/log.h>
 #include <zephyr/sys/atomic.h>
 #include <zephyr/sys/util.h>
+#include <string.h>
 #include <dk_buttons_and_leds.h>
 
 #include "beamform.h"
@@ -63,9 +64,66 @@ static atomic_t last_start_reason = ATOMIC_INIT(START_BUTTON);
 static int64_t listening_start_ms;
 static int64_t speech_start_ms;
 
+/*
+ * Preroll ring. Every frame captured while idle is kept here, and the whole
+ * ring is flushed ahead of the live stream when a session opens. That covers
+ * the wake-word model's confirmation delay, which would otherwise swallow the
+ * first syllables of the command. Only the capture thread touches it: writes
+ * happen while idle, and the flush is done by the capture thread on its first
+ * recording frame rather than by whichever thread pressed the button.
+ */
+#define PREROLL_FRAMES ((CONFIG_APP_PREROLL_MS * 16000U) / (256U * 1000U))
+
+#if PREROLL_FRAMES > 0
+static int16_t preroll[PREROLL_FRAMES][256];
+static uint32_t preroll_head;
+static uint32_t preroll_used;
+#endif
+static atomic_t preroll_pending = ATOMIC_INIT(0);
+
+static void preroll_store(const int16_t *samples, size_t count)
+{
+#if PREROLL_FRAMES > 0
+	if (count != 256U) {
+		return;
+	}
+
+	memcpy(preroll[preroll_head], samples, count * sizeof(int16_t));
+	preroll_head = (preroll_head + 1U) % PREROLL_FRAMES;
+	if (preroll_used < PREROLL_FRAMES) {
+		preroll_used++;
+	}
+#else
+	ARG_UNUSED(samples);
+	ARG_UNUSED(count);
+#endif
+}
+
+static void preroll_flush(void)
+{
+#if PREROLL_FRAMES > 0
+	uint32_t start = (preroll_head + PREROLL_FRAMES - preroll_used) % PREROLL_FRAMES;
+	uint32_t sent = 0U;
+
+	for (uint32_t i = 0; i < preroll_used; i++) {
+		uint32_t idx = (start + i) % PREROLL_FRAMES;
+
+		if (bluetooth_enqueue_audio(preroll[idx], 256U) == 0) {
+			sent++;
+		}
+	}
+
+	LOG_INF("Preroll: sent %u of %u frames (%u ms)", sent, preroll_used,
+		sent * 256U * 1000U / 16000U);
+	preroll_used = 0U;
+#endif
+}
+
 static const struct vad_config vad_config = {
 	.sample_rate_hz = CONFIG_APP_VAD_SAMPLE_RATE_HZ,
 	.noise_init_rms = CONFIG_APP_VAD_NOISE_INIT_RMS,
+	.onset_ratio_x8 = CONFIG_APP_VAD_ONSET_RATIO_X8,
+	.off_ratio_x8 = CONFIG_APP_VAD_OFF_RATIO_X8,
 	.margin_on = CONFIG_APP_VAD_MARGIN_ON,
 	.margin_off = CONFIG_APP_VAD_MARGIN_OFF,
 	.onset_ms = CONFIG_APP_VAD_ONSET_MS,
@@ -137,6 +195,7 @@ static void enter_state(enum audio_state next_state)
 		vad_reset_endpoint();
 		ww_reset();
 		bluetooth_tx_reset_stats();
+		atomic_set(&preroll_pending, 1);
 		atomic_clear(&speech_started);
 		atomic_set(&last_stop_reason, STOP_NONE);
 		listening_start_ms = k_uptime_get();
@@ -207,7 +266,12 @@ static void on_beamformed_chunk(const int16_t *samples, size_t count)
 	}
 
 	if (!listening) {
+		preroll_store(samples, count);
 		return;
+	}
+
+	if (atomic_cas(&preroll_pending, 1, 0)) {
+		preroll_flush();
 	}
 
 	switch (event) {
@@ -352,14 +416,18 @@ int main(void)
 	}
 
 	LOG_INF("Beamforming + wake word + adaptive VAD active");
-	LOG_INF("VAD: %u Hz, endpoint after %u ms silence, min utterance %u ms, "
-		"margins on=+%u off=+%u, noise init=%u",
+	LOG_INF("VAD: %u Hz, endpoint after %u ms silence, min utterance %u ms",
 		(uint32_t)CONFIG_APP_VAD_SAMPLE_RATE_HZ,
 		(uint32_t)CONFIG_APP_VAD_SILENCE_END_MS,
-		(uint32_t)CONFIG_APP_VAD_MIN_SPEECH_MS,
+		(uint32_t)CONFIG_APP_VAD_MIN_SPEECH_MS);
+	LOG_INF("VAD thresholds: on=%u/8x off=%u/8x of noise floor "
+		"(min +%u / +%u), noise init=%u, preroll %u frames",
+		(uint32_t)CONFIG_APP_VAD_ONSET_RATIO_X8,
+		(uint32_t)CONFIG_APP_VAD_OFF_RATIO_X8,
 		(uint32_t)CONFIG_APP_VAD_MARGIN_ON,
 		(uint32_t)CONFIG_APP_VAD_MARGIN_OFF,
-		(uint32_t)CONFIG_APP_VAD_NOISE_INIT_RMS);
+		(uint32_t)CONFIG_APP_VAD_NOISE_INIT_RMS,
+		(uint32_t)PREROLL_FRAMES);
 	LOG_INF("Wakeword: prob>%u/1000, %u of last %u windows",
 		(uint32_t)CONFIG_WW_PROBABILITY_THRESHOLD,
 		(uint32_t)CONFIG_WW_COUNT_THRESHOLD,

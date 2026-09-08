@@ -10,7 +10,14 @@ private let bitsPerSample: UInt16 = 16
 private let transferIdleTimeout: TimeInterval = 1.0
 
 final class BLEReceiver: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
-    private let outputDirectory = URL(fileURLWithPath: "/Users/shreybae/Documents/iLAB/nRF_SDK/12_bt-bf-vad/bt_processing")
+    /// Pass a folder as the first argument to override this default.
+    private static let defaultOutputPath =
+        "/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/13_finalProto/bt_processing"
+
+    private let outputDirectory = URL(fileURLWithPath:
+        CommandLine.arguments.count > 1
+            ? CommandLine.arguments[1]
+            : BLEReceiver.defaultOutputPath)
 
     private let recordingsRoot: URL
     private let logURL: URL
@@ -105,19 +112,47 @@ final class BLEReceiver: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
         transferActive = true
         packetNumber = 0
         totalPCMBytes = 0
+        recordingNumber += 1
+        transferStart = Date()
 
         try? pcmHandle?.close()
         try? wavHandle?.close()
+        try? packetLogHandle?.close()
+
+        var directory = recordingsRoot
+            .appendingPathComponent(timestamp(transferStart))
+
+        if FileManager.default.fileExists(atPath: directory.path) {
+            directory = recordingsRoot.appendingPathComponent(
+                "\(timestamp(transferStart))_\(recordingNumber)")
+        }
+
+        do {
+            try FileManager.default.createDirectory(at: directory,
+                                                    withIntermediateDirectories: true)
+        } catch {
+            log("ERROR: Could not create recording folder: \(error.localizedDescription)")
+            transferActive = false
+            return
+        }
+
+        recordingDirectory = directory
+
+        let pcmURL = directory.appendingPathComponent("audio.pcm")
+        let wavURL = directory.appendingPathComponent("audio.wav")
+        let packetLogURL = directory.appendingPathComponent("packets.txt")
 
         FileManager.default.createFile(atPath: pcmURL.path, contents:nil)
         FileManager.default.createFile(atPath: wavURL.path, contents:nil)
 
         pcmHandle = try? FileHandle(forWritingTo: pcmURL)
         wavHandle = try? FileHandle(forWritingTo: wavURL)
+        prepareTextFile(at: packetLogURL, handle: &packetLogHandle)
 
         let placeholderHeader = wavHeader(dataByteCount: 0)
         try? wavHandle?.write(contentsOf: placeholderHeader)
 
+        log("Recording #\(recordingNumber) -> \(directory.lastPathComponent)/")
         log("Receiving audio packet stream...")
     }
 
@@ -161,6 +196,11 @@ final class BLEReceiver: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
             return
         }
 
+        guard let directory = recordingDirectory else {
+            log("ERROR: Transfer finished with no recording folder")
+            return
+        }
+
         do {
             try wavHandle?.seek(toOffset:0)
             try wavHandle?.write(contentsOf: wavHeader(dataByteCount: totalPCMBytes))
@@ -168,21 +208,58 @@ final class BLEReceiver: NSObject, CBCentralManagerDelegate, CBPeripheralDelegat
             try pcmHandle?.synchronize()
             try wavHandle?.close()
             try pcmHandle?.close()
+            try packetLogHandle?.synchronize()
+            try packetLogHandle?.close()
             wavHandle = nil
             pcmHandle = nil
+            packetLogHandle = nil
 
             let duration = Double(totalPCMBytes) / Double(sampleRate * UInt32(channelCount) * UInt32(bitsPerSample / 8))
+            let wall = Date().timeIntervalSince(transferStart) - transferIdleTimeout
 
-            log(String(format: 
-                "Transfer complete. packets=%d pcm_bytes=%u duration=%.3f s",
-                packetNumber, totalPCMBytes, duration
+            writeSessionSummary(to: directory, duration: duration, wall: wall)
+            updateLatestSymlink(to: directory)
+
+            log(String(format:
+                "Transfer complete. packets=%d pcm_bytes=%u duration=%.3f s (wall %.3f s)",
+                packetNumber, totalPCMBytes, duration, wall
             ))
-            log("Packet data saved to \(packetLogURL.lastPathComponent)")
-            log("Raw PCM saved to \(pcmURL.lastPathComponent)")
-            log("WAV audio saved to \(wavURL.lastPathComponent)")
+            log("Saved to \(directory.path)")
         } catch {
             log("ERROR: Could not finalize WAV file: \(error.localizedDescription)")
         }
+
+        recordingDirectory = nil
+    }
+
+    /// Per-recording metadata, so a folder is self-describing months later.
+    private func writeSessionSummary(to directory: URL, duration: Double, wall: TimeInterval) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
+
+        let realtimeRatio = wall > 0 ? duration / wall : 0
+
+        let summary = """
+        recording       \(recordingNumber)
+        started         \(formatter.string(from: transferStart))
+        finished        \(formatter.string(from: Date()))
+        packets         \(packetNumber)
+        pcm_bytes       \(totalPCMBytes)
+        sample_rate     \(sampleRate) Hz
+        channels        \(channelCount)
+        bits_per_sample \(bitsPerSample)
+        duration        \(String(format: "%.3f", duration)) s
+        wall_time       \(String(format: "%.3f", wall)) s
+        realtime_ratio  \(String(format: "%.3f", realtimeRatio))
+
+        Files: audio.wav (playable), audio.pcm (raw), packets.txt (per-packet hex)
+        A realtime_ratio well below 1.0 means the BLE link fell behind and the
+        recording has gaps.
+
+        """
+
+        let url = directory.appendingPathComponent("session.txt")
+        try? summary.data(using: .utf8)?.write(to: url)
     }
 
     private func wavHeader(dataByteCount: UInt32) -> Data {

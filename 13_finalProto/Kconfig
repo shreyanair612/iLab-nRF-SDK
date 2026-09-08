@@ -50,22 +50,35 @@ config APP_VAD_NOISE_INIT_RMS
 	  floor is normally well converged before the Start button is pressed.
 	  Matches the value proven in 10_beam_wakeword on the same int16 scale.
 
-config APP_VAD_MARGIN_ON
-	int "Speech-onset margin above the noise floor (RMS counts)"
-	default 120
+config APP_VAD_ONSET_RATIO_X8
+	int "Speech-onset threshold as a multiple of the noise floor, in eighths"
+	default 48
 	help
-	  A frame counts as speech onset when its RMS exceeds
-	  noise_floor + this. Raise it for fewer false triggers in a noisy room,
-	  lower it to pick up quieter talkers. Must be greater than
-	  APP_VAD_MARGIN_OFF; that gap is the hysteresis.
+	  threshold_on = noise_floor * this / 8. Default 48 is 6.0x. Measured
+	  speech peaks on this hardware sit 13-19x above the room floor, so 6x
+	  lands well inside speech while staying clear of the noise.
+
+config APP_VAD_OFF_RATIO_X8
+	int "Speech-continuation threshold as a multiple of the noise floor, in eighths"
+	default 28
+	help
+	  threshold_off = noise_floor * this / 8. Default 20 is 2.5x. Must be
+	  below APP_VAD_ONSET_RATIO_X8; the gap between them is the hysteresis
+	  that carries the recording through pauses between words.
+
+config APP_VAD_MARGIN_ON
+	int "Absolute floor under the onset threshold (RMS counts)"
+	default 40
+	help
+	  threshold_on never drops below noise_floor + this, so a near-silent
+	  room cannot collapse the onset gate onto the noise.
 
 config APP_VAD_MARGIN_OFF
-	int "Speech-continuation margin above the noise floor (RMS counts)"
-	default 70
+	int "Absolute floor under the continuation threshold (RMS counts)"
+	default 20
 	help
-	  Once speech has started, a frame below noise_floor + this counts
-	  towards the trailing silence. Lower it to hold the utterance open
-	  longer through quiet speech; raise it to end recordings sooner.
+	  threshold_off never drops below noise_floor + this. Must be less than
+	  APP_VAD_MARGIN_ON.
 
 config APP_VAD_ONSET_MS
 	int "Sustained loud audio required to declare speech onset (ms)"
@@ -76,7 +89,7 @@ config APP_VAD_ONSET_MS
 
 config APP_VAD_SILENCE_END_MS
 	int "Continuous silence that ends an utterance (ms)"
-	default 800
+	default 600
 	help
 	  The endpoint pause. Ordinary gaps between words are shorter than this
 	  and do not stop the recording. 500-1000 is the useful range: shorter
@@ -95,6 +108,15 @@ config APP_VAD_NOISE_ALPHA_SHIFT
 	help
 	  noise += (rms - noise) >> this. Larger adapts more slowly.
 	  5 gives a 1/32 step. The floor only adapts outside speech.
+
+config APP_PREROLL_MS
+	int "Audio kept from before the trigger (ms)"
+	default 320
+	help
+	  A ring buffer of recent frames is always running, and its contents are
+	  sent ahead of the live stream when recording starts. This covers the
+	  wake-word model's confirmation delay, so the opening of an utterance
+	  is not lost.
 
 config APP_VAD_DEBUG
 	bool "Verbose per-frame VAD telemetry"

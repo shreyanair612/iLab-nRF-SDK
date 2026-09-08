@@ -1,0 +1,13 @@
+# Target labels
+ 13_finalProto
+# Source files and their labels
+/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/13_finalProto/build/_sysbuild/sysbuild/images/CMakeFiles/13_finalProto
+/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/13_finalProto/build/_sysbuild/sysbuild/images/CMakeFiles/13_finalProto.rule
+/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/13_finalProto/build/_sysbuild/sysbuild/images/CMakeFiles/13_finalProto-complete.rule
+/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/13_finalProto/build/_sysbuild/sysbuild/images/13_finalProto-prefix/src/13_finalProto-stamp/13_finalProto-build.rule
+/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/13_finalProto/build/_sysbuild/sysbuild/images/13_finalProto-prefix/src/13_finalProto-stamp/13_finalProto-configure.rule
+/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/13_finalProto/build/_sysbuild/sysbuild/images/13_finalProto-prefix/src/13_finalProto-stamp/13_finalProto-download.rule
+/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/13_finalProto/build/_sysbuild/sysbuild/images/13_finalProto-prefix/src/13_finalProto-stamp/13_finalProto-install.rule
+/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/13_finalProto/build/_sysbuild/sysbuild/images/13_finalProto-prefix/src/13_finalProto-stamp/13_finalProto-mkdir.rule
+/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/13_finalProto/build/_sysbuild/sysbuild/images/13_finalProto-prefix/src/13_finalProto-stamp/13_finalProto-patch.rule
+/Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/13_finalProto/build/_sysbuild/sysbuild/images/13_finalProto-prefix/src/13_finalProto-stamp/13_finalProto-update.rule

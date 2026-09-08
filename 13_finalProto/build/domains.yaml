@@ -1,0 +1,7 @@
+default: 13_finalProto
+build_dir: /Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/13_finalProto/build
+domains:
+  - name: 13_finalProto
+    build_dir: /Users/shreybae/Documents/iLAB/nrfedgeAI_workspace/13_finalProto/build/13_finalProto
+flash_order:
+  - 13_finalProto
