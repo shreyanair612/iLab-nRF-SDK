@@ -1,0 +1,24 @@
+#!/bin/sh
+# Minimal stand-in for `nrfutil` so `west flash` works from a terminal.
+#
+# west runs:   nrfutil [global flags] device <subcommand> ...
+# This finds the nrfutil-device binary bundled with the nRF Connect for
+# VS Code extension (the same one VS Code uses to flash) and forwards the
+# call to it with the literal "device" word removed.
+DEV="${NRFUTIL_DEVICE:-}"
+if [ -z "$DEV" ]; then
+  for d in "$HOME"/.vscode/extensions/nordic-semiconductor.nrf-connect-*/platform/nrfutil/bin/nrfutil-device; do
+    [ -x "$d" ] && DEV="$d"
+  done
+fi
+if [ -z "$DEV" ]; then
+  echo "nrfutil shim: nrfutil-device not found. Install nRF Connect for VS Code, or set NRFUTIL_DEVICE." >&2
+  exit 127
+fi
+out=""
+dropped=0
+for a in "$@"; do
+  if [ $dropped -eq 0 ] && [ "$a" = "device" ]; then dropped=1; continue; fi
+  out="$out $(printf '%s' "$a" | sed "s/'/'\\\\''/g; s/^/'/; s/\$/'/")"
+done
+eval "exec \"$DEV\" $out"

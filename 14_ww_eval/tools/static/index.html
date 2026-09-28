@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wake-Word Beamforming Evaluation</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header>
+  <h1>Wake-word beamforming evaluation</h1>
+  <span id="conn" class="pill">connecting…</span>
+  <span id="devpill" class="pill">device: —</span>
+  <span id="statepill" class="pill">idle</span>
+  <span id="linkpill" class="pill">link: —</span>
+  <span class="muted" id="clock"></span>
+</header>
+
+<div id="tip" class="tip"></div>
+
+<main>
+  <!-- A. Live run -->
+  <section class="half">
+    <h2>A · Live run</h2>
+    <div class="kv" id="live-kv"></div>
+    <div class="progress"><i id="progress"></i></div>
+    <div class="warnings" id="warnings"></div>
+  </section>
+
+  <section class="half">
+    <h2>Start a run</h2>
+    <form class="grid" id="startform" autocomplete="off">
+      <div><label for="f-label">label</label><input id="f-label" value="angle_0_distance_100cm"></div>
+      <div><label for="f-angle">angle (deg)</label><input id="f-angle" type="number" value="0"></div>
+      <div><label for="f-distance">distance (cm)</label><input id="f-distance" type="number" value="100"></div>
+      <div><label for="f-phrase">phrase</label><input id="f-phrase" value="hey vision"></div>
+      <div><label for="f-env">environment</label><input id="f-env" value="lab"></div>
+      <div><label for="f-preset">preset</label><select id="f-preset"></select></div>
+      <div><label for="f-live">live path</label><select id="f-live"></select></div>
+      <div><label for="f-duration">duration (s)</label><input id="f-duration" type="number" value="30"></div>
+      <div><label for="f-threshold">threshold (0-1000)</label><input id="f-threshold" type="number" value="700"></div>
+      <div><label for="f-cooldown">cooldown (ms)</label><input id="f-cooldown" type="number" value="1200"></div>
+      <div><label for="f-capmode">capture mode</label><select id="f-capmode"></select></div>
+      <div><label for="f-capsec">capture seconds</label><input id="f-capsec" type="number" value="2"></div>
+      <div><label for="f-dl">bf_lr left delay</label><input id="f-dl" type="number" value="0"></div>
+      <div><label for="f-dr">bf_lr right delay</label><input id="f-dr" type="number" value="0"></div>
+      <div><label for="f-reduce">raw_3ch reduce</label><select id="f-reduce"></select></div>
+    </form>
+    <div class="checks" id="pathchecks" style="margin-top:8px"></div>
+    <div class="checks" id="capchecks" style="margin-top:6px"></div>
+    <div class="row">
+      <button class="primary" id="btn-start" type="button">Start run</button>
+      <button id="btn-stop" type="button">Stop</button>
+      <span class="muted" id="startmsg"></span>
+    </div>
+  </section>
+
+  <!-- B. Detection comparison -->
+  <section>
+    <h2>B · Detection comparison</h2>
+    <div class="tblwrap"><table id="cmp">
+      <thead><tr>
+        <th>Path</th><th>Enabled</th><th>Scored by</th><th class="num">Detections</th>
+        <th class="num">Peak score</th><th class="num">Mean score</th><th class="num">Last detection</th>
+        <th class="num">RMS</th><th class="num">Peak</th><th class="num">Clips</th>
+        <th class="num">Avg inference</th><th class="num">Max inference</th><th class="num">Deadline misses</th>
+        <th>CRC check</th>
+      </tr></thead>
+      <tbody></tbody>
+    </table></div>
+    <p class="muted" style="margin:8px 0 0">Only one path is scored live on the device; the others are scored by replaying this run's raw microphones through the same model afterwards. Counts are not accuracy: see README for ground-truth scoring.</p>
+  </section>
+
+  <!-- C. Timeline -->
+  <section class="half">
+    <h2>C · Detection timeline</h2>
+    <canvas id="timeline" role="img" aria-label="Detection timeline, one lane per path"></canvas>
+    <div class="legend" id="legend"></div>
+  </section>
+
+  <!-- E. Beamformer -->
+  <section class="half">
+    <h2>E · Beamformer configuration</h2>
+    <div class="tblwrap"><table id="bf">
+      <thead><tr><th>Path</th><th class="num">L delay</th><th class="num">R delay</th><th class="num">C delay</th><th class="num">Gain (Q15)</th><th class="num">Clips</th><th>Note</th></tr></thead>
+      <tbody></tbody>
+    </table></div>
+    <p class="muted">Baseline integer delay-and-sum. Positive delay holds that channel back; steer toward a source that reaches LEFT first by delaying LEFT.</p>
+    <h2 style="margin-top:14px">Audio health</h2>
+    <div class="tblwrap"><table id="streams">
+      <thead><tr><th>Stream</th><th class="num">RMS</th><th class="num">Peak</th><th class="num">Clips</th></tr></thead>
+      <tbody></tbody>
+    </table></div>
+  </section>
+
+  <!-- D. Audio -->
+  <section>
+    <h2>D · Audio artifacts <span class="muted" id="audio-run"></span></h2>
+    <div class="tblwrap"><table id="audio">
+      <thead><tr><th>File</th><th>Stream</th><th class="num">Duration</th><th class="num">Rate</th><th>Status</th><th>Play</th><th>Download</th></tr></thead>
+      <tbody></tbody>
+    </table></div>
+  </section>
+
+  <!-- F. History -->
+  <section>
+    <h2>F · Run history</h2>
+    <div class="row">
+      <input id="hist-filter" placeholder="filter by label / angle / distance / preset" style="max-width:360px">
+      <button id="btn-compare" type="button">Compare selected (2)</button>
+      <span class="muted" id="histmsg"></span>
+    </div>
+    <div class="tblwrap"><table id="hist">
+      <thead><tr><th></th><th>Run</th><th>Label</th><th class="num">Angle</th><th class="num">Dist</th><th>Preset</th><th>Paths</th><th class="num">Thr</th><th>bf_lr dl/dr</th><th>Detections per path</th><th>Replays</th><th>Quality</th><th>Actions</th></tr></thead>
+      <tbody></tbody>
+    </table></div>
+    <div id="compare"></div>
+  </section>
+
+  <!-- G. Console -->
+  <section>
+    <h2>G · Device console</h2>
+    <pre class="log" id="log"></pre>
+    <div class="console">
+      <input id="cmd" placeholder="command, e.g. status · list_paths · set_delay bf_lr 3 0 · help">
+      <button id="btn-send" type="button">Send</button>
+    </div>
+  </section>
+</main>
+<script src="/static/app.js"></script>
+</body>
+</html>

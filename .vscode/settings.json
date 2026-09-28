@@ -1,5 +1,6 @@
 {
     "nrf-connect.applications": [
-        "${workspaceFolder}/10_beam+wakeword"
+        "${workspaceFolder}/10_beam+wakeword",
+        "${workspaceFolder}/14_ww_eval"
     ]
 }

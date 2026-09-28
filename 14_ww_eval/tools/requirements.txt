@@ -1,0 +1,2 @@
+pyserial>=3.5
+# numpy is optional (faster WAV stats); everything else is the Python standard library.

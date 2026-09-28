@@ -1,0 +1,51 @@
+index,start_s,end_s,text,source
+1,3.0,3.626,A vision,Aman (English (India)) @ 150 wpm
+2,6.126,6.559,Hey Siri,Aman (English (India)) @ 225 wpm
+3,9.059,9.899,What's the time,Daniel @ 200 wpm
+4,12.399,13.336,Hey Revision,Eddy (English (UK)) @ 175 wpm
+5,15.836,16.624,What's the time,Eddy (English (US)) @ 225 wpm
+6,19.124,19.943,Hey Provision,Flo (English (UK)) @ 225 wpm
+7,22.443,23.23,Hey Revision,Flo (English (US)) @ 225 wpm
+8,25.73,26.683,Hey Venison,Grandma (English (UK)) @ 175 wpm
+9,29.183,30.118,Hey Revision,Grandma (English (US)) @ 175 wpm
+10,32.618,33.415,Hey Addison,Grandpa (English (UK)) @ 200 wpm
+11,35.915,36.732,They envision,Grandpa (English (US)) @ 175 wpm
+12,39.232,39.845,Hey Vivian,Karen @ 225 wpm
+13,42.345,42.951,Hey Vivian,Moira @ 225 wpm
+14,45.451,46.654,Hey Precision,Reed (English (UK)) @ 150 wpm
+15,49.154,50.082,Hey Division,Reed (English (US)) @ 175 wpm
+16,52.582,53.264,Hey Vicky,Rishi @ 175 wpm
+17,55.764,56.666,Hey Visual,Rocko (English (UK)) @ 150 wpm
+18,59.166,60.035,What's the time,Rocko (English (US)) @ 200 wpm
+19,62.535,63.01,Hey there,Samantha @ 200 wpm
+20,65.51,66.202,They envision,Sandy (English (UK)) @ 225 wpm
+21,68.702,69.394,They envision,Sandy (English (US)) @ 225 wpm
+22,71.894,72.599,Hey Visual,Shelley (English (UK)) @ 200 wpm
+23,75.099,75.845,Hey Vivian,Shelley (English (US)) @ 225 wpm
+24,78.345,79.043,Hey Television,Tara (English (India)) @ 225 wpm
+25,81.543,82.116,They envision,Tara (English (India)) @ 225 wpm
+26,84.616,85.459,What's the time,Tessa @ 225 wpm
+27,87.959,88.51,Hey Division,Aman (English (India)) @ 200 wpm
+28,91.01,91.57,What's the time,Aman (English (India)) @ 225 wpm
+29,94.07,94.676,Hey Vicky,Daniel @ 200 wpm
+30,97.176,98.163,Hey Decision,Eddy (English (UK)) @ 175 wpm
+31,100.663,101.395,Hey there,Eddy (English (US)) @ 150 wpm
+32,103.895,104.737,Hey Visual,Flo (English (UK)) @ 150 wpm
+33,107.237,108.079,Hey Mission,Flo (English (US)) @ 175 wpm
+34,110.579,111.683,Hey Decision,Grandma (English (UK)) @ 150 wpm
+35,114.183,115.243,Hey Venison,Grandma (English (US)) @ 150 wpm
+36,117.743,118.817,Turn left here,Grandpa (English (UK)) @ 150 wpm
+37,121.317,122.028,Hey Vicky,Grandpa (English (US)) @ 175 wpm
+38,124.528,125.267,Hey Division,Karen @ 200 wpm
+39,127.767,128.324,Hey there,Moira @ 200 wpm
+40,130.824,131.663,Hey Mission,Reed (English (UK)) @ 175 wpm
+41,134.163,135.212,What's the time,Reed (English (US)) @ 150 wpm
+42,137.712,138.28,Hey there,Rishi @ 225 wpm
+43,140.78,141.708,Hey Mission,Rocko (English (UK)) @ 150 wpm
+44,144.208,145.116,Hey Addison,Rocko (English (US)) @ 175 wpm
+45,147.616,148.65,Hey Television,Samantha @ 150 wpm
+46,151.15,152.207,What's the time,Sandy (English (US)) @ 150 wpm
+47,154.707,155.651,Hey Decision,Shelley (English (UK)) @ 175 wpm
+48,158.151,159.032,Hey Venison,Shelley (English (US)) @ 200 wpm
+49,161.532,162.156,What's the time,Tara (English (India)) @ 225 wpm
+50,164.656,165.167,Hey Visa,Tara (English (India)) @ 225 wpm

@@ -1,0 +1,125 @@
+#
+# Wake-word beamforming evaluation firmware
+#
+
+source "Kconfig.zephyr"
+
+menu "Wakeword model post-processing (identical for every evaluation path)"
+
+config WW_PROBABILITY_THRESHOLD
+	int "Wakeword probability threshold (1/1000)"
+	range 0 1000
+	default 700
+	help
+	  A model window counts as positive when its class probability exceeds
+	  this value divided by 1000. Runtime: set_threshold <0..1000>.
+
+config WW_HISTORY_SIZE
+	int "Size of wakeword predictions history"
+	range 1 32
+	default 6
+	help
+	  Number of most recent 10 ms model windows kept in the vote history.
+
+config WW_COUNT_THRESHOLD
+	int "Positive windows required within the history to confirm a detection"
+	range 1 WW_HISTORY_SIZE
+	default 4
+
+config WW_COOLDOWN_MS
+	int "Minimum time between two detections on the same path (ms)"
+	default 1200
+	help
+	  Applied identically to every evaluation path so no path can collect
+	  extra detections from a single utterance.
+
+endmenu
+
+menu "Evaluation paths and run defaults"
+
+config EVAL_DEFAULT_PRESET
+	string "Preset applied at boot and on 'reset'"
+	default "raw_vs_bf_lr"
+	help
+	  One of: left right lr_mix bf_lr raw_3ch bf_3ch raw_vs_bf_lr raw_vs_bf_3ch full
+
+config EVAL_DEFAULT_LIVE_PATH
+	int "Path that receives live on-device inference during a run (0..5)"
+	range 0 5
+	default 3
+	help
+	  The wake-word runtime is a single stateful instance, so exactly one
+	  path can be scored live. 0 raw_left, 1 raw_right, 2 raw_lr_mix,
+	  3 bf_lr, 4 raw_3ch, 5 bf_3ch. Every other enabled path is scored by
+	  replaying the recorded raw microphones through the device afterwards.
+
+config EVAL_DEFAULT_DURATION_S
+	int "Default run duration (s), 0 = until 'stop'"
+	default 30
+
+config EVAL_MAX_DELAY_SAMPLES
+	int "Longest beamformer delay supported, in samples"
+	range 1 256
+	default 64
+	help
+	  At 16 kHz one sample is 62.5 us, or about 2.1 cm of path length.
+	  64 samples covers 1.3 m, far more than any wearable array needs.
+
+config EVAL_BF_LR_LEFT_DELAY
+	int "BF_LR default left delay (samples)"
+	default 0
+
+config EVAL_BF_LR_RIGHT_DELAY
+	int "BF_LR default right delay (samples)"
+	default 0
+
+config EVAL_BF_GAIN_Q15
+	int "Default per-channel beamformer gain, Q15 (32767 = 1.0)"
+	range 0 32767
+	default 32767
+
+config EVAL_CAPTURE_GAIN_SHIFT
+	int "Extra digital gain from the mic's 24-bit domain, 6 dB per step"
+	range 0 4
+	default 0
+
+config EVAL_FRAME_QUEUE_DEPTH
+	int "Frames buffered between the capture thread and the evaluation thread"
+	range 2 32
+	default 8
+	help
+	  Each entry is one 16 ms stereo frame (1 KB). If the evaluation thread
+	  falls behind, capture never blocks: the frame is dropped and counted.
+
+config EVAL_TX_RING_BYTES
+	int "Telemetry transmit ring buffer (bytes)"
+	default 32768
+	help
+	  Audio and telemetry packets are staged here and drained by a
+	  low-priority UART thread. Roughly 0.5 s of stereo audio at the default
+	  size. When full, audio chunks are dropped and reported as AUDIO_GAP.
+
+config EVAL_LINK_BYTES_PER_SEC
+	int "Assumed usable link throughput for the admission check (bytes/s)"
+	default 80000
+	help
+	  1 Mbaud is 100000 raw bytes/s; 80000 leaves margin for framing and
+	  host jitter. Requests that would exceed this are rejected before a run
+	  starts rather than dropping audio silently mid-run.
+
+config EVAL_STATUS_PERIOD_MS
+	int "Live STATUS / PATH_METRICS / AUDIO_STATS emission period (ms)"
+	default 1000
+
+config EVAL_TEXT_MODE_AT_BOOT
+	bool "Start in human-readable text mode (binary framing enabled by the host tool)"
+	default y
+
+config EVAL_INFERENCE_DEADLINE_US
+	int "Per-window inference deadline used for deadline-miss counting (us)"
+	default 10000
+	help
+	  One model window is 10 ms of audio, so inference slower than this can
+	  never keep up in real time.
+
+endmenu

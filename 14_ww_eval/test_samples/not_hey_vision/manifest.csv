@@ -1,0 +1,51 @@
+file,phrase,voice,rate_wpm,speed,gain_db,snr_db,onset_s,speech_s,duration_s
+not_hey_vision_01.wav,hey mission,Samantha,148,1.011,-5.4,,0.96,0.68,2.93
+not_hey_vision_02.wav,hey division,Daniel,168,1.003,-10.4,30,0.73,0.85,2.22
+not_hey_vision_03.wav,hey decision,Karen,164,0.999,-5.9,,1.57,0.89,3.43
+not_hey_vision_04.wav,hey television,Moira,154,1.013,-13.8,25,0.64,0.96,2.23
+not_hey_vision_05.wav,hey revision,Rishi,174,0.961,-4.4,30,1.96,0.83,4.40
+not_hey_vision_06.wav,hey provision,Tessa,173,0.980,-9.7,20,1.37,0.87,3.33
+not_hey_vision_07.wav,hey precision,Tara,183,0.980,-9.5,25,1.90,0.75,3.83
+not_hey_vision_08.wav,hey fusion,Aman,175,1.043,-13.8,25,0.77,0.62,2.45
+not_hey_vision_09.wav,hey wisdom,Eddy (English (US)),186,1.048,-9.0,20,1.31,0.81,4.00
+not_hey_vision_10.wav,hey visa,Flo (English (US)),152,0.987,-7.9,20,1.78,0.87,3.96
+not_hey_vision_11.wav,hey envision,Reed (English (UK)),177,1.037,-9.2,20,1.18,0.92,2.95
+not_hey_vision_12.wav,hey listen,Sandy (English (UK)),175,1.039,-5.7,25,0.72,0.83,3.08
+not_hey_vision_13.wav,hey computer,Shelley (English (US)),146,1.030,-8.7,20,1.12,1.12,3.86
+not_hey_vision_14.wav,hey vivid,Rocko (English (UK)),170,0.964,-6.6,15,1.43,0.84,3.42
+not_hey_vision_15.wav,hey visible,Grandma (English (US)),150,0.975,-12.3,,1.68,1.05,4.08
+not_hey_vision_16.wav,hey visit,Grandpa (English (US)),175,0.981,-8.8,15,1.09,0.86,3.83
+not_hey_vision_17.wav,hey vista,Eddy (English (UK)),182,1.009,-3.5,,1.14,0.80,3.73
+not_hey_vision_18.wav,hey assistant,Flo (English (UK)),187,1.006,-13.4,15,0.89,1.03,3.85
+not_hey_vision_19.wav,hey camera,Reed (English (US)),170,1.038,-8.2,30,1.92,0.93,4.02
+not_hey_vision_20.wav,hey system,Sandy (English (US)),162,0.997,-15.0,15,1.47,0.99,3.92
+not_hey_vision_21.wav,hey winter,Shelley (English (UK)),169,1.014,-5.3,30,1.37,0.79,3.01
+not_hey_vision_22.wav,hey vinyl,Rocko (English (US)),145,1.032,-5.4,25,0.65,0.87,3.43
+not_hey_vision_23.wav,okay vision,Grandma (English (UK)),144,0.967,-14.8,,1.66,1.23,3.88
+not_hey_vision_24.wav,hi vision,Grandpa (English (UK)),157,0.970,-7.5,25,1.01,0.96,2.80
+not_hey_vision_25.wav,vision,Samantha,156,1.007,-13.0,25,1.51,0.45,2.97
+not_hey_vision_26.wav,turn on the lights,Daniel,184,0.989,-9.3,,1.04,0.97,3.09
+not_hey_vision_27.wav,what time is it,Karen,190,0.977,-13.7,15,1.97,1.03,4.95
+not_hey_vision_28.wav,good morning everyone,Moira,167,1.034,-14.8,,1.16,1.38,3.18
+not_hey_vision_29.wav,the weather is nice today,Rishi,150,1.000,-8.9,20,1.36,1.53,3.80
+not_hey_vision_30.wav,please open the door,Tessa,180,1.032,-8.8,30,1.33,1.17,3.15
+not_hey_vision_31.wav,can you hear me,Tara,183,1.012,-11.1,20,0.68,0.74,2.44
+not_hey_vision_32.wav,I will see you tomorrow,Aman,153,1.039,-11.3,,1.03,1.08,4.03
+not_hey_vision_33.wav,play some music,Eddy (English (US)),187,0.974,-8.2,30,0.61,1.07,3.51
+not_hey_vision_34.wav,testing one two three,Flo (English (US)),142,1.013,-12.4,15,1.25,1.67,4.67
+not_hey_vision_35.wav,where did you put my keys,Reed (English (UK)),189,1.023,-8.9,20,0.88,1.50,3.12
+not_hey_vision_36.wav,the quick brown fox jumps over the lazy dog,Sandy (English (UK)),176,1.021,-9.8,30,1.29,2.79,5.99
+not_hey_vision_37.wav,call me back later,Shelley (English (US)),164,0.987,-9.0,25,1.46,1.40,4.02
+not_hey_vision_38.wav,how are you doing,Rocko (English (UK)),158,0.962,-12.6,25,1.74,1.14,4.26
+not_hey_vision_39.wav,set a timer for five minutes,Grandma (English (US)),148,0.991,-12.4,,1.77,2.17,5.85
+not_hey_vision_40.wav,thank you very much,Grandpa (English (US)),162,1.042,-4.9,15,1.28,1.46,4.72
+not_hey_vision_41.wav,let us grab lunch,Eddy (English (UK)),155,0.966,-14.5,30,0.84,1.51,4.23
+not_hey_vision_42.wav,I need a coffee,Flo (English (UK)),153,0.984,-11.0,15,1.78,1.28,4.17
+not_hey_vision_43.wav,the meeting starts at noon,Reed (English (US)),161,0.970,-12.2,15,1.69,1.73,5.03
+not_hey_vision_44.wav,close the window please,Sandy (English (US)),171,0.972,-8.4,,1.05,1.59,3.81
+not_hey_vision_45.wav,what a beautiful day,Shelley (English (UK)),164,1.038,-5.5,30,1.08,1.42,3.96
+not_hey_vision_46.wav,remind me to buy milk,Rocko (English (US)),190,1.043,-14.1,15,0.91,1.47,3.10
+not_hey_vision_47.wav,one two three four five,Grandma (English (UK)),157,0.993,-11.5,15,1.90,1.70,4.84
+not_hey_vision_48.wav,see you later,Grandpa (English (UK)),157,0.970,-14.5,25,0.62,1.05,3.20
+not_hey_vision_49.wav,that sounds great,Samantha,145,0.997,-5.1,,0.86,1.08,3.64
+not_hey_vision_50.wav,are we still on for tonight,Daniel,177,0.998,-13.6,30,1.55,1.46,3.83

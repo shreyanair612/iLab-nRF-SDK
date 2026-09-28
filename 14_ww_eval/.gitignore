@@ -1,0 +1,11 @@
+.DS_Store
+__pycache__/
+build/
+playlists/*/*.wav
+runs/
+runs_sim.log
+runs_sim/
+sessions/
+tests_host/*.dSYM/
+tests_host/gen_vectors
+tests_host/test_dsp

@@ -1,0 +1,51 @@
+file,phrase,voice,rate_wpm,speed,gain_db,snr_db,onset_s,speech_s,duration_s
+hey_vision_01.wav,hey vision,Samantha,148,1.011,-5.4,,0.96,0.70,2.96
+hey_vision_02.wav,hey vision,Daniel,168,1.003,-10.4,30,0.73,0.75,2.12
+hey_vision_03.wav,hey vision,Karen,164,0.999,-5.9,,1.57,0.71,3.26
+hey_vision_04.wav,hey vision,Moira,154,1.013,-13.8,25,0.64,0.73,2.01
+hey_vision_05.wav,hey vision,Rishi,174,0.961,-4.4,30,1.96,0.72,4.29
+hey_vision_06.wav,hey vision,Tessa,173,0.980,-9.7,20,1.37,0.73,3.19
+hey_vision_07.wav,hey vision,Tara,183,0.980,-9.5,25,1.90,0.66,3.74
+hey_vision_08.wav,hey vision,Aman,175,1.043,-13.8,25,0.77,0.60,2.43
+hey_vision_09.wav,hey vision,Eddy (English (US)),186,1.048,-9.0,20,1.31,0.78,3.97
+hey_vision_10.wav,hey vision,Flo (English (US)),152,0.987,-7.9,20,1.78,0.95,4.05
+hey_vision_11.wav,hey vision,Reed (English (UK)),177,1.037,-9.2,20,1.18,0.82,2.84
+hey_vision_12.wav,hey vision,Sandy (English (UK)),175,1.039,-5.7,25,0.72,0.82,3.07
+hey_vision_13.wav,hey vision,Shelley (English (US)),146,1.030,-8.7,20,1.12,0.91,3.66
+hey_vision_14.wav,hey vision,Rocko (English (UK)),170,0.964,-6.6,15,1.43,0.90,3.48
+hey_vision_15.wav,hey vision,Grandma (English (US)),150,0.975,-12.3,,1.68,0.97,4.01
+hey_vision_16.wav,hey vision,Grandpa (English (US)),175,0.981,-8.8,15,1.09,0.86,3.83
+hey_vision_17.wav,hey vision,Eddy (English (UK)),182,1.009,-3.5,,1.14,0.84,3.77
+hey_vision_18.wav,hey vision,Flo (English (UK)),187,1.006,-13.4,15,0.89,0.81,3.63
+hey_vision_19.wav,hey vision,Reed (English (US)),170,1.038,-8.2,30,1.92,0.85,3.94
+hey_vision_20.wav,hey vision,Sandy (English (US)),162,0.997,-15.0,15,1.47,0.90,3.83
+hey_vision_21.wav,hey vision,Shelley (English (UK)),169,1.014,-5.3,30,1.37,0.87,3.09
+hey_vision_22.wav,hey vision,Rocko (English (US)),145,1.032,-5.4,25,0.65,0.92,3.48
+hey_vision_23.wav,hey vision,Grandma (English (UK)),144,0.967,-14.8,,1.66,1.01,3.66
+hey_vision_24.wav,hey vision,Grandpa (English (UK)),157,0.970,-7.5,25,1.01,0.94,2.78
+hey_vision_25.wav,hey vision,Samantha,156,1.007,-13.0,25,1.51,0.64,3.16
+hey_vision_26.wav,hey vision,Daniel,184,0.989,-9.3,,1.04,0.72,2.84
+hey_vision_27.wav,hey vision,Karen,190,0.977,-13.7,15,1.97,0.67,4.59
+hey_vision_28.wav,hey vision,Moira,167,1.034,-14.8,,1.16,0.65,2.45
+hey_vision_29.wav,hey vision,Rishi,150,1.000,-8.9,20,1.36,0.76,3.03
+hey_vision_30.wav,hey vision,Tessa,180,1.032,-8.8,30,1.33,0.69,2.67
+hey_vision_31.wav,hey vision,Tara,183,1.012,-11.1,20,0.68,0.64,2.34
+hey_vision_32.wav,hey vision,Aman,153,1.039,-11.3,,1.03,0.62,3.57
+hey_vision_33.wav,hey vision,Eddy (English (US)),187,0.974,-8.2,30,0.61,0.84,3.28
+hey_vision_34.wav,hey vision,Flo (English (US)),142,1.013,-12.4,15,1.25,0.96,3.96
+hey_vision_35.wav,hey vision,Reed (English (UK)),189,1.023,-8.9,20,0.88,0.80,2.42
+hey_vision_36.wav,hey vision,Sandy (English (UK)),176,1.021,-9.8,30,1.29,0.83,4.03
+hey_vision_37.wav,hey vision,Shelley (English (US)),164,0.987,-9.0,25,1.46,0.92,3.54
+hey_vision_38.wav,hey vision,Rocko (English (UK)),158,0.962,-12.6,25,1.74,0.93,4.06
+hey_vision_39.wav,hey vision,Grandma (English (US)),148,0.991,-12.4,,1.77,0.96,4.63
+hey_vision_40.wav,hey vision,Grandpa (English (US)),162,1.042,-4.9,15,1.28,0.87,4.13
+hey_vision_41.wav,hey vision,Eddy (English (UK)),155,0.966,-14.5,30,0.84,0.97,3.69
+hey_vision_42.wav,hey vision,Flo (English (UK)),153,0.984,-11.0,15,1.78,0.96,3.85
+hey_vision_43.wav,hey vision,Reed (English (US)),161,0.970,-12.2,15,1.69,0.93,4.22
+hey_vision_44.wav,hey vision,Sandy (English (US)),171,0.972,-8.4,,1.05,0.90,3.12
+hey_vision_45.wav,hey vision,Shelley (English (UK)),164,1.038,-5.5,30,1.08,0.87,3.41
+hey_vision_46.wav,hey vision,Rocko (English (US)),190,1.043,-14.1,15,0.91,0.78,2.40
+hey_vision_47.wav,hey vision,Grandma (English (UK)),157,0.993,-11.5,15,1.90,0.92,4.05
+hey_vision_48.wav,hey vision,Grandpa (English (UK)),157,0.970,-14.5,25,0.62,0.94,3.09
+hey_vision_49.wav,hey vision,Samantha,145,0.997,-5.1,,0.86,0.71,3.28
+hey_vision_50.wav,hey vision,Daniel,177,0.998,-13.6,30,1.55,0.75,3.13
