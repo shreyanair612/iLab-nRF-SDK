@@ -1,0 +1,42 @@
+<!doctype html><meta charset=utf-8><style>body{font-family:-apple-system,Helvetica,sans-serif;margin:24px}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:3px 8px;font-size:13px}.warn{color:#a33}.best{font-size:1.1em}</style><h1>sim</h1>
+<p>7 tests. Angles: [-90, -60, -30, 0, 30, 60, 90]. Distances: [60]. Environments: ['quiet'].</p>
+<p class=best>Best so far: <b>gsc</b> (score 9.91). See the scoring notes at the bottom.</p>
+<table><tr><th>path</th><th>score</th><th>side_rejection</th><th>di_estimate</th><th>snr_front</th><th>snr_side_mean</th><th>front_level</th><th>angles</th></tr>
+<tr><td>gsc</td><td>9.91</td><td>1.58</td><td>1.31</td><td>28.04</td><td>19.71</td><td>-27.97</td><td>7</td></tr>
+<tr><td>lr_mix</td><td>1.66</td><td>0.81</td><td>0.64</td><td>23.93</td><td>23.08</td><td>-27.94</td><td>7</td></tr>
+<tr><td>das</td><td>1.64</td><td>0.93</td><td>0.74</td><td>25.76</td><td>25.05</td><td>-27.96</td><td>7</td></tr>
+<tr><td>das_c1</td><td>1.25</td><td>0.61</td><td>0.43</td><td>25.7</td><td>25.06</td><td>-28.27</td><td>7</td></tr>
+<tr><td>das_c2</td><td>0.89</td><td>0.39</td><td>0.27</td><td>23.7</td><td>23.21</td><td>-28.42</td><td>7</td></tr>
+<tr><td>raw_right</td><td>0.02</td><td>0.0</td><td>-0.0</td><td>20.92</td><td>20.9</td><td>-27.91</td><td>7</td></tr>
+<tr><td>raw_left</td><td>0.01</td><td>-0.0</td><td>-0.0</td><td>20.91</td><td>20.9</td><td>-27.91</td><td>7</td></tr>
+<tr><td>raw_center</td><td>-0.01</td><td>0.0</td><td>0.0</td><td>20.9</td><td>20.91</td><td>-27.91</td><td>7</td></tr>
+<tr><td>diff_lr</td><td>-30.74</td><td>-14.51</td><td>-13.62</td><td>0.28</td><td>16.51</td><td>-50.0</td><td>7</td></tr>
+</table>
+<h2>polar_noise.png</h2><img src='polar_noise.png' style='max-width:100%'>
+<h2>snr_vs_angle.png</h2><img src='snr_vs_angle.png' style='max-width:100%'>
+<h2>beam_vs_freq_raw_center.png</h2><img src='beam_vs_freq_raw_center.png' style='max-width:100%'>
+<h2>beam_vs_freq_lr_mix.png</h2><img src='beam_vs_freq_lr_mix.png' style='max-width:100%'>
+<h2>beam_vs_freq_das.png</h2><img src='beam_vs_freq_das.png' style='max-width:100%'>
+<h2>beam_vs_freq_das_c1.png</h2><img src='beam_vs_freq_das_c1.png' style='max-width:100%'>
+<h2>beam_vs_freq_gsc.png</h2><img src='beam_vs_freq_gsc.png' style='max-width:100%'>
+<h2>beam_vs_freq_diff_lr.png</h2><img src='beam_vs_freq_diff_lr.png' style='max-width:100%'>
+<h2>angle_check.png</h2><img src='angle_check.png' style='max-width:100%'>
+<h2>tests</h2><table><tr><th>run</th><th>angle</th><th>dist</th><th>env</th><th>heard at</th><th>warnings</th></tr>
+<tr><td><a href='runs/2026-10-21_103955_anglem090_distance060cm_quiet/report.html'>2026-10-21_103955_anglem090_distance060cm_quiet</a></td><td>-90</td><td>60</td><td>quiet</td><td>-84°</td><td class=warn></td></tr>
+<tr><td><a href='runs/2026-10-21_103957_anglem060_distance060cm_quiet/report.html'>2026-10-21_103957_anglem060_distance060cm_quiet</a></td><td>-60</td><td>60</td><td>quiet</td><td>-59°</td><td class=warn></td></tr>
+<tr><td><a href='runs/2026-10-21_104000_anglem030_distance060cm_quiet/report.html'>2026-10-21_104000_anglem030_distance060cm_quiet</a></td><td>-30</td><td>60</td><td>quiet</td><td>-30°</td><td class=warn></td></tr>
+<tr><td><a href='runs/2026-10-21_104002_angle000_distance060cm_quiet/report.html'>2026-10-21_104002_angle000_distance060cm_quiet</a></td><td>0</td><td>60</td><td>quiet</td><td>+0°</td><td class=warn></td></tr>
+<tr><td><a href='runs/2026-10-21_104004_angle030_distance060cm_quiet/report.html'>2026-10-21_104004_angle030_distance060cm_quiet</a></td><td>30</td><td>60</td><td>quiet</td><td>+30°</td><td class=warn></td></tr>
+<tr><td><a href='runs/2026-10-21_104007_angle060_distance060cm_quiet/report.html'>2026-10-21_104007_angle060_distance060cm_quiet</a></td><td>60</td><td>60</td><td>quiet</td><td>+59°</td><td class=warn></td></tr>
+<tr><td><a href='runs/2026-10-21_104009_angle090_distance060cm_quiet/report.html'>2026-10-21_104009_angle090_distance060cm_quiet</a></td><td>90</td><td>60</td><td>quiet</td><td>+84°</td><td class=warn></td></tr>
+</table>
+<h2>how to read the scores</h2><pre> (all dB, computed on the same recordings):
+    front_level      noise level at 0°
+    side_rejection   front level minus the mean level at |angle| &gt;= 45°   (higher is better)
+    di_estimate      directivity index from the polar                      (higher is better)
+    snr_front        speech SNR at 0°                                        (higher is better)
+    snr_side_mean    mean speech SNR at |angle| &gt;= 45°                       (LOWER is better:
+                                                                             a talker at the side
+                                                                             should not get through)
+    score            side_rejection + (snr_front - snr_side_mean)
+</pre>

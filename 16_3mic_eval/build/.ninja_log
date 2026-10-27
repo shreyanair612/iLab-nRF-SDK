@@ -1,0 +1,19 @@
+# ninja log v7
+3	26	1792603977439730480	_sysbuild/sysbuild/images/16_3mic_eval-prefix/src/16_3mic_eval-stamp/16_3mic_eval-mkdir	b9a91dfe4ccee30d
+3	26	1792603977439730480	/Users/shreybae/Documents/iLAB/nRF_SDK/16_3mic_eval/build/_sysbuild/sysbuild/images/16_3mic_eval-prefix/src/16_3mic_eval-stamp/16_3mic_eval-mkdir	b9a91dfe4ccee30d
+26	47	1792603977460720798	_sysbuild/sysbuild/images/16_3mic_eval-prefix/src/16_3mic_eval-stamp/16_3mic_eval-download	85c26d49d5891ca3
+26	47	1792603977460720798	/Users/shreybae/Documents/iLAB/nRF_SDK/16_3mic_eval/build/_sysbuild/sysbuild/images/16_3mic_eval-prefix/src/16_3mic_eval-stamp/16_3mic_eval-download	85c26d49d5891ca3
+47	67	1792603977480974781	_sysbuild/sysbuild/images/16_3mic_eval-prefix/src/16_3mic_eval-stamp/16_3mic_eval-update	ea417b2ced895db0
+47	67	1792603977480974781	/Users/shreybae/Documents/iLAB/nRF_SDK/16_3mic_eval/build/_sysbuild/sysbuild/images/16_3mic_eval-prefix/src/16_3mic_eval-stamp/16_3mic_eval-update	ea417b2ced895db0
+67	89	1792603977502022515	_sysbuild/sysbuild/images/16_3mic_eval-prefix/src/16_3mic_eval-stamp/16_3mic_eval-patch	9058b24975c6c144
+67	89	1792603977502022515	/Users/shreybae/Documents/iLAB/nRF_SDK/16_3mic_eval/build/_sysbuild/sysbuild/images/16_3mic_eval-prefix/src/16_3mic_eval-stamp/16_3mic_eval-patch	9058b24975c6c144
+89	110	1792603977523878503	_sysbuild/sysbuild/images/16_3mic_eval-prefix/src/16_3mic_eval-stamp/16_3mic_eval-configure	f5f47e036812eff
+89	110	1792603977523878503	/Users/shreybae/Documents/iLAB/nRF_SDK/16_3mic_eval/build/_sysbuild/sysbuild/images/16_3mic_eval-prefix/src/16_3mic_eval-stamp/16_3mic_eval-configure	f5f47e036812eff
+110	31268	1792603977524991881	_sysbuild/sysbuild/images/16_3mic_eval-prefix/src/16_3mic_eval-stamp/16_3mic_eval-build	2c601e0c172c6654
+110	31268	1792603977524991881	/Users/shreybae/Documents/iLAB/nRF_SDK/16_3mic_eval/build/_sysbuild/sysbuild/images/16_3mic_eval-prefix/src/16_3mic_eval-stamp/16_3mic_eval-build	2c601e0c172c6654
+31268	31281	1792604008683474858	_sysbuild/sysbuild/images/16_3mic_eval-prefix/src/16_3mic_eval-stamp/16_3mic_eval-install	7bec136f8e1f770a
+31268	31281	1792604008683474858	/Users/shreybae/Documents/iLAB/nRF_SDK/16_3mic_eval/build/_sysbuild/sysbuild/images/16_3mic_eval-prefix/src/16_3mic_eval-stamp/16_3mic_eval-install	7bec136f8e1f770a
+31281	31307	1792604008721267689	_sysbuild/sysbuild/images/CMakeFiles/16_3mic_eval-complete	bfa86c1bd4973752
+31281	31307	1792604008721267689	_sysbuild/sysbuild/images/16_3mic_eval-prefix/src/16_3mic_eval-stamp/16_3mic_eval-done	bfa86c1bd4973752
+31281	31307	1792604008721267689	/Users/shreybae/Documents/iLAB/nRF_SDK/16_3mic_eval/build/_sysbuild/sysbuild/images/CMakeFiles/16_3mic_eval-complete	bfa86c1bd4973752
+31281	31307	1792604008721267689	/Users/shreybae/Documents/iLAB/nRF_SDK/16_3mic_eval/build/_sysbuild/sysbuild/images/16_3mic_eval-prefix/src/16_3mic_eval-stamp/16_3mic_eval-done	bfa86c1bd4973752

@@ -1,0 +1,7 @@
+default: 16_3mic_eval
+build_dir: /Users/shreybae/Documents/iLAB/nRF_SDK/16_3mic_eval/build
+domains:
+  - name: 16_3mic_eval
+    build_dir: /Users/shreybae/Documents/iLAB/nRF_SDK/16_3mic_eval/build/16_3mic_eval
+flash_order:
+  - 16_3mic_eval

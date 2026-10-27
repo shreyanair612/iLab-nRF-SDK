@@ -1,0 +1,13 @@
+# Target labels
+ 16_3mic_eval
+# Source files and their labels
+/Users/shreybae/Documents/iLAB/nRF_SDK/16_3mic_eval/build/_sysbuild/sysbuild/images/CMakeFiles/16_3mic_eval
+/Users/shreybae/Documents/iLAB/nRF_SDK/16_3mic_eval/build/_sysbuild/sysbuild/images/CMakeFiles/16_3mic_eval.rule
+/Users/shreybae/Documents/iLAB/nRF_SDK/16_3mic_eval/build/_sysbuild/sysbuild/images/CMakeFiles/16_3mic_eval-complete.rule
+/Users/shreybae/Documents/iLAB/nRF_SDK/16_3mic_eval/build/_sysbuild/sysbuild/images/16_3mic_eval-prefix/src/16_3mic_eval-stamp/16_3mic_eval-build.rule
+/Users/shreybae/Documents/iLAB/nRF_SDK/16_3mic_eval/build/_sysbuild/sysbuild/images/16_3mic_eval-prefix/src/16_3mic_eval-stamp/16_3mic_eval-configure.rule
+/Users/shreybae/Documents/iLAB/nRF_SDK/16_3mic_eval/build/_sysbuild/sysbuild/images/16_3mic_eval-prefix/src/16_3mic_eval-stamp/16_3mic_eval-download.rule
+/Users/shreybae/Documents/iLAB/nRF_SDK/16_3mic_eval/build/_sysbuild/sysbuild/images/16_3mic_eval-prefix/src/16_3mic_eval-stamp/16_3mic_eval-install.rule
+/Users/shreybae/Documents/iLAB/nRF_SDK/16_3mic_eval/build/_sysbuild/sysbuild/images/16_3mic_eval-prefix/src/16_3mic_eval-stamp/16_3mic_eval-mkdir.rule
+/Users/shreybae/Documents/iLAB/nRF_SDK/16_3mic_eval/build/_sysbuild/sysbuild/images/16_3mic_eval-prefix/src/16_3mic_eval-stamp/16_3mic_eval-patch.rule
+/Users/shreybae/Documents/iLAB/nRF_SDK/16_3mic_eval/build/_sysbuild/sysbuild/images/16_3mic_eval-prefix/src/16_3mic_eval-stamp/16_3mic_eval-update.rule

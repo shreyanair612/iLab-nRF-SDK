@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nRF_SDK/16_3mic_eval/build/_sysbuild/sysbuild/images/CMakeFiles/16_3mic_eval"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nRF_SDK/16_3mic_eval/build/_sysbuild/sysbuild/images/CMakeFiles/16_3mic_eval.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nRF_SDK/16_3mic_eval/build/_sysbuild/sysbuild/images/CMakeFiles/16_3mic_eval-complete.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nRF_SDK/16_3mic_eval/build/_sysbuild/sysbuild/images/16_3mic_eval-prefix/src/16_3mic_eval-stamp/16_3mic_eval-build.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nRF_SDK/16_3mic_eval/build/_sysbuild/sysbuild/images/16_3mic_eval-prefix/src/16_3mic_eval-stamp/16_3mic_eval-configure.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nRF_SDK/16_3mic_eval/build/_sysbuild/sysbuild/images/16_3mic_eval-prefix/src/16_3mic_eval-stamp/16_3mic_eval-download.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nRF_SDK/16_3mic_eval/build/_sysbuild/sysbuild/images/16_3mic_eval-prefix/src/16_3mic_eval-stamp/16_3mic_eval-install.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nRF_SDK/16_3mic_eval/build/_sysbuild/sysbuild/images/16_3mic_eval-prefix/src/16_3mic_eval-stamp/16_3mic_eval-mkdir.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nRF_SDK/16_3mic_eval/build/_sysbuild/sysbuild/images/16_3mic_eval-prefix/src/16_3mic_eval-stamp/16_3mic_eval-patch.rule"
+		},
+		{
+			"file" : "/Users/shreybae/Documents/iLAB/nRF_SDK/16_3mic_eval/build/_sysbuild/sysbuild/images/16_3mic_eval-prefix/src/16_3mic_eval-stamp/16_3mic_eval-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"16_3mic_eval"
+		],
+		"name" : "16_3mic_eval"
+	}
+}

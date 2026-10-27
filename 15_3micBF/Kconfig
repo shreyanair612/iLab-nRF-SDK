@@ -1,0 +1,244 @@
+#
+# Copyright (c) 2018 Nordic Semiconductor
+#
+# SPDX-License-Identifier: LicenseRef-Nordic-5-Clause
+#
+
+source "Kconfig.zephyr"
+
+menu "Wakeword and Keyword Spotting application"
+
+config WW_PROBABILITY_THRESHOLD
+	int "Wakeword probability threshold"
+	range 0 1000
+	default 700
+	help
+	   Probability threshold for wakeword detection model. The value is expressed in units of
+	   1/1000.
+
+config WW_HISTORY_SIZE
+	int "Size of wakeword predictions history"
+	range 1 32
+	default 6
+	help
+	  Size of history of previous results from wakeword detection model.
+
+config WW_COUNT_THRESHOLD
+	int "Threshold for wakeword detection from predictions history"
+	range 1 WW_HISTORY_SIZE
+	default 4
+	help
+	  Number of predictions above threshold in predictions history required to confirm wakeword
+	  detection.
+
+endmenu
+
+menu "3-mic TDM beamformer"
+
+config APP_BF_TDM_SLOTS
+	int "TDM slots per frame"
+	range 4 8
+	default 4
+	help
+	  Number of 32-bit slots in each TDM frame. Three mics plus one
+	  unused slot by default, giving SCK = 16 kHz * 32 * 4 = 2.048 MHz.
+	  Raise to 8 if the mic needs a longer frame or a faster SCK.
+
+config APP_BF_SLOT_LEFT
+	int "TDM slot of the left mic"
+	range 0 7
+	default 0
+	help
+	  Slot order follows the WS -> WSO daisy chain. The mic whose WS is
+	  driven by the nRF FSYNC pin is slot 0.
+
+config APP_BF_SLOT_CENTER
+	int "TDM slot of the center mic"
+	range 0 7
+	default 1
+
+config APP_BF_SLOT_RIGHT
+	int "TDM slot of the right mic"
+	range 0 7
+	default 2
+
+config APP_BF_SLOT_BIT_OFFSET
+	int "Bit offset of the sample inside its TDM slot"
+	range 0 1
+	default 0
+	help
+	  The nRF TDM driver samples PCM_SHORT frames with no channel delay.
+	  If a logic analyzer shows the mic starting its MSB one SCK after the
+	  frame sync edge, set this to 1 so the sample is shifted back into
+	  place before the 24-bit unpack.
+
+config APP_BF_DELAY_LEFT
+	int "Steering delay applied to the left mic (samples)"
+	range 0 15
+	default 0
+	help
+	  Delay-and-sum steering. Delay a mic by the number of samples its
+	  sound arrives early relative to the latest mic. All zero is a
+	  broadside beam: sound reaching all three mics at the same instant
+	  is reinforced. One sample at 16 kHz is 62.5 us, about 21 mm of
+	  extra path.
+
+config APP_BF_DELAY_CENTER
+	int "Steering delay applied to the center mic (samples)"
+	range 0 15
+	default 0
+	help
+	  For a near-field source on the centre line (the wearer's mouth),
+	  the center mic is closer than left/right by
+	  sqrt(D^2 + d^2) - D, where D is mouth-to-center distance and d is
+	  the mic spacing. Divide by 21.4 mm to get samples at 16 kHz and
+	  set that here to time-align the center mic with left/right.
+
+config APP_BF_DELAY_RIGHT
+	int "Steering delay applied to the right mic (samples)"
+	range 0 15
+	default 0
+
+config APP_BF_MIC_DEBUG
+	bool "Log per-mic peak levels"
+	default y
+	help
+	  Logs the peak of each mic and of the beam output about once per
+	  second. Use during bring-up to confirm all three mics are alive and
+	  in the expected slots.
+
+endmenu
+
+menu "Beamformer VAD / endpointing"
+
+config APP_VAD_SAMPLE_RATE_HZ
+	int "PCM sample rate handed to the VAD (Hz)"
+	default 16000
+	help
+	  Must match the beamformer capture rate. Frame durations, and therefore
+	  the silence and onset frame counts, are derived from this.
+
+config APP_VAD_NOISE_INIT_RMS
+	int "Initial noise-floor RMS estimate"
+	default 25
+	help
+	  Seed value for the adaptive noise floor. Capture is always on, so the
+	  floor is normally well converged before the Start button is pressed.
+	  Matches the value proven in 10_beam_wakeword on the same int16 scale.
+
+config APP_VAD_ONSET_RATIO_X8
+	int "Speech-onset threshold as a multiple of the noise floor, in eighths"
+	default 48
+	help
+	  threshold_on = noise_floor * this / 8. Default 48 is 6.0x. Measured
+	  speech peaks on this hardware sit 13-19x above the room floor, so 6x
+	  lands well inside speech while staying clear of the noise.
+
+config APP_VAD_OFF_RATIO_X8
+	int "Speech-continuation threshold as a multiple of the noise floor, in eighths"
+	default 28
+	help
+	  threshold_off = noise_floor * this / 8. Default 20 is 2.5x. Must be
+	  below APP_VAD_ONSET_RATIO_X8; the gap between them is the hysteresis
+	  that carries the recording through pauses between words.
+
+config APP_VAD_MARGIN_ON
+	int "Absolute floor under the onset threshold (RMS counts)"
+	default 40
+	help
+	  threshold_on never drops below noise_floor + this, so a near-silent
+	  room cannot collapse the onset gate onto the noise.
+
+config APP_VAD_MARGIN_OFF
+	int "Absolute floor under the continuation threshold (RMS counts)"
+	default 20
+	help
+	  threshold_off never drops below noise_floor + this. Must be less than
+	  APP_VAD_MARGIN_ON.
+
+config APP_VAD_ONSET_MS
+	int "Sustained loud audio required to declare speech onset (ms)"
+	default 32
+	help
+	  Debounces clicks, knocks and door slams. Rounded up to whole audio
+	  frames, so on a 16 ms frame this is two frames.
+
+config APP_VAD_SILENCE_END_MS
+	int "Continuous silence that ends an utterance (ms)"
+	default 600
+	help
+	  The endpoint pause. Ordinary gaps between words are shorter than this
+	  and do not stop the recording. 500-1000 is the useful range: shorter
+	  clips people who pause mid-sentence, longer adds latency.
+
+config APP_VAD_MIN_SPEECH_MS
+	int "Minimum utterance length before an endpoint may fire (ms)"
+	default 300
+	help
+	  Guards against a single spurious onset frame immediately endpointing
+	  and producing a near-empty recording.
+
+config APP_VAD_NOISE_ALPHA_SHIFT
+	int "Noise-floor adaptation shift"
+	default 5
+	help
+	  noise += (rms - noise) >> this. Larger adapts more slowly.
+	  5 gives a 1/32 step. The floor only adapts outside speech.
+
+config APP_PREROLL_MS
+	int "Audio kept from before the trigger (ms)"
+	default 320
+	help
+	  A ring buffer of recent frames is always running, and its contents are
+	  sent ahead of the live stream when recording starts. This covers the
+	  wake-word model's confirmation delay, so the opening of an utterance
+	  is not lost.
+
+config APP_VAD_DEBUG
+	bool "Verbose per-frame VAD telemetry"
+	default y
+	help
+	  Logs rate-limited frame geometry, RMS, noise floor, both thresholds
+	  and the silence/speech frame counters. Enough to see whether audio is
+	  still arriving after you stop talking and whether the silence run is
+	  reaching its target. Turn off for quiet production logs.
+
+endmenu
+
+menu "Nordic UART BLE GATT service sample"
+
+config BT_NUS_THREAD_STACK_SIZE
+	int "Thread stack size"
+	default 1024
+	help
+	  Stack size used in each of the two threads
+
+config BT_NUS_UART_BUFFER_SIZE
+	int "UART payload buffer element size"
+	default 40
+	help
+	  Size of the payload buffer in each RX and TX FIFO element
+
+config BT_NUS_SECURITY_ENABLED
+	bool "Security"
+	default y
+	select BT_SMP
+	help
+	  Enable Bluetooth LE security for the UART service
+
+config BT_NUS_UART_RX_WAIT_TIME
+	int "Timeout for UART RX complete event"
+	default 50000
+	help
+	  Wait for RX complete event time in microseconds
+
+config SETTINGS
+	default y
+
+config ZMS
+	default y if (SOC_FLASH_NRF_RRAM || SOC_FLASH_NRF_MRAM)
+
+config NVS
+	default y if !(SOC_FLASH_NRF_RRAM || SOC_FLASH_NRF_MRAM)
+
+endmenu

@@ -1,0 +1,108 @@
+#
+# 3-microphone beamforming evaluation firmware
+#
+
+source "Kconfig.zephyr"
+
+menu "3-mic TDM capture"
+
+config EVAL_TDM_SLOTS
+	int "TDM slots per frame"
+	range 4 8
+	default 4
+	help
+	  Number of 32-bit slots in each TDM frame. Three mics plus one unused
+	  slot by default, giving SCK = 16 kHz * 32 * 4 = 2.048 MHz. Raise to 8
+	  if the mic needs a longer frame or a faster SCK.
+
+config EVAL_SLOT_LEFT
+	int "TDM slot of the left mic"
+	range 0 7
+	default 0
+	help
+	  Slot order follows the WS -> WSO daisy chain. The mic whose WS is
+	  driven by the nRF FSYNC pin is slot 0.
+
+config EVAL_SLOT_CENTER
+	int "TDM slot of the center mic"
+	range 0 7
+	default 1
+
+config EVAL_SLOT_RIGHT
+	int "TDM slot of the right mic"
+	range 0 7
+	default 2
+
+config EVAL_SLOT_BIT_OFFSET
+	int "Bit offset of the sample inside its TDM slot"
+	range 0 1
+	default 0
+	help
+	  The nRF TDM driver samples PCM_SHORT frames with no channel delay. If
+	  a logic analyzer shows the mic starting its MSB one SCK after the
+	  frame-sync edge, set this to 1.
+
+config EVAL_CAPTURE_GAIN_SHIFT
+	int "Extra digital gain from the mic's 24-bit domain, 6 dB per step"
+	range 0 4
+	default 0
+
+config EVAL_FRAME_QUEUE_DEPTH
+	int "Frames buffered between the capture thread and the evaluation thread"
+	range 2 32
+	default 8
+	help
+	  Each entry is one 16 ms three-channel frame (1.5 KB). If the
+	  evaluation thread falls behind, capture never blocks: the frame is
+	  dropped and counted.
+
+endmenu
+
+menu "Beamformer and run defaults"
+
+config EVAL_DEFAULT_DURATION_S
+	int "Default run duration (s), 0 = until 'stop'"
+	default 20
+
+config EVAL_MAX_DELAY_SAMPLES
+	int "Longest beamformer delay supported, in samples"
+	range 1 127
+	default 64
+	help
+	  At 16 kHz one sample is 62.5 us, or about 2.1 cm of path length.
+
+config EVAL_BF_LEFT_DELAY
+	int "Default left-mic delay (samples)"
+	default 0
+
+config EVAL_BF_CENTER_DELAY
+	int "Default center-mic delay (samples)"
+	default 0
+
+config EVAL_BF_RIGHT_DELAY
+	int "Default right-mic delay (samples)"
+	default 0
+
+config EVAL_BF_GAIN_Q15
+	int "Default per-mic beamformer weight, Q15 (32767 = 1.0)"
+	range 0 32767
+	default 32767
+
+config EVAL_TX_RING_BYTES
+	int "Telemetry transmit ring buffer (bytes)"
+	default 65536
+	help
+	  Audio and telemetry packets are staged here and drained into the USB
+	  CDC ACM FIFO. Four 16-bit streams are 128 kB/s, so 64 KiB is about
+	  half a second of slack. When full, audio chunks are dropped and the
+	  host records a gap.
+
+config EVAL_STATUS_PERIOD_MS
+	int "AUDIO_STATS emission period during a run (ms)"
+	default 1000
+
+config EVAL_TEXT_MODE_AT_BOOT
+	bool "Start in human-readable text mode (binary framing enabled by the host tool)"
+	default y
+
+endmenu
