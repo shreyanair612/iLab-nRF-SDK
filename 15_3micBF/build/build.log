@@ -1,0 +1,38 @@
+2026-11-17T21:34:54.865Z west build --build-dir /Users/shreybae/Documents/iLAB/nRF_SDK/15_3micBF/build /Users/shreybae/Documents/iLAB/nRF_SDK/15_3micBF --pristine --board nrf54lm20dk/nrf54lm20b/cpuapp -- -DCONFIG_DEBUG_THREAD_INFO=y
+2026-11-17T21:34:55.078Z -- west build: generating a build system
+2026-11-17T21:34:55.283Z -- Found Python3: /opt/nordic/ncs/toolchains/0c0f19d91c/opt/python@3.12/bin/python3.12 (found suitable version "3.12.4", minimum required is "3.10") found components: Interpreter
+2026-11-17T21:34:55.303Z -- Cache files will be written to: /Users/shreybae/Library/Caches/zephyr
+2026-11-17T21:34:55.347Z -- Found west (found suitable version "1.5.0", minimum required is "0.14.0")
+2026-11-17T21:34:56.160Z -- Board: nrf54lm20dk, qualifiers: nrf54lm20b/cpuapp
+2026-11-17T21:34:56.844Z Parsing /opt/nordic/ncs/v3.3.1/zephyr/share/sysbuild/Kconfig
+2026-11-17T21:34:56.844Z Loaded configuration '/Users/shreybae/Documents/iLAB/nRF_SDK/15_3micBF/build/_sysbuild/empty.conf'
+2026-11-17T21:34:56.844Z Merged configuration '/Users/shreybae/Documents/iLAB/nRF_SDK/15_3micBF/build/_sysbuild/empty.conf'
+2026-11-17T21:34:56.844Z Configuration saved to '/Users/shreybae/Documents/iLAB/nRF_SDK/15_3micBF/build/zephyr/.config'
+2026-11-17T21:34:56.844Z Kconfig header saved to '/Users/shreybae/Documents/iLAB/nRF_SDK/15_3micBF/build/_sysbuild/autoconf.h'
+2026-11-17T21:34:56.885Z -- 
+2026-11-17T21:34:56.885Z    *******************************
+2026-11-17T21:34:56.885Z    * Running CMake for 15_3micBF *
+2026-11-17T21:34:56.885Z    *******************************
+2026-11-17T21:34:56.885Z 
+2026-11-17T21:34:56.897Z -- Application: /Users/shreybae/Documents/iLAB/nRF_SDK/15_3micBF
+2026-11-17T21:34:56.897Z -- CMake version: 4.2.1
+2026-11-17T21:34:57.016Z -- Found Python3: /opt/nordic/ncs/toolchains/0c0f19d91c/opt/python@3.12/bin/python3.12 (found suitable version "3.12.4", minimum required is "3.10") found components: Interpreter
+2026-11-17T21:34:57.030Z -- Cache files will be written to: /Users/shreybae/Library/Caches/zephyr
+2026-11-17T21:34:57.036Z -- Zephyr version: 4.3.99 (/opt/nordic/ncs/v3.3.1/zephyr)
+2026-11-17T21:34:57.091Z -- Found west (found suitable version "1.5.0", minimum required is "0.14.0")
+2026-11-17T21:34:57.678Z -- Board: nrf54lm20dk, qualifiers: nrf54lm20b/cpuapp
+2026-11-17T21:34:58.205Z -- Found host-tools: zephyr 0.17.0 (/opt/nordic/ncs/toolchains/0c0f19d91c/opt/zephyr-sdk)
+2026-11-17T21:34:58.207Z -- Found toolchain: zephyr 0.17.0 (/opt/nordic/ncs/toolchains/0c0f19d91c/opt/zephyr-sdk)
+2026-11-17T21:34:58.235Z -- Found Dtc: /opt/nordic/ncs/toolchains/0c0f19d91c/bin/dtc (found suitable version "1.6.1", minimum required is "1.4.6")
+2026-11-17T21:34:58.236Z -- Found BOARD.dts: /opt/nordic/ncs/v3.3.1/zephyr/boards/nordic/nrf54lm20dk/nrf54lm20dk_nrf54lm20b_cpuapp.dts
+2026-11-17T21:34:58.236Z -- Found devicetree overlay: /Users/shreybae/Documents/iLAB/nRF_SDK/15_3micBF/boards/nrf54lm20dk_nrf54lm20b_cpuapp.overlay
+2026-11-17T21:34:58.791Z -- Generated zephyr.dts: /Users/shreybae/Documents/iLAB/nRF_SDK/15_3micBF/build/15_3micBF/zephyr/zephyr.dts
+2026-11-17T21:34:58.791Z -- Generated pickled edt: /Users/shreybae/Documents/iLAB/nRF_SDK/15_3micBF/build/15_3micBF/zephyr/edt.pickle
+2026-11-17T21:34:58.859Z -- Generated devicetree_generated.h: /Users/shreybae/Documents/iLAB/nRF_SDK/15_3micBF/build/15_3micBF/zephyr/include/generated/zephyr/devicetree_generated.h
+2026-11-17T21:35:00.118Z Parsing /Users/shreybae/Documents/iLAB/nRF_SDK/15_3micBF/Kconfig
+2026-11-17T21:35:00.119Z Loaded configuration '/opt/nordic/ncs/v3.3.1/zephyr/boards/nordic/nrf54lm20dk/nrf54lm20dk_nrf54lm20b_cpuapp_defconfig'
+2026-11-17T21:35:00.119Z Merged configuration '/Users/shreybae/Documents/iLAB/nRF_SDK/15_3micBF/prj.conf'
+2026-11-17T21:35:00.119Z Merged configuration '/Users/shreybae/Documents/iLAB/nRF_SDK/15_3micBF/build/15_3micBF/zephyr/misc/generated/extra_kconfig_options.conf'
+2026-11-17T21:35:00.119Z Merged configuration '/Users/shreybae/Documents/iLAB/nRF_SDK/15_3micBF/build/15_3micBF/zephyr/.config.sysbuild'
+2026-11-17T21:35:00.213Z -- Configuring incomplete, errors occurred!
+2026-11-17T21:35:00.216Z -- Configuring incomplete, errors occurred!

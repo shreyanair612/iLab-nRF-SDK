@@ -9,6 +9,7 @@
 #                                      the hands-free test loop (tools/autotest.py)
 #   tools/rig.sh analyze <run_dir>     re-analyse one recording
 #   tools/rig.sh report <session_dir>  rebuild a session's comparison report
+#   tools/rig.sh verdict <session>...  PASS/FAIL per claim of TEST_PLAN.md, with 95% CIs
 #   tools/rig.sh simulate              exercise the host pipeline without hardware
 set -euo pipefail
 
@@ -42,6 +43,7 @@ case "${1:-}" in
   test)      shift; python3 "$PROJECT/tools/autotest.py" "$@" ;;
   analyze)   shift; python3 "$PROJECT/tools/analyze_run.py" "$@" ;;
   report)    shift; python3 "$PROJECT/tools/session_report.py" "$@" ;;
+  verdict)   shift; python3 "$PROJECT/tools/verdict.py" "$@" ;;
   simulate)  shift; python3 "$PROJECT/tools/autotest.py" --simulate --session sim --no-voice "$@" ;;
-  *) sed -n '2,13p' "$0"; exit 1 ;;
+  *) sed -n '2,14p' "$0"; exit 1 ;;
 esac

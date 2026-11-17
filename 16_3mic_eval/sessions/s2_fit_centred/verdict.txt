@@ -1,0 +1,6 @@
+Claim 3 - per-wearer fit (centred)
+  [ PASS ] finds centre (lr_lag == 0)                       2/2 = 100%  need >= 90%
+  [ PASS ] centre delay == 1                                2/2 = 100%  need >= 80%
+  [ PASS ] R gain trim within +-1.0 dB                      max |trim| 0.02 dB
+  [ PASS ] fit neutral: snr(das_auto) - snr(das) >= -0.3    mean -0.01  95% CI [-0.01, -0.01]  n=2  need CI low >= -0.30
+  [ PASS ] fits attempted                                   2 valid of 2

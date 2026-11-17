@@ -1,0 +1,7 @@
+Claim 4 - the canceller never harms the wearer
+  [ FAIL ] gsc_nlms: speech preserved (corr with das >= 0.98) in every run min 0.9792 over 2 runs
+  [ PASS ] gsc_nlms: no SNR loss, snr - snr(das) >= -0.5    mean +4.13  95% CI [+4.07, +4.19]  n=2  need CI low >= -0.50
+  [ PASS ] gsc_nlms: no clipping                            0 clipped samples
+  [ FAIL ] gsc_auto: speech preserved (corr with das >= 0.98) in every run min 0.9741 over 2 runs
+  [ PASS ] gsc_auto: no SNR loss, snr - snr(das) >= -0.5    mean +4.09  95% CI [+4.03, +4.15]  n=2  need CI low >= -0.50
+  [ PASS ] gsc_auto: no clipping                            0 clipped samples

@@ -11,12 +11,14 @@ raw_left / raw_center / raw_right   the microphones as captured
 lr_mix          (L + R) / 2                       the 2-mic prototype of 13_finalProto
 das             delay-and-sum of all three, same integer arithmetic as the firmware
 das_<name>      the same with another delay set (see DAS_VARIANTS)
+das_auto        delays fitted from the wearer's speech (mirrors beamform_cal.c)
+gsc_auto        das_auto + canceller with the fitted R gain trim: the shipping configuration
 diff_lr         (L - R) / 2                       first-order dipole along the frame:
                                                   a NULL at broadside, so this is the
                                                   "everything except the wearer" reference
 gsc             das minus the part of it predictable from diff_lr (offline Wiener fit):
-                an upper bound on what a generalized-sidelobe-canceller / adaptive
-                null-steering stage could add on this hardware
+                an upper bound on what an adaptive null-steering stage could add
+gsc_nlms        the deployable version: causal, gated NLMS, mirrors beamform_gsc.c
 
 Measurements
 ------------
@@ -120,8 +122,86 @@ def wiener_cancel(primary: np.ndarray, reference: np.ndarray, taps: int = 16) ->
     return np.clip(y * 32768.0, -32768, 32767).astype(np.int16)
 
 
+def gsc_nlms(primary: np.ndarray, left: np.ndarray, right: np.ndarray, taps: int = 16,
+             mu: float = 0.05, gate_ratio_db: float = -6.0, gain_l: float = 1.0, gain_r: float = 1.0,
+             w_max: float = 2.0, frame: int = 256) -> np.ndarray:
+    """Causal, sample-by-sample NLMS sidelobe canceller: the same arithmetic as
+    beamform_gsc.c in 15_3micBF (float), so what the rig scores is what the
+    device would run.
+
+      r[n] = (gL*L[n] - gR*R[n]) / 2        target-free reference (mouth is symmetric)
+      e[n] = y[n] - w . r[n-15..n]           output
+      w   += mu * e[n] * r_vec / (|r_vec|^2 + eps)   only while the gate is open
+
+    The gate opens for a frame when the reference power is within
+    `gate_ratio_db` of the primary power (an interferer is present); during the
+    wearer's own speech the reference is small and the weights freeze, so a
+    slight misalignment cannot turn into speech cancellation. |w| is capped.
+    """
+    n = min(len(primary), len(left), len(right))
+    y = to_float(primary[:n])
+    r = (gain_l * to_float(left[:n]) - gain_r * to_float(right[:n])) * 0.5
+    w = np.zeros(taps)
+    hist = np.zeros(taps)
+    out = np.zeros(n)
+    eps = 1e-6
+    gate_ratio = 10 ** (gate_ratio_db / 10)
+    for f0 in range(0, n, frame):
+        f1 = min(n, f0 + frame)
+        py = float(np.mean(y[f0:f1] ** 2)) + eps
+        pr = float(np.mean(r[f0:f1] ** 2)) + eps
+        adapt = pr > gate_ratio * py
+        for i in range(f0, f1):
+            hist = np.roll(hist, 1)
+            hist[0] = r[i]
+            e = y[i] - float(np.dot(w, hist))
+            out[i] = e
+            if adapt:
+                w += mu * e * hist / (float(np.dot(hist, hist)) + eps)
+        norm = float(np.linalg.norm(w))
+        if norm > w_max:
+            w *= w_max / norm
+    return np.clip(out * 32768.0, -32768, 32767).astype(np.int16)
+
+
+def estimate_alignment(left: np.ndarray, center: np.ndarray, right: np.ndarray,
+                       speech_segs: Optional[List[Tuple[int, int]]] = None, max_lag: int = 2,
+                       center_prior: int = 1, margin: float = 0.05) -> Dict[str, float]:
+    """Mirror of 15_3micBF/src/beamform_cal.c: integer L/R lag, centre lag and
+    R gain trim from the wearer's own speech (the frames given, or the whole
+    recording). Returns delays in the firmware's convention (samples to hold
+    each mic back) plus the raw numbers."""
+    segs = speech_segs or [(0, min(len(left), len(center), len(right)))]
+    L = np.concatenate([left[a:b].astype(np.int64) for a, b in segs])
+    C = np.concatenate([center[a:b].astype(np.int64) for a, b in segs])
+    R = np.concatenate([right[a:b].astype(np.int64) for a, b in segs])
+    n = len(L)
+    if n < 4 * max_lag + 16:
+        return {"valid": False}
+    sl = slice(max_lag, n - max_lag)
+    r_lr = {k: int(np.dot(L[sl], R[max_lag + k: n - max_lag + k])) for k in range(-max_lag, max_lag + 1)}
+    c_lag = {k: int(np.dot(C[max_lag - k: n - max_lag - k], L[sl] + R[sl])) for k in range(0, max_lag + 1)}
+    e_l = float(np.dot(L[sl], L[sl]))
+    e_r = float(np.dot(R[sl], R[sl]))
+    # The prior (lag 0 for L/R, `center_prior` for C) only loses to a lag that
+    # beats it by `margin`, as in the firmware.
+    best = max(r_lr, key=r_lr.get)
+    if best != 0 and not r_lr[best] > r_lr[0] * (1 + margin):
+        best = 0
+    coh = r_lr[best] / math.sqrt(e_l * e_r) if e_l > 0 and e_r > 0 else 0.0
+    bc = max(c_lag, key=c_lag.get)
+    if bc != center_prior and not c_lag[bc] > c_lag[center_prior] * (1 + margin):
+        bc = center_prior
+    g = math.sqrt(e_l / e_r) if e_r > 0 else 1.0
+    g = min(1.413, max(0.708, g))
+    return {"valid": coh >= 0.5, "lr_lag": best, "coherence": round(coh, 3),
+            "delay_left": max(best, 0), "delay_right": max(-best, 0), "delay_center": bc,
+            "gain_right": round(g, 4)}
+
+
 def build_paths(left: np.ndarray, center: np.ndarray, right: np.ndarray,
-                device_bf: Optional[np.ndarray] = None) -> Dict[str, np.ndarray]:
+                device_bf: Optional[np.ndarray] = None,
+                speech_segs: Optional[List[Tuple[int, int]]] = None) -> Dict[str, np.ndarray]:
     n = min(len(left), len(center), len(right))
     L, C, R = left[:n], center[:n], right[:n]
     paths: Dict[str, np.ndarray] = {
@@ -130,8 +210,16 @@ def build_paths(left: np.ndarray, center: np.ndarray, right: np.ndarray,
     }
     for name, d in DAS_VARIANTS.items():
         paths[name] = delay_and_sum_int((L, C, R), d)
+    # Per-wearer fit, as the firmware does it after a wake word: delays from the
+    # speech itself, R gain trim into the canceller reference.
+    fit = estimate_alignment(L, C, R, speech_segs)
+    if fit.get("valid"):
+        d = (fit["delay_left"], fit["delay_center"], fit["delay_right"])
+        paths["das_auto"] = delay_and_sum_int((L, C, R), d)
+        paths["gsc_auto"] = gsc_nlms(paths["das_auto"], L, R, gain_r=fit["gain_right"])
     paths["diff_lr"] = dipole_int(L, R)
-    paths["gsc"] = wiener_cancel(paths["das"], paths["diff_lr"])
+    paths["gsc"] = wiener_cancel(paths["das"], paths["diff_lr"])          # offline upper bound
+    paths["gsc_nlms"] = gsc_nlms(paths["das"], L, R)                        # what the device can run
     if device_bf is not None and len(device_bf) >= n:
         paths["bf_device"] = device_bf[:n]
     return paths

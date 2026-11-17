@@ -86,13 +86,15 @@ config APP_BF_DELAY_LEFT
 config APP_BF_DELAY_CENTER
 	int "Steering delay applied to the center mic (samples)"
 	range 0 15
-	default 0
+	default 1
 	help
-	  For a near-field source on the centre line (the wearer's mouth),
-	  the center mic is closer than left/right by
-	  sqrt(D^2 + d^2) - D, where D is mouth-to-center distance and d is
-	  the mic spacing. Divide by 21.4 mm to get samples at 16 kHz and
-	  set that here to time-align the center mic with left/right.
+	  The wearer's mouth is near-field and on the centre line, so the
+	  center mic hears it before left/right by sqrt(D^2 + d^2) - D (D =
+	  mouth-to-bridge drop, d = half the L-R spacing). For every plausible
+	  frame (D 100-140 mm, d 60-80 mm) that is 0.6-1.3 samples at 16 kHz,
+	  so holding the center back 1 sample leaves at most 0.4 samples of
+	  error (< 0.4 dB at 4 kHz, < 0.02 dB speech-weighted). Set 0 only to
+	  measure a far-field source on the rig.
 
 config APP_BF_DELAY_RIGHT
 	int "Steering delay applied to the right mic (samples)"
@@ -106,6 +108,117 @@ config APP_BF_MIC_DEBUG
 	  Logs the peak of each mic and of the beam output about once per
 	  second. Use during bring-up to confirm all three mics are alive and
 	  in the expected slots.
+
+config APP_BF_CAL
+	bool "Re-fit the array alignment to the wearer after each wake word"
+	default y
+	help
+	  Right after a wake-word detection the next second of loud audio is
+	  the wearer. The beamformer uses it to measure the left/right timing
+	  and gain and the centre-mic lead for this wearer and this fit of the
+	  frame, and applies them as the steering delays and the L-R gain trim.
+	  About 10 multiply-adds per sample for ~0.6 s per wake word, nothing
+	  in between.
+
+if APP_BF_CAL
+
+config APP_BF_CAL_FRAMES
+	int "Voiced 16 ms frames to accumulate before fitting"
+	range 10 200
+	default 40
+
+config APP_BF_CAL_MAX_LAG
+	int "Largest left/right or centre lag considered (samples)"
+	range 1 4
+	default 2
+	help
+	  2 samples is 43 mm of path difference, more than any crooked frame.
+
+config APP_BF_CAL_MIN_RMS
+	int "Frame RMS (int16 scale) below which a frame is not the wearer"
+	default 300
+
+config APP_BF_CAL_MARGIN_PERCENT
+	int "How much another lag must beat the prior by to replace it (%)"
+	range 0 50
+	default 5
+	help
+	  The prior is lag 0 for left/right (symmetric mount) and
+	  APP_BF_DELAY_CENTER for the centre mic. Keeps one-sided background
+	  sound from dragging the fit off a centred wearer.
+
+config APP_BF_CAL_MIN_COHERENCE_X100
+	int "Minimum L/R correlation (x100) for a fit to be applied"
+	range 0 100
+	default 50
+	help
+	  A low value means the two mics did not hear the same thing (noise,
+	  someone else talking); the previous alignment is kept.
+
+endif
+
+config APP_BF_GSC
+	bool "Adaptive sidelobe canceller after the delay-and-sum"
+	default n
+	help
+	  Subtracts, from the beamformer output, the part that a short adaptive
+	  filter can predict from the left-minus-right reference. The reference
+	  contains no wearer voice (the mouth is equidistant from L and R), so
+	  the filter can only learn to remove side noise. Adds about 35
+	  multiply-adds per sample. Leave off until the two-speaker rig test
+	  (16_3mic_eval) shows it wins; see BEAMFORMING_NOTES.md there.
+
+if APP_BF_GSC
+
+config APP_GSC_TAPS
+	int "Canceller filter length (samples, power of two)"
+	range 4 64
+	default 16
+
+config APP_GSC_MU_X1000
+	int "NLMS step size x1000"
+	range 1 1000
+	default 50
+	help
+	  0.05 converges in a few hundred ms and is stable for a 16-tap filter.
+
+config APP_GSC_GATE_DB
+	int "Adapt only when reference power exceeds primary power minus this (dB)"
+	range -40 20
+	default 6
+	help
+	  The gate opens when P(L-R) > P(y) * 10^(-this/10). During the wearer's
+	  speech L-R is 15-25 dB below y, so 6 keeps the weights frozen then,
+	  while a talker at the side raises L-R to within a few dB of y.
+
+config APP_GSC_W_MAX_X100
+	int "Cap on the filter weight norm x100"
+	range 10 1000
+	default 200
+
+config APP_GSC_ADAPT_EVERY_N_FRAMES
+	int "Update the weights only every Nth frame (power duty cycle)"
+	range 1 16
+	default 1
+	help
+	  The filter always runs; only the weight update is skipped. 4 cuts the
+	  canceller's cost by roughly half at the price of slower convergence.
+
+config APP_GSC_GAIN_LEFT_Q15
+	int "Left mic gain trim for the reference, Q15"
+	range 16384 65535
+	default 32768
+	help
+	  Calibrate so pink noise played at 0 degrees gives the same RMS on L and
+	  R (16_3mic_eval reports the per-mic levels). Mismatch leaks wearer
+	  voice into the reference.
+
+config APP_GSC_GAIN_RIGHT_Q15
+	int "Right mic gain trim for the reference, Q15"
+	range 16384 65535
+	default 32768
+
+endif
 
 endmenu
 

@@ -1,0 +1,27 @@
+name,kind,start_s,end_s,text
+silence_1,silence,0.000,1.000,
+noise,noise,1.000,4.000,pink noise
+silence_2,silence,4.000,5.000,
+speech_1,speech,5.000,5.660,hey_vision_01.wav
+gap_1,silence,5.660,6.360,
+speech_2,speech,6.360,7.000,hey_vision_02.wav
+gap_2,silence,7.000,7.700,
+speech_3,speech,7.700,8.370,hey_vision_03.wav
+gap_3,silence,8.370,9.070,
+silence_i,silence,9.070,9.570,
+interf_1,interf,9.570,10.210,not_hey_vision_01.wav
+igap_1,silence,10.210,10.910,
+interf_2,interf,10.910,11.640,not_hey_vision_02.wav
+igap_2,silence,11.640,12.340,
+interf_3,interf,12.340,13.180,not_hey_vision_03.wav
+igap_3,silence,13.180,13.880,
+silence_b,silence,13.880,14.380,
+both_1,both,14.380,15.040,hey_vision_01.wav
+bgap_1,silence,15.040,15.740,
+both_2,both,15.740,16.380,hey_vision_02.wav
+bgap_2,silence,16.380,17.080,
+both_3,both,17.080,17.750,hey_vision_03.wav
+bgap_3,silence,17.750,18.450,
+silence_3,silence,18.450,18.750,
+sweep,sweep,18.750,22.750,log sweep 200 Hz - 7 kHz
+silence_4,silence,22.750,23.750,

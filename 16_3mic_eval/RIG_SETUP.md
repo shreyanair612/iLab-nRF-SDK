@@ -123,6 +123,24 @@ Useful options:
 
 Ctrl+C stops the loop; everything recorded so far is already saved and analysed.
 
+## 7b. The two-speaker test (for the adaptive canceller)
+
+A single speaker on the turntable shows each path's *pattern* but cannot show
+*cancellation*: the canceller needs the wearer and an interferer at the same
+time. Once per session:
+
+1. Speech speaker at 0°, 60 cm (or at the mouth position, 12 cm below and in
+   front of the bridge, which is the case that matters).
+2. Noise speaker at 90°, 60 cm, playing a second person talking (a podcast is
+   fine) at the same 65 dB, on loop, from a phone.
+3. `tools/rig.sh test --session day1_twospk --angles 0 --repeat 3 --env two_speaker`
+
+In `session_report.html` compare `snr_front` for `das` and `gsc_nlms`: the
+canceller should be several dB higher. If it is *lower*, it is cancelling the
+wearer: raise `CONFIG_APP_GSC_GATE_DB`, and check the L/R gain trims against the
+per-mic levels in `analysis.json` (`raw_left` and `raw_right` `noise_level_dbfs`
+should match within 0.5 dB at 0°).
+
 ## 8. Read the results
 
 `open sessions/day1_quiet/session_report.html`

@@ -114,30 +114,41 @@ def save_recording(run_dir: str, rec, config: dict, extra: dict) -> dict:
 # ------------------------------------------------------------------ simulation
 
 class FakeRecording:
-    """Stands in for device_link.Recording when there is no hardware."""
+    """Stands in for device_link.Recording when there is no hardware.
+
+    Mono clip: one source at `angle` (far-field). Stereo clip: left channel is
+    the wearer straight ahead (near-field, centre mic ~1 sample early), right
+    channel is the interferer at `angle`."""
 
     def __init__(self, clip: np.ndarray, angle: int, spacing_m: float, seed: int):
         rng = np.random.default_rng(seed)
         pre = int(0.8 * RATE)
         post = int(1.0 * RATE)
+        stereo = clip.ndim == 2
         n = pre + len(clip) + post
-        # far-field: the right mic hears a source at +angle earlier
-        tau = spacing_m / 2 * np.sin(np.radians(angle)) / 343.0 * RATE   # samples, half spacing
-        mics = {}
-        for name, k in (("raw_left", -1.0), ("raw_center", 0.0), ("raw_right", 1.0)):
-            d = k * tau
-            x = np.zeros(n)
-            src = clip * 0.5
-            # fractional delay via FFT phase shift
-            spec = np.fft.rfft(src, len(src) * 2)
-            f = np.fft.rfftfreq(len(src) * 2, 1.0)
-            shifted = np.fft.irfft(spec * np.exp(-2j * np.pi * f * (-d)), len(src) * 2)[: len(src)]
-            x[pre: pre + len(src)] += shifted
-            # independent self-noise plus a diffuse interferer from the left
-            x += rng.standard_normal(n) * 0.002
-            mics[name] = x
-        # a weak, steady interferer from about -40 degrees (right mic hears it last)
-        side = rng.standard_normal(n) * 0.004
+        mics = {name: rng.standard_normal(n) * 0.002 for name in ("raw_left", "raw_center", "raw_right")}
+
+        def place(src: np.ndarray, delays: dict, level: float):
+            for name, d in delays.items():
+                spec = np.fft.rfft(src, len(src) * 2)
+                f = np.fft.rfftfreq(len(src) * 2, 1.0)
+                shifted = np.fft.irfft(spec * np.exp(2j * np.pi * f * d), len(src) * 2)[: len(src)]
+                mics[name][pre: pre + len(src)] += shifted * level
+
+        tau = spacing_m / 2 * np.sin(np.radians(angle)) / 343.0 * RATE   # half-spacing, samples
+        far = {"raw_left": -tau, "raw_center": 0.0, "raw_right": tau}
+        if stereo:
+            near = {"raw_left": -0.9, "raw_center": 0.0, "raw_right": -0.9}   # sides hear the mouth late
+            place(clip[:, 0], near, 0.5)
+            place(clip[:, 1], far, 0.35)
+        else:
+            place(clip, far, 0.5)
+        # a weak, steady background from about -40 degrees
+        side = rng.standard_normal(n)
+        kern = np.hanning(9)
+        side = np.convolve(side, kern / kern.sum(), mode="same")
+        env = 0.5 + 0.5 * np.abs(np.sin(np.arange(n) / RATE * 2 * np.pi * 1.3))
+        side *= env * 0.015 / (np.std(side) + 1e-9)
         for name, k in (("raw_left", 0), ("raw_center", 2), ("raw_right", 4)):
             mics[name] += np.roll(side, k)
         self.streams = {}
@@ -170,6 +181,7 @@ def main():
     ap.add_argument("--spacing-mm", type=float, default=140.0, help="left-to-right mic spacing")
     ap.add_argument("--delays", default="0,0,0", help="device beamformer delays left,center,right")
     ap.add_argument("--repeat", type=int, default=1)
+    ap.add_argument("--shuffle", action="store_true", help="randomise the angle order within each repeat")
     ap.add_argument("--advance", choices=["button", "auto"], default="button",
                     help="button: wait for BTN1 on the DK; auto: count down and start by itself")
     ap.add_argument("--auto-seconds", type=int, default=15)
@@ -191,7 +203,13 @@ def main():
     os.makedirs(runs_root, exist_ok=True)
     clip_len = clip_duration_s(args.clip)
     duration = int(np.ceil(clip_len + args.margin + 1.0))
-    plan = [(rep, a) for rep in range(args.repeat) for a in angles]
+    plan = []
+    for rep in range(args.repeat):
+        order = list(angles)
+        if args.shuffle:
+            import random
+            random.Random(rep * 1000 + len(angles)).shuffle(order)
+        plan += [(rep, a) for a in order]
 
     print(f"session {session_dir}\nclip {args.clip} ({clip_len:.1f} s), run duration {duration} s, "
           f"{len(plan)} tests: angles {angles} x{args.repeat}, {args.distance} cm, env {args.env}")
@@ -208,8 +226,9 @@ def main():
         link.command(f"set_duration {duration}")
         link.command(f"set_delay {delays[0]} {delays[1]} {delays[2]}")
     else:
-        clip_pcm, _, _ = read_wav(args.clip)
+        clip_pcm, _, clip_ch = read_wav(args.clip)
         clip_x = np.frombuffer(clip_pcm, dtype="<i2").astype(np.float64) / 32768.0
+        clip_x = clip_x.reshape(-1, clip_ch) if clip_ch > 1 else clip_x
 
     say(f"{len(plan)} tests. Starting.", voice)
     done = 0

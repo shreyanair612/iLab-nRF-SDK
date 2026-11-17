@@ -118,6 +118,83 @@ the same rig: flat on-axis response ±2 dB after EQ, null depth > 15 dB at 500 H
 and 1 kHz, and the silence floor (the WNG penalty) against the room floor you care
 about.
 
+## 5. Decision and what was implemented (27 Oct 2026)
+
+### Cost analysis
+
+Loss in the 3-mic sum from the centre mic leading by τ samples, weighted by
+the long-term average speech spectrum *(calc)*:
+
+| centre lead τ | loss at 4 kHz | speech-weighted loss |
+|---|---|---|
+| 0.9 (no delay, nominal frame) | 2.0 dB | 0.06 dB |
+| 0.1 (integer delay 1) | 0.02 dB | 0.001 dB |
+| 0.4 (integer delay 1, worst plausible frame) | 0.4 dB | 0.01 dB |
+| 1.3 (no delay, wide frame) | 4.5 dB | 0.12 dB |
+
+Over every plausible frame (mouth drop 100–140 mm, half-spacing 60–80 mm) the
+centre lead is 0.57–1.31 samples, so an integer delay of 1 is within 0.43
+samples everywhere: at most 0.012 dB speech-weighted.
+
+Compute at 16 kHz on the M33 (≈2.2 cycles per multiply-add, ≈47 µA/MHz):
+
+| option | MAC/sample | % of 128 MHz | ≈ current | speech benefit |
+|---|---|---|---|---|
+| DAS + integer centre delay | 3 | 0.1 % | 5 µA | baseline |
+| + fractional 8-tap delay | +8 | 0.3 % | +18 µA | +0.001 dB |
+| + continuous self-alignment search | +13 | 0.7 % | +40 µA | ≤ +0.01 dB |
+| + band-split biquad | +5 | 0.2 % | +13 µA | pattern only; canceller covers it |
+| + adaptive canceller (GSC, 16 taps) | +32 | 1.0 % | +58 µA | +4 dB SNR in sim, 5–15 dB in literature |
+| + per-wearer fit after each wake word | ~10 for 0.6 s per wake word | ~0 | ~0 | robustness, see below |
+
+The three ICS-52000 mics draw on the order of 1 mA each; the wake-word NPU and
+BLE are larger still. DSP is not where the power goes, so the choice is made on
+benefit and risk, not microamps.
+
+### Decision
+
+1. **Delay-and-sum with the centre mic held back 1 sample** (`CONFIG_APP_BF_DELAY_CENTER=1`,
+   now the default). Free; captures 99 % of the alignment benefit for every frame.
+2. **Adaptive sidelobe canceller** (`CONFIG_APP_BF_GSC`): the only option that adds
+   rejection where speech energy is (below 1 kHz). Off by default until the
+   two-speaker rig test shows it does not touch the wearer's voice.
+3. **Per-wearer fit after each wake word** (`CONFIG_APP_BF_CAL`, default on). The
+   wake word proves the next second of loud audio is the wearer, so the beamformer
+   measures, from that audio, the three numbers that vary between wearers and fits
+   of the frame: which of L/R to hold back and by how much (crooked frame, ±2
+   samples), the centre lead (face shape), and the R gain trim that makes `L − R`
+   cancel the wearer. The symmetric-mount prior (lag 0, centre 1) is kept unless
+   another lag beats it by 5 %, and a fit with L/R coherence below 0.5 is
+   discarded. Costs ~10 MAC/sample for ~0.6 s per wake word, nothing in between.
+4. **Rejected:** fractional delay and continuous self-alignment (≤ 0.01 dB for
+   58 µA and two more things to tune), band-split (redundant with the canceller's
+   1 ms of taps, which cover the 0.41 ms maximum L–R delay).
+
+Total shipping cost ≈ 35 MAC/sample, about 1 % of the core.
+
+### Verification so far
+
+- Host `gsc_nlms` and firmware `beamform_gsc.c`: < 8 LSB difference, correlation
+  0.999999 on a 17 s recording.
+- Host `estimate_alignment` and firmware `beamform_cal.c`: identical lag, delay
+  and gain decisions on three simulated recordings (0°, 30°, 90°).
+- Simulation with a side interferer: speech SNR at 0° 13.8 dB (`das`) → 17.9 dB
+  (`gsc_nlms`) / 17.9 dB (`gsc_auto`), against an offline optimum of 18.2 dB.
+
+Note on the rig: `das_auto` / `gsc_auto` fit to whatever speech is in the
+recording, so in an angle sweep they *steer toward the speaker* — judge them
+only on the mouth-position and two-speaker tests, where the speech is where the
+wearer's mouth is.
+
+What would change the decision: `gsc_nlms` or `gsc_auto` scoring a lower
+`snr_front` than `das` on the two-speaker test (gate or trims wrong), or the
+wearer fit logging coherence < 0.5 on real wake words (raise
+`CONFIG_APP_BF_CAL_FRAMES` or `CONFIG_APP_BF_CAL_MIN_RMS`).
+
+Second reference for later: `(L + R)/2 − C'` is also voice-free once the centre
+is aligned, and sees front/back and up/down differences that `L − R` cannot.
+Add it only if the rig shows noise from behind the head getting through.
+
 ## Sources
 
 - Elko, "Superdirectional Microphone Arrays", in *Acoustic Signal Processing for Telecommunication* (Springer 2000) — https://link.springer.com/chapter/10.1007/978-1-4419-8644-3_10

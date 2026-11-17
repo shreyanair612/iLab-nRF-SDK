@@ -40,8 +40,8 @@ import numpy as np
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import dsp_paths as dsp  # noqa: E402
 
-RANK_PATHS = ["raw_center", "raw_left", "raw_right", "lr_mix", "das", "das_c1", "das_c2", "gsc", "diff_lr", "bf_device"]
-PLOT_PATHS = ["raw_center", "lr_mix", "das", "das_c1", "gsc", "diff_lr"]
+RANK_PATHS = ["raw_center", "raw_left", "raw_right", "lr_mix", "das", "das_c1", "das_c2", "das_auto", "gsc_nlms", "gsc_auto", "gsc", "diff_lr", "bf_device"]
+PLOT_PATHS = ["raw_center", "lr_mix", "das", "das_auto", "gsc_nlms", "gsc_auto", "gsc", "diff_lr"]
 
 
 def load_runs(session_dir: str) -> List[dict]:

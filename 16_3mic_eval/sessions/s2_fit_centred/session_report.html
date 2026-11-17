@@ -1,0 +1,32 @@
+<!doctype html><meta charset=utf-8><style>body{font-family:-apple-system,Helvetica,sans-serif;margin:24px}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:3px 8px;font-size:13px}.warn{color:#a33}.best{font-size:1.1em}</style><h1>s2_fit_centred</h1>
+<p>2 tests. Angles: [0]. Distances: [60]. Environments: ['quiet'].</p>
+<p class=best>Best so far: <b>raw_center</b> (score None). See the scoring notes at the bottom.</p>
+<table><tr><th>path</th><th>score</th><th>side_rejection</th><th>di_estimate</th><th>snr_front</th><th>snr_side_mean</th><th>front_level</th><th>angles</th></tr>
+<tr><td>raw_center</td><td></td><td></td><td></td><td>12.07</td><td></td><td>-27.55</td><td>1</td></tr>
+<tr><td>raw_left</td><td></td><td></td><td></td><td>12.07</td><td></td><td>-27.55</td><td>1</td></tr>
+<tr><td>raw_right</td><td></td><td></td><td></td><td>12.06</td><td></td><td>-27.55</td><td>1</td></tr>
+<tr><td>lr_mix</td><td></td><td></td><td></td><td>14.29</td><td></td><td>-27.72</td><td>1</td></tr>
+<tr><td>das</td><td></td><td></td><td></td><td>13.81</td><td></td><td>-27.7</td><td>1</td></tr>
+<tr><td>das_c1</td><td></td><td></td><td></td><td>13.8</td><td></td><td>-27.99</td><td>1</td></tr>
+<tr><td>das_c2</td><td></td><td></td><td></td><td>13.85</td><td></td><td>-28.15</td><td>1</td></tr>
+<tr><td>das_auto</td><td></td><td></td><td></td><td>13.8</td><td></td><td>-27.99</td><td>1</td></tr>
+<tr><td>gsc_nlms</td><td></td><td></td><td></td><td>17.94</td><td></td><td>-27.81</td><td>1</td></tr>
+<tr><td>gsc_auto</td><td></td><td></td><td></td><td>17.9</td><td></td><td>-28.1</td><td>1</td></tr>
+<tr><td>gsc</td><td></td><td></td><td></td><td>18.23</td><td></td><td>-27.88</td><td>1</td></tr>
+<tr><td>diff_lr</td><td></td><td></td><td></td><td>0.9</td><td></td><td>-41.78</td><td>1</td></tr>
+</table>
+<h2>angle_check.png</h2><img src='angle_check.png' style='max-width:100%'>
+<h2>tests</h2><table><tr><th>run</th><th>angle</th><th>dist</th><th>env</th><th>heard at</th><th>warnings</th></tr>
+<tr><td><a href='runs/2026-10-27_132741_angle000_distance060cm_quiet_rep1/report.html'>2026-10-27_132741_angle000_distance060cm_quiet_rep1</a></td><td>0</td><td>60</td><td>quiet</td><td>+0°</td><td class=warn></td></tr>
+<tr><td><a href='runs/2026-10-27_132749_angle000_distance060cm_quiet_rep2/report.html'>2026-10-27_132749_angle000_distance060cm_quiet_rep2</a></td><td>0</td><td>60</td><td>quiet</td><td>+0°</td><td class=warn></td></tr>
+</table>
+<h2>how to read the scores</h2><pre> (all dB, computed on the same recordings):
+    front_level      noise level at 0°
+    side_rejection   front level minus the mean level at |angle| &gt;= 45°   (higher is better)
+    di_estimate      directivity index from the polar                      (higher is better)
+    snr_front        speech SNR at 0°                                        (higher is better)
+    snr_side_mean    mean speech SNR at |angle| &gt;= 45°                       (LOWER is better:
+                                                                             a talker at the side
+                                                                             should not get through)
+    score            side_rejection + (snr_front - snr_side_mean)
+</pre>

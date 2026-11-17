@@ -79,6 +79,8 @@ tool switches it to binary framing.
 | `das_c1`, `das_c2` | center mic held back 1 / 2 samples (near-field mouth below the bridge) |
 | `diff_lr` | (L−R)/2, a first-order dipole along the frame: a *null* at broadside, so it is the "everything except the wearer" reference |
 | `gsc` | `das` minus what a 16-tap filter can predict from `diff_lr` (offline least squares): an upper bound on an adaptive null-steering stage |
+| `gsc_nlms` | the deployable version: causal, gated NLMS, the same arithmetic as `15_3micBF/src/beamform_gsc.c` |
+| `das_auto`, `gsc_auto` | delays and R gain trim fitted from the speech in the recording, as the firmware does after a wake word (`beamform_cal.c`). They steer toward wherever the speech is, so judge them on the mouth-position and two-speaker tests, not on angle sweeps |
 | `bf_device` | what the device computed live; checked bit-for-bit against the host's `das` |
 
 ### What is measured

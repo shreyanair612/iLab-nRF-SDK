@@ -1,0 +1,89 @@
+{
+  "run_dir": "2026-10-27_132724_angle060_distance060cm_quiet_rep2",
+  "created": "2026-10-27T13:27:24",
+  "config": {
+    "angle_deg": 60,
+    "distance_cm": 60,
+    "environment": "quiet",
+    "label": "quiet_rep2",
+    "clip": "standard.wav",
+    "duration_s": 20,
+    "bf_delays": [
+      0,
+      0,
+      0
+    ],
+    "spacing_mm": 140.0
+  },
+  "device_run_start": {
+    "run_id": 51,
+    "bf": {
+      "delay": [
+        0,
+        0,
+        0
+      ],
+      "gain": [
+        32767,
+        32767,
+        32767
+      ],
+      "out_gain": 32767
+    }
+  },
+  "device_run_end": {
+    "frames": 1095,
+    "frames_lost": 0,
+    "capture_dropped": 0,
+    "tx_audio_dropped": 0,
+    "bf_clips": 0
+  },
+  "audio_files": {
+    "raw_left": {
+      "file": "/Users/shreybae/Documents/iLAB/nRF_SDK/16_3mic_eval/sessions/s1_integrity_sweep/runs/2026-10-27_132724_angle060_distance060cm_quiet_rep2/raw_left.wav",
+      "stream": "raw_left",
+      "sample_rate": 16000,
+      "channels": 1,
+      "samples": 280480,
+      "duration_s": 17.53,
+      "complete": true,
+      "gaps": [],
+      "chunks_received": 1,
+      "chunks_out_of_order": 0,
+      "first_sample_index": 0
+    },
+    "raw_center": {
+      "file": "/Users/shreybae/Documents/iLAB/nRF_SDK/16_3mic_eval/sessions/s1_integrity_sweep/runs/2026-10-27_132724_angle060_distance060cm_quiet_rep2/raw_center.wav",
+      "stream": "raw_center",
+      "sample_rate": 16000,
+      "channels": 1,
+      "samples": 280480,
+      "duration_s": 17.53,
+      "complete": true,
+      "gaps": [],
+      "chunks_received": 1,
+      "chunks_out_of_order": 0,
+      "first_sample_index": 0
+    },
+    "raw_right": {
+      "file": "/Users/shreybae/Documents/iLAB/nRF_SDK/16_3mic_eval/sessions/s1_integrity_sweep/runs/2026-10-27_132724_angle060_distance060cm_quiet_rep2/raw_right.wav",
+      "stream": "raw_right",
+      "sample_rate": 16000,
+      "channels": 1,
+      "samples": 280480,
+      "duration_s": 17.53,
+      "complete": true,
+      "gaps": [],
+      "chunks_received": 1,
+      "chunks_out_of_order": 0,
+      "first_sample_index": 0
+    }
+  },
+  "audio_stats": [],
+  "warnings": [],
+  "host_duration_s": 17.53,
+  "clip_path": "/Users/shreybae/Documents/iLAB/nRF_SDK/16_3mic_eval/clips/standard.wav",
+  "cues_path": "/Users/shreybae/Documents/iLAB/nRF_SDK/16_3mic_eval/clips/standard_cues.csv",
+  "spacing_mm": 140.0,
+  "simulated": true
+}

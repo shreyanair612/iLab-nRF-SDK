@@ -1,0 +1,8 @@
+Claim 1 - capture integrity
+  [ PASS ] no audio lost (frames_lost == 0, no WAV gaps)    0 runs with lost frames, 0 with gaps, of 6
+  [ PASS ] mics hear the rig angle (|err| <= 10 deg, |angle| <= 60) max error 0.5 deg over 6 runs
+  [ PASS ] left/right level match at 0 deg (<= 1.0 dB)      max mismatch 0.01 dB over 2 runs
+  [  n/a ] device beamformer == host reconstruction         no device stream recorded (simulation?)
+Claim 2 - delay-and-sum beats one mic without hurting the wearer
+  [ PASS ] side rejection: das - raw_center > 0 (1-4 kHz)   mean +9.93  95% CI [+9.93, +9.94]  n=2  need CI low >= +0.00
+  [ PASS ] no speech loss at 0 deg: snr(das) - snr(raw_center) >= -0.5 mean +1.75  95% CI [+1.74, +1.77]  n=2  need CI low >= -0.50

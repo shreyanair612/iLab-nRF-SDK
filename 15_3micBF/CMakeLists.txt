@@ -19,3 +19,6 @@ target_sources(app PRIVATE
 )
 
 # NORDIC SDK APP END
+
+target_sources_ifdef(CONFIG_APP_BF_GSC app PRIVATE src/beamform_gsc.c)
+target_sources_ifdef(CONFIG_APP_BF_CAL app PRIVATE src/beamform_cal.c)

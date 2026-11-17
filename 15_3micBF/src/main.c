@@ -250,6 +250,8 @@ static void on_beamformed_chunk(const int16_t *samples, size_t count)
 			LOG_WRN("Wakeword inference failed: %d", err);
 		} else if (ww_detected) {
 			LOG_INF("Wake word detected");
+			/* The wearer is about to speak: re-fit the array to them. */
+			beamform_calibrate();
 			request_listen(START_WAKEWORD);
 			return;
 		}

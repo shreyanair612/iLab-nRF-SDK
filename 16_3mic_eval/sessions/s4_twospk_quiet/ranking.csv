@@ -1,0 +1,13 @@
+path,front_level,side_rejection,di_estimate,snr_front,snr_side_mean,angles,score
+raw_center,,,,,12.08,2,
+raw_left,,,,,12.08,2,
+raw_right,,,,,12.08,2,
+lr_mix,,,,,14.32,2,
+das,,,,,13.78,2,
+das_c1,,,,,13.88,2,
+das_c2,,,,,13.97,2,
+das_auto,,,,,13.88,2,
+gsc_nlms,,,,,17.88,2,
+gsc_auto,,,,,17.96,2,
+gsc,,,,,14.3,2,
+diff_lr,,,,,0.92,2,

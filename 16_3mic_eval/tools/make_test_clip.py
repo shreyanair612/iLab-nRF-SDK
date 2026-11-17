@@ -5,6 +5,13 @@ tells the analyzer what is where.
 
     python3 tools/make_test_clip.py                      # clips/standard.wav + standard_cues.csv
     python3 tools/make_test_clip.py --speech-dir ../14_ww_eval/test_samples/hey_vision --name people
+    python3 tools/make_test_clip.py --speech-dir rec/wearer --interferer-dir rec/other --name twospk
+
+With --interferer-dir the clip is STEREO: left = wearer speaker, right =
+interferer speaker (a 3.5 mm splitter feeds two speakers). Segment kinds are
+then speech (wearer only), interf (interferer only), both, noise (pink on
+both), sweep (wearer) and silence, so the analyzer can measure how much
+interferer each path removes while the wearer is preserved.
 
 Timeline (16 kHz mono, every part normalized to the same loudness):
 
@@ -135,6 +142,7 @@ def main() -> None:
     ap.add_argument("--name", default="standard")
     ap.add_argument("--speech-dir", help="folder of recordings to use as the speech part")
     ap.add_argument("--speech-count", type=int, default=5)
+    ap.add_argument("--interferer-dir", help="second talker's recordings -> stereo two-speaker clip")
     ap.add_argument("--no-sweep", action="store_true")
     ap.add_argument("--out-dir", default=os.path.join(PROJECT, "clips"))
     args = ap.parse_args()
@@ -151,37 +159,74 @@ def main() -> None:
                                     "Hey Vision", "Read this sign", "Hey Vision"][: args.speech_count]):
             speech.append((f"tts_{i + 1}: {phrase}", trim_silence(tts(phrase))))
 
-    parts: list[tuple[str, str, np.ndarray, str]] = [
-        ("silence_1", "silence", silence(1.0), ""),
-        ("noise", "noise", normalize(pink_noise(3.0)), "pink noise"),
-        ("silence_2", "silence", silence(1.0), ""),
+    interf: list[tuple[str, np.ndarray]] = []
+    if args.interferer_dir:
+        files = sorted(f for ext in ("wav", "m4a", "aiff", "mp3") for f in glob.glob(os.path.join(args.interferer_dir, f"*.{ext}")))
+        if not files:
+            sys.exit(f"no audio files in {args.interferer_dir}")
+        for f in files[: args.speech_count]:
+            interf.append((os.path.basename(f), trim_silence(load_any(f))))
+    stereo = bool(interf)
+
+    # (name, kind, left, right, text); mono clips use left only
+    def mono(name, kind, x, text=""):
+        return (name, kind, x, None, text)
+
+    parts = [
+        mono("silence_1", "silence", silence(1.0)),
+        ("noise", "noise", normalize(pink_noise(3.0)), normalize(pink_noise(3.0, seed=11)) if stereo else None, "pink noise"),
+        mono("silence_2", "silence", silence(1.0)),
     ]
     for i, (label, x) in enumerate(speech):
-        parts.append((f"speech_{i + 1}", "speech", normalize(x), label))
-        parts.append((f"gap_{i + 1}", "silence", silence(0.7), ""))
-    parts.append(("silence_3", "silence", silence(0.3), ""))
+        parts.append(mono(f"speech_{i + 1}", "speech", normalize(x), label))
+        parts.append(mono(f"gap_{i + 1}", "silence", silence(0.7)))
+    if stereo:
+        parts.append(mono("silence_i", "silence", silence(0.5)))
+        for i, (label, x) in enumerate(interf):
+            parts.append((f"interf_{i + 1}", "interf", None, normalize(x), label))
+            parts.append(mono(f"igap_{i + 1}", "silence", silence(0.7)))
+        parts.append(mono("silence_b", "silence", silence(0.5)))
+        # both at once: wearer clip over a continuous interferer bed built from the interferer clips
+        bed = np.concatenate([normalize(x) for _, x in interf])
+        for i, (label, x) in enumerate(speech):
+            w = normalize(x)
+            pos = (i * 7919) % max(1, len(bed) - len(w))
+            parts.append((f"both_{i + 1}", "both", w, bed[pos: pos + len(w)] if len(bed) >= len(w) else np.resize(bed, len(w)), label))
+            parts.append(mono(f"bgap_{i + 1}", "silence", silence(0.7)))
+    parts.append(mono("silence_3", "silence", silence(0.3)))
     if not args.no_sweep:
-        parts.append(("sweep", "sweep", normalize(log_sweep(4.0)) , "log sweep 200 Hz - 7 kHz"))
-        parts.append(("silence_4", "silence", silence(1.0), ""))
+        parts.append(mono("sweep", "sweep", normalize(log_sweep(4.0)), "log sweep 200 Hz - 7 kHz"))
+        parts.append(mono("silence_4", "silence", silence(1.0)))
 
     os.makedirs(args.out_dir, exist_ok=True)
     wav_path = os.path.join(args.out_dir, f"{args.name}.wav")
     cue_path = os.path.join(args.out_dir, f"{args.name}_cues.csv")
 
-    audio: list[np.ndarray] = []
+    left_parts: list[np.ndarray] = []
+    right_parts: list[np.ndarray] = []
     t = 0.0
     with open(cue_path, "w", newline="") as f:
         w = csv.writer(f)
         w.writerow(["name", "kind", "start_s", "end_s", "text"])
-        for name, kind, x, text in parts:
-            dur = len(x) / RATE
+        for name, kind, xl, xr, text in parts:
+            n = len(xl) if xl is not None else len(xr)
+            dur = n / RATE
             w.writerow([name, kind, f"{t:.3f}", f"{t + dur:.3f}", text])
-            audio.append(x)
+            left_parts.append(xl if xl is not None else np.zeros(n))
+            right_parts.append((xr if xr is not None else np.zeros(n))[:n] if stereo else np.zeros(0))
             t += dur
-    y = np.concatenate(audio)
-    pcm = np.clip(y * 32767, -32768, 32767).astype("<i2").tobytes()
-    write_wav(wav_path, pcm, RATE, 1)
-    print(f"wrote {wav_path}  ({t:.1f} s, {len(speech)} speech clips)")
+    yl = np.concatenate(left_parts)
+    if stereo:
+        yr = np.concatenate([np.resize(r, len(l)) if len(r) else np.zeros(len(l)) for l, r in zip(left_parts, right_parts)])
+        inter = np.empty(2 * len(yl))
+        inter[0::2] = yl
+        inter[1::2] = yr
+        pcm = np.clip(inter * 32767, -32768, 32767).astype("<i2").tobytes()
+        write_wav(wav_path, pcm, RATE, 2)
+    else:
+        pcm = np.clip(yl * 32767, -32768, 32767).astype("<i2").tobytes()
+        write_wav(wav_path, pcm, RATE, 1)
+    print(f"wrote {wav_path}  ({t:.1f} s, {len(speech)} speech clips{', ' + str(len(interf)) + ' interferer clips, STEREO' if stereo else ''})")
     print(f"wrote {cue_path}")
 
 

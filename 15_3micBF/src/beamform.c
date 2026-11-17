@@ -10,6 +10,12 @@
 #include <zephyr/sys/util.h>
 
 #include "beamform.h"
+#if IS_ENABLED(CONFIG_APP_BF_GSC)
+#include "beamform_gsc.h"
+#endif
+#if IS_ENABLED(CONFIG_APP_BF_CAL)
+#include "beamform_cal.h"
+#endif
 
 LOG_MODULE_REGISTER(beamform, LOG_LEVEL_INF);
 
@@ -91,7 +97,8 @@ static const uint8_t mic_slot[MIC_COUNT] = {
 	[MIC_RIGHT] = SLOT_RIGHT,
 };
 
-static const uint8_t mic_delay[MIC_COUNT] = {
+/* Steering delays. Kconfig defaults; rewritten per wearer by the calibration. */
+static uint8_t mic_delay[MIC_COUNT] = {
 	[MIC_LEFT] = CONFIG_APP_BF_DELAY_LEFT,
 	[MIC_CENTER] = CONFIG_APP_BF_DELAY_CENTER,
 	[MIC_RIGHT] = CONFIG_APP_BF_DELAY_RIGHT,
@@ -107,6 +114,20 @@ static void (*chunk_ready)(const int16_t *samples, size_t count);
  */
 static int32_t delay_line[MIC_COUNT][DELAY_LINE_LEN];
 static uint32_t delay_pos;
+
+#if IS_ENABLED(CONFIG_APP_BF_CAL)
+static struct bf_cal cal;
+static atomic_t cal_requested = ATOMIC_INIT(0);
+static int32_t raw24[MIC_COUNT][BLOCK_FRAMES];
+#endif
+
+#if IS_ENABLED(CONFIG_APP_BF_GSC)
+static struct beamform_gsc gsc;
+/* Frame-sized scratch: the summed beam and the aligned L/R that feed the canceller. */
+static int32_t beam24[BLOCK_FRAMES];
+static int32_t left24[BLOCK_FRAMES];
+static int32_t right24[BLOCK_FRAMES];
+#endif
 
 /*
  * Sign-preserving unpack of the 24-bit payload from its 32-bit TDM slot.
@@ -145,6 +166,39 @@ static inline void delay_and_steer(const int32_t in[MIC_COUNT], int32_t out[MIC_
 	delay_pos = (delay_pos + 1U) & DELAY_LINE_MASK;
 }
 
+#if IS_ENABLED(CONFIG_APP_BF_CAL)
+static void apply_calibration(const struct bf_cal_result *fit)
+{
+	if (!fit->valid) {
+		LOG_WRN("wearer fit rejected: L/R coherence %d%% (lag %d); keeping delays %u/%u/%u",
+			(int)(fit->coherence * 100.0f), fit->lr_lag, mic_delay[MIC_LEFT],
+			mic_delay[MIC_CENTER], mic_delay[MIC_RIGHT]);
+		return;
+	}
+
+	/* Only touched on this thread, so the per-sample loop never sees a half-written set. */
+	mic_delay[MIC_LEFT] = fit->delay_left;
+	mic_delay[MIC_RIGHT] = fit->delay_right;
+	mic_delay[MIC_CENTER] = fit->delay_center;
+
+#if IS_ENABLED(CONFIG_APP_BF_GSC)
+	gsc.gain_r = (CONFIG_APP_GSC_GAIN_RIGHT_Q15 / 32768.0f) * fit->gain_right;
+#endif
+
+	LOG_INF("wearer fit: delays L/C/R = %u/%u/%u, R gain x%d.%02d, coherence %d%%",
+		mic_delay[MIC_LEFT], mic_delay[MIC_CENTER], mic_delay[MIC_RIGHT],
+		(int)fit->gain_right, (int)(fit->gain_right * 100.0f) % 100,
+		(int)(fit->coherence * 100.0f));
+}
+#endif
+
+void beamform_calibrate(void)
+{
+#if IS_ENABLED(CONFIG_APP_BF_CAL)
+	atomic_set(&cal_requested, 1);
+#endif
+}
+
 static void log_mic_peaks(const int32_t peak[MIC_COUNT], int32_t beam_peak)
 {
 	/*
@@ -155,6 +209,9 @@ static void log_mic_peaks(const int32_t peak[MIC_COUNT], int32_t beam_peak)
 	 */
 	LOG_INF("mic peak (24-bit): L=%d C=%d R=%d  beam(int16)=%d",
 		peak[MIC_LEFT], peak[MIC_CENTER], peak[MIC_RIGHT], beam_peak);
+#if IS_ENABLED(CONFIG_APP_BF_GSC)
+	LOG_INF("canceller adapted in %u frames so far", gsc.adapt_frames);
+#endif
 }
 
 static void capture(void *a, void *b, void *c)
@@ -174,6 +231,13 @@ static void capture(void *a, void *b, void *c)
 		atomic_clear(&beamforming_active);
 		return;
 	}
+
+#if IS_ENABLED(CONFIG_APP_BF_GSC)
+	gsc_init(&gsc);
+	LOG_INF("sidelobe canceller on: %d taps, mu %d/1000, gate %d dB, adapt every %d frames",
+		GSC_TAPS, CONFIG_APP_GSC_MU_X1000, CONFIG_APP_GSC_GATE_DB,
+		CONFIG_APP_GSC_ADAPT_EVERY_N_FRAMES);
+#endif
 
 	LOG_INF("capture: %d Hz, %d mics in %d TDM slots, %d-bit slots, %u frames/block (%u ms)",
 		SAMPLE_RATE, MIC_COUNT, CHANNELS, SAMPLE_BIT_WIDTH, (unsigned int)BLOCK_FRAMES,
@@ -213,22 +277,64 @@ static void capture(void *a, void *b, void *c)
 				}
 			}
 
+#if IS_ENABLED(CONFIG_APP_BF_CAL)
+			for (size_t m = 0; m < MIC_COUNT; m++) {
+				raw24[m][i] = mic[m];
+			}
+#endif
+
 			delay_and_steer(mic, aligned);
 
 			/*
 			 * Linear 3-mic delay-and-sum beamformer:
 			 *   y[n] = (L[n - dL] + C[n - dC] + R[n - dR]) / 3
-			 * With all delays 0 this is a broadside beam: sound that
-			 * reaches every mic at the same instant adds coherently,
-			 * off-axis sound arrives out of phase and partly cancels.
+			 * With all delays 0 this is a broadside beam, which is right
+			 * for a far source. The wearer's mouth is near-field and
+			 * about one sample closer to the center mic; a center delay
+			 * of 1 (CONFIG_APP_BF_DELAY_CENTER) lines that up.
 			 * Summing three 24-bit values cannot overflow int32_t.
 			 */
 			int32_t sum = (aligned[MIC_LEFT] + aligned[MIC_CENTER] +
 				       aligned[MIC_RIGHT]) / MIC_COUNT;
 
+#if IS_ENABLED(CONFIG_APP_BF_GSC)
+			beam24[i] = sum;
+			left24[i] = aligned[MIC_LEFT];
+			right24[i] = aligned[MIC_RIGHT];
+#else
 			mono_chunk[i] = saturate_int16(sum >> (8 - CAPTURE_GAIN_SHIFT));
+#endif
+		}
 
-			if (IS_ENABLED(CONFIG_APP_BF_MIC_DEBUG)) {
+#if IS_ENABLED(CONFIG_APP_BF_CAL)
+		if (atomic_get(&cal_requested)) {
+			if (!cal.active) {
+				bf_cal_begin(&cal);
+			}
+
+			struct bf_cal_result fit;
+
+			if (bf_cal_feed(&cal, raw24[MIC_LEFT], raw24[MIC_CENTER], raw24[MIC_RIGHT],
+					frames, &fit)) {
+				atomic_clear(&cal_requested);
+				apply_calibration(&fit);
+			}
+		}
+#endif
+
+#if IS_ENABLED(CONFIG_APP_BF_GSC)
+		/*
+		 * Adaptive sidelobe canceller: removes from the beam what can be
+		 * predicted from L - R, which holds side noise but no wearer voice.
+		 */
+		gsc_process(&gsc, beam24, left24, right24, frames);
+		for (size_t i = 0; i < frames; i++) {
+			mono_chunk[i] = saturate_int16(beam24[i] >> (8 - CAPTURE_GAIN_SHIFT));
+		}
+#endif
+
+		if (IS_ENABLED(CONFIG_APP_BF_MIC_DEBUG)) {
+			for (size_t i = 0; i < frames; i++) {
 				beam_peak = MAX(beam_peak, abs32(mono_chunk[i]));
 			}
 		}

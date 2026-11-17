@@ -38,15 +38,16 @@ from wav_writer import read_wav, write_wav  # noqa: E402
 PROJECT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Paths shown in the spectrogram grid and the response plot, in this order.
-FOCUS_PATHS = ["raw_center", "lr_mix", "das", "das_c1", "gsc", "diff_lr"]
-SEG_COLORS = {"silence": "#eeeeee", "noise": "#ffe8c2", "speech": "#cfe8ff", "sweep": "#e2ffd6", "tone": "#f3d6ff"}
+FOCUS_PATHS = ["raw_center", "lr_mix", "das", "das_auto", "gsc_nlms", "gsc_auto", "gsc", "diff_lr"]
+SEG_COLORS = {"silence": "#eeeeee", "noise": "#ffe8c2", "speech": "#cfe8ff", "sweep": "#e2ffd6", "tone": "#f3d6ff",
+              "interf": "#ffd6d6", "both": "#e8d6ff"}
 
 
-def load_mono(path: str) -> np.ndarray:
+def load_mono(path: str, mix: bool = False) -> np.ndarray:
     pcm, rate, ch = read_wav(path)
     x = np.frombuffer(pcm, dtype="<i2")
     if ch != 1:
-        x = x.reshape(-1, ch)[:, 0]
+        x = x.reshape(-1, ch).mean(axis=1).astype("<i2") if mix else x.reshape(-1, ch)[:, 0]
     if rate != dsp.RATE:
         raise ValueError(f"{path}: expected {dsp.RATE} Hz, got {rate}")
     return x.copy()
@@ -87,8 +88,7 @@ def analyze(run_dir: str, clip_path: Optional[str] = None, cues_path: Optional[s
     if os.path.isfile(os.path.join(run_dir, "bf_device.wav")):
         bf_dev = load_mono(os.path.join(run_dir, "bf_device.wav"))
 
-    paths = dsp.build_paths(L, C, R, bf_dev)
-    n = len(paths["raw_center"])
+    n = min(len(L), len(C), len(R))
 
     result: dict = {
         "run_dir": os.path.basename(os.path.abspath(run_dir)),
@@ -104,7 +104,7 @@ def analyze(run_dir: str, clip_path: Optional[str] = None, cues_path: Optional[s
 
     # Device beamformer check: the host's `das` with the device's delays must match bit for bit.
     dev_bf_cfg = meta.get("device_run_start", {}).get("bf")
-    if bf_dev is not None and dev_bf_cfg:
+    if bf_dev is not None and dev_bf_cfg:  # noqa: E501
         host = dsp.delay_and_sum_int((L, C, R), dev_bf_cfg["delay"], dev_bf_cfg["gain"], dev_bf_cfg["out_gain"])
         m = min(len(host), len(bf_dev))
         # the device's delay lines start empty at run start; skip the first frame
@@ -122,7 +122,7 @@ def analyze(run_dir: str, clip_path: Optional[str] = None, cues_path: Optional[s
         cues = cues_path or meta.get("cues_path") or clip.replace(".wav", "_cues.csv")
         if os.path.isfile(cues):
             segments = load_cues(cues)
-        clip_x = load_mono(clip)
+        clip_x = load_mono(clip, mix=True)
         offset, conf = dsp.align_clip(C, clip_x)
         result["clip"] = os.path.basename(clip)
         result["clip_offset_samples"] = int(offset)
@@ -134,9 +134,16 @@ def analyze(run_dir: str, clip_path: Optional[str] = None, cues_path: Optional[s
         result["warnings"].append("no clip found for this run; per-segment measurements skipped")
 
     speech_segs = [s.slice(offset, n) for s in segments if s.kind == "speech"]
+    paths = dsp.build_paths(L, C, R, bf_dev, speech_segs or None)
+    fit = dsp.estimate_alignment(L, C, R, speech_segs or None)
+    result["wearer_fit"] = fit
+    if not fit.get("valid"):
+        result["warnings"].append(f"wearer fit not applied (coherence {fit.get('coherence')}); das_auto skipped")
     silence_segs = [s.slice(offset, n) for s in segments if s.kind == "silence"]
     noise_segs = [s.slice(offset, n) for s in segments if s.kind == "noise"]
     sweep_segs = [s.slice(offset, n) for s in segments if s.kind == "sweep"]
+    interf_segs = [s.slice(offset, n) for s in segments if s.kind == "interf"]
+    both_segs = [s.slice(offset, n) for s in segments if s.kind == "both"]
     seg_levels = dsp.segment_levels(paths, segments, offset) if segments else {}
 
     for name, x in paths.items():
@@ -160,7 +167,34 @@ def analyze(run_dir: str, clip_path: Optional[str] = None, cues_path: Optional[s
         if sweep_segs:
             a, b = sweep_segs[0]
             row["sweep_bands_dbfs"] = {str(k): round(v, 2) for k, v in dsp.band_levels(x[a:b]).items()}
+        if interf_segs:
+            # Interferer alone: how loud it is in this path, overall and per band.
+            seg = np.concatenate([x[a + dsp.RATE // 20: b - dsp.RATE // 20] for a, b in interf_segs if b - a > dsp.RATE // 5])
+            row["interf_level_dbfs"] = round(dsp.dbfs(dsp.rms(dsp.to_float(seg))), 2) if seg.size else None
+            row["interf_bands_dbfs"] = {str(k): round(v, 2) for k, v in dsp.band_levels(seg).items()} if seg.size else {}
+        if interf_segs and both_segs:
+            # Wearer over interferer: P(both) - P(interf alone), as a ratio to P(interf alone).
+            pb = np.mean([dsp.rms(dsp.to_float(x[a:b])) ** 2 for a, b in both_segs])
+            pi = np.mean([dsp.rms(dsp.to_float(x[a:b])) ** 2 for a, b in interf_segs])
+            row["snr_under_interference_db"] = round(10 * np.log10(max(pb - pi, 1e-12) / max(pi, 1e-12)), 2)
+        if speech_segs and name != "das" and "das" in paths:
+            # Speech preservation: how closely this path follows plain DAS while only the wearer talks.
+            xs = np.concatenate([dsp.to_float(x[a:b]) for a, b in speech_segs])
+            ds = np.concatenate([dsp.to_float(paths["das"][a:b]) for a, b in speech_segs])
+            if xs.size and ds.size and np.std(xs) > 0 and np.std(ds) > 0:
+                row["speech_preservation"] = round(float(np.corrcoef(xs, ds)[0, 1]), 4)
         result["paths"][name] = row
+    # Interferer rejection relative to the single centre mic, overall and in the 250-1000 Hz bands.
+    ref = result["paths"].get("raw_center", {})
+    if ref.get("interf_level_dbfs") is not None:
+        for name, row in result["paths"].items():
+            if row.get("interf_level_dbfs") is None:
+                continue
+            row["interf_rejection_db"] = round(ref["interf_level_dbfs"] - row["interf_level_dbfs"], 2)
+            lo = [ref["interf_bands_dbfs"][k] - row["interf_bands_dbfs"][k]
+                  for k in ("250", "315", "400", "500", "630", "800", "1000")
+                  if k in ref["interf_bands_dbfs"] and k in row["interf_bands_dbfs"]]
+            row["interf_rejection_lf_db"] = round(float(np.mean(lo)), 2) if lo else None
 
     # Time difference of arrival on the noise burst: checks the rig angle and the slot order.
     if noise_segs:
@@ -218,7 +252,7 @@ def figures(run_dir: str, paths: Dict[str, np.ndarray], segments: List[dsp.Segme
     title = f"{result.get('label') or ''}  angle {result.get('angle_deg')}°  {result.get('distance_cm')} cm  {result.get('environment') or ''}"
 
     # 1. waveforms
-    names = [p for p in ["raw_left", "raw_center", "raw_right", "lr_mix", "das", "das_c1", "gsc", "diff_lr", "bf_device"] if p in paths]
+    names = [p for p in ["raw_left", "raw_center", "raw_right", "lr_mix", "das", "das_c1", "das_auto", "gsc_nlms", "gsc_auto", "gsc", "diff_lr", "bf_device"] if p in paths]
     fig, axes = plt.subplots(len(names), 1, figsize=(14, 1.4 * len(names) + 1), sharex=True)
     for ax, name in zip(np.atleast_1d(axes), names):
         x = paths[name]
@@ -253,7 +287,7 @@ def figures(run_dir: str, paths: Dict[str, np.ndarray], segments: List[dsp.Segme
 
     # 3. levels per path
     rows = result["paths"]
-    order = [p for p in ["raw_left", "raw_center", "raw_right", "lr_mix", "das", "das_c1", "das_c2", "gsc", "diff_lr", "bf_device"] if p in rows]
+    order = [p for p in ["raw_left", "raw_center", "raw_right", "lr_mix", "das", "das_c1", "das_c2", "das_auto", "gsc_nlms", "gsc_auto", "gsc", "diff_lr", "bf_device"] if p in rows]
     fig, axes = plt.subplots(1, 3, figsize=(15, 4))
     for ax, key, label in zip(axes, ["speech_snr_db", "noise_level_dbfs", "silence_floor_dbfs"],
                               ["speech SNR (dB, higher is better)", "pink-noise burst level (dBFS)", "silence floor (dBFS, lower is better)"]):
@@ -274,7 +308,7 @@ def figures(run_dir: str, paths: Dict[str, np.ndarray], segments: List[dsp.Segme
     # 4. sweep response
     if any("sweep_bands_dbfs" in rows[p] for p in rows):
         fig, ax = plt.subplots(figsize=(10, 4.5))
-        for name in [p for p in ["raw_center", "lr_mix", "das", "das_c1", "gsc", "diff_lr"] if p in rows and "sweep_bands_dbfs" in rows[p]]:
+        for name in [p for p in ["raw_center", "lr_mix", "das", "das_auto", "gsc_nlms", "gsc_auto", "gsc", "diff_lr"] if p in rows and "sweep_bands_dbfs" in rows[p]]:
             b = rows[name]["sweep_bands_dbfs"]
             fs = sorted(int(k) for k in b)
             ax.semilogx(fs, [b[str(k)] for k in fs], marker="o", ms=3, label=name)
@@ -290,7 +324,8 @@ def figures(run_dir: str, paths: Dict[str, np.ndarray], segments: List[dsp.Segme
 
 def write_report(run_dir: str, result: dict):
     rows = result["paths"]
-    keys = ["rms_dbfs", "speech_snr_db", "noise_level_dbfs", "silence_floor_dbfs", "peak", "clips"]
+    keys = ["rms_dbfs", "speech_snr_db", "noise_level_dbfs", "silence_floor_dbfs", "interf_rejection_db",
+            "interf_rejection_lf_db", "snr_under_interference_db", "speech_preservation", "peak", "clips"]
     h = [f"<h1>{html.escape(result['run_dir'])}</h1>",
          f"<p>angle {result.get('angle_deg')}°, {result.get('distance_cm')} cm, {html.escape(str(result.get('environment')))}, "
          f"{result.get('duration_s')} s. Clip offset {result.get('clip_offset_s', '?')} s "
